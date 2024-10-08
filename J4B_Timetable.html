@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Background styling for desktop */
+        body {
+            background-image: url('Timetables_Background.jpg'); /* Add your desktop background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Fixes the background so it doesn't scroll */
+            height: 100vh; /* Full height */
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        /* Navigation bar styling */
+        .navbar {
+            width: 100%;
+            background-color: rgba(0, 123, 255, 0.8); /* Transparent background for navbar */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px; /* Thicker navbar */
+            position: fixed; /* Fixes the navbar to the top */
+            top: 0;
+            left: 0;
+            z-index: 10; /* Ensure it stays above other elements */
+        }
+
+        /* Button container fills remaining space */
+        .nav-buttons {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        /* Button styling: Each button takes equal space */
+        .nav-btn {
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            flex: 1;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 10px;
+            background-color: transparent; /* Remove button background */
+            border: none; /* Remove border */
+            transition: color 0.3s; /* Smooth color transition */
+            cursor: pointer; /* Add pointer cursor on hover */
+        }
+
+        .nav-btn:hover {
+            color: #ffcc00; /* Change text color on hover */
+        }
+
+        /* Photo styling - making the image larger */
+        .nav-image img {
+            width: 100px; /* Larger width */
+            height: 100px; /* Larger height */
+            border-radius: 50%; /* Circular image */
+            object-fit: cover;
+        }
+
+        /* Adjusted big image styling: larger and moved down */
+        .big-image-container {
+            position: absolute;
+            top: 140px; /* Move the big image down */
+            left: 0;
+            width: 100%; /* Full width */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 140px); /* Fill remaining height with adjusted top */
+        }
+
+        .big-image-container img {
+            max-width: 95%; /* Increase the max width to 95% */
+            max-height: 90%; /* Increase the max height to 90% */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px; /* Optional: add some border radius */
+        }
+
+        /* Media Queries for mobile background image */
+        @media (max-width: 768px) {
+            body {
+                background-image: url('yellow_background.jpg'); /* Add your mobile background image */
+                background-size: cover;
+                background-position: center;
+                
+            }
+
+            .nav-image img {
+                width: 70px; /* Adjust size for mobile */
+                height: 70px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .nav-image img {
+                content: url('el_ekbal_logo.png'); /* Desktop logo image */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-buttons">
+            <button class="nav-btn" id="button1">Home</button>
+            <button class="nav-btn" id="button5">Videos</button>
+            <button class="nav-btn" id="button2">Contests</button>
+            <button class="nav-btn" id="button3">Sheets</button>
+            <button class="nav-btn" id="button4">About</button>
+        </div>
+        <div class="nav-image">
+            <img src="el_ekbal_logo.png" alt="Logo">
+        </div>
+    </nav>
+
+    <!-- Big Image Section -->
+    <div class="big-image-container">
+        <img src="timetablej4.png" alt="Big Image"> <!-- Replace with your big image path -->
+    </div>
+
+     <!-- JavaScript functionality -->
+     <script>
+        document.getElementById('button1').addEventListener('click', function() {
+            window.location.href = 'main_padge.html'; // Redirects to 'Home'
+        });
+
+        document.getElementById('button2').addEventListener('click', function() {
+            window.location.href = 'Contests.html'; // Redirects to 'Contests'
+        });
+
+        document.getElementById('button3').addEventListener('click', function() {
+            window.location.href = 'Sheets.html'; // Redirects to 'Sheets'
+        });
+
+        document.getElementById('button4').addEventListener('click', function() {
+            window.location.href = 'About.html'; // Redirects to 'About'
+        });
+
+        document.getElementById('button5').addEventListener('click', function() {
+            window.location.href = 'Video.html'; // Redirects to 'Videos'
+        });
+    </script>
+
+</body>
+</html>
