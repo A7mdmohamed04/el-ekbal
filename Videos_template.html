@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Page</title>  
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Default styling for the body */
+        body, html {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Light background color */
+        }
+
+        /* Navigation bar styling */
+        .navbar {
+            width: 100%;
+            background-color: #007bff; /* Solid blue color */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px; /* Thicker navbar */
+            position: fixed; /* Fixes the navbar to the top */
+            top: 0;
+            left: 0;
+            z-index: 10; /* Ensure it stays above other elements */
+        }
+
+        /* Button styling */
+        .nav-buttons {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        .nav-btn {
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            flex: 1;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 10px;
+            background-color: transparent; /* Remove button background */
+            border: none; /* Remove border */
+            transition: color 0.3s; /* Smooth color transition */
+            cursor: pointer; /* Add pointer cursor on hover */
+        }
+
+        .nav-btn:hover {
+            color: #ffcc00; /* Change text color on hover */
+        }
+
+        /* Logo image styling */
+        .nav-image {
+            width: 100px; /* Default width */
+            height: 100px; /* Default height */
+        }
+
+        .nav-image img {
+            width: 100%; /* Responsive image */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 50%; /* Circular image */
+            object-fit: cover;
+        }
+
+        /* Centering message for the main content */
+        .message {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            flex-grow: 1; /* Allow content to grow */
+            font-size: 24px; /* Larger font size */
+            color: #333; /* Text color */
+            text-align: center; /* Center text */
+            margin-top: 120px; /* Add space below the navbar */
+        }
+
+        /* Video section styling */
+        .video-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+            gap: 20px; /* Space between videos */
+            padding: 20px;
+            margin-top: 160px; /* Space below navbar (increased) */
+            justify-items: center; /* Center the videos */
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) { /* For mobile devices */
+            .nav-image {
+                width: 70px; /* Adjust size for mobile */
+                height: 70px; /* Adjust size for mobile */
+            }
+            .nav-btn {
+                font-size: 16px; /* Smaller font size for mobile buttons */
+                padding: 10px 0; /* Adjust padding for mobile buttons */
+            }
+        }
+
+        /* Styling for embedded videos */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            width: 100%;
+            max-width: 560px;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-buttons">
+            <button class="nav-btn" id="button1">Home</button>
+            <button class="nav-btn" id="button5">Contests</button>
+            <button class="nav-btn" id="button2">Timetables</button>
+            <button class="nav-btn" id="button3">Sheets</button>
+            <button class="nav-btn" id="button4">About</button>
+        </div>
+        <div class="nav-image">
+            <img src="C:\Users\Ahmed\Desktop\EL_Ekbal\el_ekbal_logo.png" alt="Logo">
+        </div>
+    </nav>
+
+    <!-- Video Section -->
+    <div class="video-section">
+        <!-- Video 1 -->
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/bIn_mjWPAEE?si=WiVlY0gXQ8LYPR6R" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <!-- Video 2 -->
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/V0QxLvJI-Gk?si=p1DEWyR0QEO5mrSE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <!-- Video 3 -->
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/JO_eX1mmPxE?si=pnSx4bz7tZ2PgtaA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- JavaScript functionality for button redirects -->
+    <script>
+        document.getElementById('button1').addEventListener('click', function() {
+            window.location.href = 'main_padge.html'; // Redirects to 'Home'
+        });
+
+        document.getElementById('button2').addEventListener('click', function() {
+            window.location.href = 'padge2.html'; // Redirects to 'Timetables'
+        });
+
+        document.getElementById('button3').addEventListener('click', function() {
+            window.location.href = 'Sheets.html'; // Redirects to 'Sheets'
+        });
+
+        document.getElementById('button4').addEventListener('click', function() {
+            window.location.href = 'About.html'; // Redirects to 'About'
+        });
+
+        document.getElementById('button5').addEventListener('click', function() {
+            window.location.href = 'Contests.html'; // Redirects to 'Contests'
+        });
+    </script>
+
+</body>
+</html>

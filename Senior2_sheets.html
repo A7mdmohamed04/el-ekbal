@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> <!-- Prevent zooming -->
+    <title>Choose Subject</title>  
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Default styling for larger (PC) screens */
+        body, html {
+            height: 100%;
+            display: flex;
+            flex-direction: column; /* Arrange elements vertically */
+            font-family: Arial, sans-serif;
+            background-image: url('WhatsApp Image 2024-10-04 at 08.19.04_216105bb.jpg'); /* Desktop image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Mobile-specific styling using media query */
+        @media (max-width: 768px) {
+            body, html {
+                background-image: url('ekbal.jpg'); /* Mobile image */
+                overflow: hidden; /* Prevent scrolling */
+                width: 100vw; /* Full width */
+                height: 100vh; /* Full height */
+            }
+
+            .content {
+                padding: 10px; /* Ensure some padding */
+                font-size: 18px; /* Smaller font size for mobile */
+            }
+
+            .title {
+                font-size: 24px; /* Smaller title for mobile */
+            }
+
+            .grade-buttons {
+                grid-template-columns: 1fr; /* Only one button per row */
+                width: 90%;
+            }
+
+            .grade-btn {
+                font-size: 20px; /* Larger font for buttons */
+                padding: 20px;
+            }
+
+            .back-btn {
+                font-size: 18px; /* Adjust back button font size for mobile */
+            }
+        }
+
+        /* Navigation bar styling */
+        .navbar {
+            width: 100%;
+            background-color: #007bff; /* Solid blue color */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px; /* Thicker navbar */
+            position: fixed; /* Fixes the navbar to the top */
+            top: 0;
+            left: 0;
+            z-index: 10; /* Ensure it stays above other elements */
+        }
+
+        /* Button container fills remaining space */
+        .nav-buttons {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        /* Button styling: Each button takes equal space */
+        .nav-btn {
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            flex: 1;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 10px;
+            background-color: transparent; /* Remove button background */
+            border: none; /* Remove border */
+            transition: color 0.3s; /* Smooth color transition */
+            cursor: pointer; /* Add pointer cursor on hover */
+        }
+
+        .nav-btn:hover {
+            color: #ffcc00; /* Change text color on hover */
+        }
+
+        /* Photo styling - for larger (PC) screens */
+        .nav-image img {
+            width: 100px; /* Larger width */
+            height: 100px; /* Larger height */
+            border-radius: 50%; /* Circular image */
+            object-fit: cover;
+        }
+
+        /* Mobile-specific image styling */
+        @media (max-width: 768px) {
+            .nav-image img {
+                width: 70px; /* Smaller width */
+                height: 70px; /* Smaller height */
+                content: url('el_ekbal_logo.png'); /* Mobile-specific logo */
+            }
+        }
+
+        /* Ensure the navbar remains at the top */
+        body {
+            padding-top: 100px; /* Adds space at the top so content doesn't overlap with navbar */
+        }
+
+        /* Centering text for the main content */
+        .content {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            flex-direction: column;
+            flex-grow: 1; /* Allow content to grow */
+            font-size: 24px; /* Larger font size */
+            color: #333; /* Text color */
+            text-align: center; /* Center text */
+        }
+
+        /* Title styling above buttons */
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            margin-top: -20px; /* Move title up further */
+            padding: 20px; /* Space inside the border */
+            border: 4px solid #007bff; /* Border around title */
+            border-radius: 20px; /* Semi-circle edges */
+            background-color: rgba(255, 255, 255, 0.8); /* Light background for readability */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+        }
+
+        /* Hide title on desktop */
+        @media (min-width: 769px) {
+            .title {
+                display: block; /* Display title on desktop */
+            }
+        }
+
+        /* Styling for grade buttons */
+        .grade-buttons {
+            display: grid;
+            grid-template-columns: 1fr; /* One button per row */
+            gap: 20px;
+            width: 80%; /* Width of the button container */
+            max-width: 500px; /* Maximum width for larger screens */
+            margin-bottom: 30px; /* Space between grade buttons and back button */
+        }
+
+        .grade-btn {
+            padding: 20px; /* Taller buttons */
+            font-size: 24px; /* Larger font size */
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 30px; /* Semi-circle edges */
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .grade-btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Back button styling */
+        .back-btn {
+            width: 250px; /* Set the width to a larger value */
+            padding: 10px; /* Shorter height for buttons */
+            font-size: 20px; /* Larger font size */
+            font-weight: bold;
+            color: black; /* Black text color */
+            background-color: white; /* White background */
+            border: none;
+            border-radius: 30px; /* Semi-circle edges */
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 30px; /* Space above back button */
+            display: block; /* Ensures it behaves like a block element */
+            margin-left: auto; /* Center it horizontally */
+            margin-right: auto; /* Center it horizontally */
+        }
+
+        .back-btn:hover {
+            background-color: #f0f0f0; /* Light gray on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-buttons">
+            <button class="nav-btn" id="button1">Home</button>
+            <button class="nav-btn" id="button5">Videos</button>
+            <button class="nav-btn" id="button2">Timetables</button>
+            <button class="nav-btn" id="button3">Contests</button>
+            <button class="nav-btn" id="button4">About</button>
+        </div>
+        <div class="nav-image">
+            <img src="C:\Users\Ahmed\Desktop\EL_Ekbal\el_ekbal_logo.png" alt="Logo">
+        </div>
+    </nav>
+
+    <!-- Centered Content with Grade Buttons -->
+    <div class="content">
+        <!-- Title -->
+        <div class="title">Choose Section</div>
+
+        <!-- Grade Buttons -->
+        <div class="grade-buttons">
+            <button class="grade-btn" id="grade3">Scientific Section</button>
+            <button class="grade-btn" id="grade4">Literature Section</button>
+        </div>
+
+        <!-- Back Button -->
+        <button class="back-btn" id="backButton">Back</button>
+    </div>
+
+    <!-- JavaScript functionality for button redirects -->
+    <script>
+        document.getElementById('button1').addEventListener('click', function() {
+            window.location.href = 'main_padge.html'; // Redirects to 'Home'
+        });
+
+        document.getElementById('button2').addEventListener('click', function() {
+            window.location.href = 'Padge2.html'; // Redirects to 'Timetables'
+        });
+
+        document.getElementById('button3').addEventListener('click', function() {
+            window.location.href = 'Contests.html'; // Redirects to 'Sheets'
+        });
+
+        document.getElementById('button4').addEventListener('click', function() {
+            window.location.href = 'about.html'; // Redirects to 'About'
+        });
+
+        document.getElementById('button5').addEventListener('click', function() {
+            window.location.href = 'Video.html'; // Redirects to 'Contests'
+        });
+
+        document.getElementById('backButton').addEventListener('click', function() {
+            window.history.back(); // Goes back to the previous page
+        });
+
+        // Example: Redirecting grade buttons to different pages
+        document.getElementById('grade3').addEventListener('click', function() {
+            window.location.href = 'Scientific_Section_sheets.html'; // Redirects to 'Math'
+        });
+
+        document.getElementById('grade4').addEventListener('click', function() {
+            window.location.href = 'Literature_Section_sheets.html'; // Redirects to 'Science'
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar with Page Links</title>  
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Default styling - for larger (PC) screens */
+        body, html {
+            height: 100%;
+            display: flex;
+            flex-direction: column; /* Arrange elements vertically */
+            font-family: Arial, sans-serif;
+            background-image: url('WhatsApp Image 2024-10-04 at 08.19.04_216105bb.jpg'); /* Desktop image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Mobile-specific styling using media query */
+        @media (max-width: 768px) {
+            body, html {
+                background-image: url('ekbal.jpg'); /* Mobile image */
+            }
+        }
+
+        /* Navigation bar styling */
+        .navbar {
+            width: 100%;
+            background-color: #007bff; /* Solid blue color */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px; /* Thicker navbar */
+            position: fixed; /* Fixes the navbar to the top */
+            top: 0;
+            left: 0;
+            z-index: 10; /* Ensure it stays above other elements */
+        }
+
+        /* Button container fills remaining space */
+        .nav-buttons {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        /* Button styling: Each button takes equal space */
+        .nav-btn {
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            flex: 1;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 10px;
+            background-color: transparent; /* Remove button background */
+            border: none; /* Remove border */
+            transition: color 0.3s; /* Smooth color transition */
+            cursor: pointer; /* Add pointer cursor on hover */
+        }
+
+        .nav-btn:hover {
+            color: #ffcc00; /* Change text color on hover */
+        }
+
+        /* Photo styling - for larger (PC) screens */
+        .nav-image img {
+            width: 100px; /* Larger width */
+            height: 100px; /* Larger height */
+            border-radius: 50%; /* Circular image */
+            object-fit: cover;
+        }
+
+        /* Mobile-specific image styling */
+        @media (max-width: 768px) {
+            .nav-image img {
+                width: 70px; /* Smaller width */
+                height: 70px; /* Smaller height */
+                content: url('el_ekbal_logo.png'); /* Mobile-specific logo */
+            }
+        }
+
+        /* Ensure the navbar remains at the top */
+        body {
+            padding-top: 100px; /* Adds space at the top so content doesn't overlap with navbar */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-buttons">
+            <button class="nav-btn" id="button1">Home</button>
+            <button class="nav-btn" id="button5">Videos</button> <!-- New Contests Button -->
+            <button class="nav-btn" id="button2">Contests</button>
+            <button class="nav-btn" id="button3">Sheets</button>
+            <button class="nav-btn" id="button4">About</button>
+        </div>
+        <div class="nav-image">
+            <img src="C:\Users\Ahmed\Desktop\EL_Ekbal\el_ekbal_logo.png" alt="Logo">
+        </div>
+    </nav>
+<!-- JavaScript functionality -->
+<script>
+    document.getElementById('button1').addEventListener('click', function() {
+        window.location.href = 'main_padge.html'; // Redirects to 'Home'
+    });
+
+    document.getElementById('button2').addEventListener('click', function() {
+        window.location.href = 'Contests.html'; // Redirects to 'Contests'
+    });
+
+    document.getElementById('button3').addEventListener('click', function() {
+        window.location.href = 'Sheets.html'; // Redirects to 'Sheets'
+    });
+
+    document.getElementById('button4').addEventListener('click', function() {
+        window.location.href = 'About.html'; // Redirects to 'About'
+    });
+
+    document.getElementById('button5').addEventListener('click', function() {
+        window.location.href = 'Video.html'; // Redirects to 'Videos'
+    });
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Select</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling to center the content */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding-top: 100px;
+            background-image: url('desktop-background.jpg'); /* Desktop background image */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Media query for mobile devices */
+        @media (max-width: 768px) {
+            body {
+                background-image: url('mobile-background.jpg'); /* Mobile background image */
+            }
+        }
+
+        /* Select button styling */
+        .select-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        select {
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #007BFF;
+            border-radius: 25px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            appearance: none;
+            background-color: white;
+            width: 250px;
+        }
+
+        .select-button {
+            padding: 10px 15px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .select-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Centered Select Element -->
+    <div class="select-container">
+        <select id="mySelect">
+            <option value="">-- Select Class --</option>
+            <option value="option1">J4/A</option>
+            <option value="option2">J4/B</option>
+            <option value="option3">J4/C</option>
+            <option value="option4">J4/D</option>
+            <option value="option5">J5/A</option>
+            <option value="option6">J5/B</option>
+            <option value="option7">J5/C</option>
+            <option value="option8">J5/D</option>
+            <option value="option9">J6/A</option>
+            <option value="option10">J6/B</option>
+            <option value="option11">J6/C</option>
+            <option value="option12">M1/A</option>
+            <option value="option13">Option 13</option>
+            <option value="option14">Option 14</option>
+            <option value="option15">Option 15</option>
+            <option value="option16">Option 16</option>
+            <option value="option17">Option 17</option>
+            <option value="option18">Option 18</option>
+            <option value="option19">Option 19</option>
+            <option value="option20">Option 20</option>
+            <option value="option21">Option 21</option>
+            <option value="option22">Option 22</option>
+            <option value="option23">Option 23</option>
+            <option value="option24">Option 24</option>
+            <option value="option25">Option 25</option>
+            <option value="option26">Option 26</option>
+            <option value="option27">Option 27</option>
+            <option value="option28">Option 28</option>
+            <option value="option29">Option 29</option>
+            <option value="option30">Option 30</option>
+        </select>
+        <button class="select-button" onclick="handleSelect()">Select</button>
+    </div>
+
+    <!-- JavaScript functionality -->
+    <script>
+        function handleSelect() {
+            const select = document.getElementById('mySelect');
+            const selectedValue = select.value;
+            
+            if (selectedValue) {
+                // Call the specific function based on the selected value
+                switch (selectedValue) {
+                    case "option1":
+                        option1();
+                        break;
+                    case "option2":
+                        option2();
+                        break;
+                    case "option3":
+                        option3();
+                        break;
+                    case "option4":
+                        option4();
+                        break;
+                    case "option5":
+                        option5();
+                        break;
+                    case "option6":
+                        option6();
+                        break;
+                    case "option7":
+                        option7();
+                        break;
+                    case "option8":
+                        option8();
+                        break;
+                    case "option9":
+                        option9();
+                        break;
+                    case "option10":
+                        option10();
+                        break;
+                    case "option11":
+                        option11();
+                        break;
+                    case "option12":
+                        option12();
+                        break;
+                    case "option13":
+                        option13();
+                        break;
+                    case "option14":
+                        option14();
+                        break;
+                    case "option15":
+                        option15();
+                        break;
+                    case "option16":
+                        option16();
+                        break;
+                    case "option17":
+                        option17();
+                        break;
+                    case "option18":
+                        option18();
+                        break;
+                    case "option19":
+                        option19();
+                        break;
+                    case "option20":
+                        option20();
+                        break;
+                    case "option21":
+                        option21();
+                        break;
+                    case "option22":
+                        option22();
+                        break;
+                    case "option23":
+                        option23();
+                        break;
+                    case "option24":
+                        option24();
+                        break;
+                    case "option25":
+                        option25();
+                        break;
+                    case "option26":
+                        option26();
+                        break;
+                    case "option27":
+                        option27();
+                        break;
+                    case "option28":
+                        option28();
+                        break;
+                    case "option29":
+                        option29();
+                        break;
+                    case "option30":
+                        option30();
+                        break;
+                    default:
+                        console.log('Invalid selection');
+                }
+            } else {
+                
+            }
+        }
+
+        // Separate JavaScript functions for each option
+        function option1() {
+            window.location.href = 'J4A_Timetable.html';
+        }
+
+        function option2() {
+            window.location.href = 'J4B_Timetable.html';
+        }
+
+        function option3() {
+            window.location.href = 'J4C_Timetable.html';
+        }
+
+        function option4() {
+            window.location.href = 'J4D_Timetable.html';
+        }
+
+        function option5() {
+            window.location.href = 'J5A_Timetable.html';
+        }
+
+        function option6() {
+            window.location.href = 'J5B_Timetable.html';
+        }
+
+        function option7() {
+            window.location.href = 'J5C_Timetable.html';
+        }
+
+        function option8() {
+            window.location.href = 'J5D_Timetable.html';
+        }
+
+        function option9() {
+            window.location.href = 'J6A_Timetable.html';
+        }
+
+        function option10() {
+            window.location.href = 'J6B_Timetable.html';
+        }
+
+        function option11() {
+            window.location.href = 'J6C_Timetable.html';
+        }
+
+        function option12() {
+            window.location.href = 'M1A_Timetable.html';
+        }
+
+        function option13() {
+            window.location.href = 'page13.html';
+        }
+
+        function option14() {
+            window.location.href = 'page14.html';
+        }
+
+        function option15() {
+            window.location.href = 'page15.html';
+        }
+
+        function option16() {
+            window.location.href = 'page16.html';
+        }
+
+        function option17() {
+            window.location.href = 'page17.html';
+        }
+
+        function option18() {
+            window.location.href = 'page18.html';
+        }
+
+        function option19() {
+            window.location.href = 'page19.html';
+        }
+
+        function option20() {
+            window.location.href = 'page20.html';
+        }
+
+        function option21() {
+            window.location.href = 'page21.html';
+        }
+
+        function option22() {
+            window.location.href = 'page22.html';
+        }
+
+        function option23() {
+            window.location.href = 'page23.html';
+        }
+
+        function option24() {
+            window.location.href = 'page24.html';
+        }
+
+        function option25() {
+            window.location.href = 'page25.html';
+        }
+
+        function option26() {
+            window.location.href = 'page26.html';
+        }
+
+        function option27() {
+            window.location.href = 'page27.html';
+        }
+
+        function option28() {
+            window.location.href = 'page28.html';
+        }
+
+        function option29() {
+            window.location.href = 'page29.html';
+        }
+
+        function option30() {
+            window.location.href = 'page30.html';
+        }
+    </script>
+
+</body>
+</html>

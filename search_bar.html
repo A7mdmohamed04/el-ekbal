@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Search Bar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .search-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 350px;
+            border: 2px solid black;
+            border-radius: 30px;
+            padding: 5px;
+        }
+
+        .search-bar {
+            padding: 10px 40px 10px 15px;
+            width: 100%;
+            border: none;
+            outline: none;
+            border-radius: 30px;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            width: 20px;  /* Adjust the size as needed */
+            height: 20px; /* Adjust the size as needed */
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" placeholder="Search..." class="search-bar">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24" width="20" height="20">
+            <path d="M11 2a9 9 0 1 0 6.29 15.29l5.29 5.29a1 1 0 0 0 1.42-1.42l-5.29-5.29A9 9 0 0 0 11 2zm0 16a7 7 0 1 1 0-14 7 7 0 0 1 0 14z"/>
+        </svg>
+    </div>
+</body>
+</html>
