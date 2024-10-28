@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navigation Bar with Page Links</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+
+    <title>Subject Videos Unavailable</title>
     <style>
         /* General reset */
         * {
@@ -30,68 +31,6 @@
             body, html {
                 background-image: url('ekbal.jpg'); /* Mobile image */
             }
-        }
-
-        /* Navigation bar styling */
-        .navbar {
-            width: 100%;
-            background-color: #007bff; /* Solid blue color */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px; /* Thicker navbar */
-            position: fixed; /* Fixes the navbar to the top */
-            top: 0;
-            left: 0;
-            z-index: 10; /* Ensure it stays above other elements */
-        }
-
-        /* Button container fills remaining space */
-        .nav-buttons {
-            display: flex;
-            flex-grow: 1;
-        }
-
-        /* Button styling: Each button takes equal space */
-        .nav-btn {
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            flex: 1;
-            padding: 15px 0;
-            font-size: 18px;
-            font-weight: bold;
-            margin: 0 10px;
-            background-color: transparent; /* Remove button background */
-            border: none; /* Remove border */
-            transition: color 0.3s; /* Smooth color transition */
-            cursor: pointer; /* Add pointer cursor on hover */
-        }
-
-        .nav-btn:hover {
-            color: #ffcc00; /* Change text color on hover */
-        }
-
-        /* Photo styling - for larger (PC) screens */
-        .nav-image img {
-            width: 100px; /* Larger width */
-            height: 100px; /* Larger height */
-            border-radius: 50%; /* Circular image */
-            object-fit: cover;
-        }
-
-        /* Mobile-specific image styling */
-        @media (max-width: 768px) {
-            .nav-image img {
-                width: 70px; /* Smaller width */
-                height: 70px; /* Smaller height */
-                content: url('el_ekbal_logo.png'); /* Mobile-specific logo */
-            }
-        }
-
-        /* Ensure the navbar remains at the top */
-        body {
-            padding-top: 100px; /* Adds space at the top so content doesn't overlap with navbar */
         }
 
         /* Message frame styling */
@@ -134,17 +73,129 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            height: calc(100vh - 100px); /* Full viewport height minus navbar */
+            height: 100vh; /* Full viewport height */
         }
 
     </style>
 </head>
 <body>
+
+    <!-- Centered content with text and back button -->
+    <div class="center-content">
+        <div class="message-frame">
+            Videos for this Subject are not available at the moment.
+        </div>
+
+        <!-- Back button -->
+        <button class="back-btn" onclick="window.history.back()">Go Back</button>
+    </div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+
+    <title>Navigation Bar with Page Links</title>  
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Default styling for larger screens */
+        body, html {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Mobile-specific styling */
+        @media (max-width: 768px) {
+            body, html {
+                background-image: url('');
+            }
+        }
+
+        /* Navigation bar styling */
+        .navbar {
+            width: 100%;
+            background-color: #007bff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        /* Navigation button container */
+        .nav-buttons {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        /* Button styling */
+        .nav-btn {
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            flex: 1;
+            padding: 10px 0;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0 5px;
+            background-color: transparent;
+            border: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            color: #ffcc00;
+        }
+
+        /* Logo styling */
+        .nav-image img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Mobile-specific image adjustments */
+        @media (max-width: 768px) {
+            .nav-image img {
+                width: 0px;
+                height: 0px;
+                content: url('el_ekbal_logo.png'); /* Mobile-specific logo */
+            }
+        }
+
+        /* Ensure content doesn't overlap the navbar */
+        body {
+            padding-top: 80px;
+        }
+    </style>
+</head>
+<body>
+
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-buttons">
             <button class="nav-btn" id="button1">Home</button>
-            <button class="nav-btn" id="button2">Contests</button>
+            <button class="nav-btn" id="button2">Activities</button>
             <button class="nav-btn" id="button3">Timetables</button>
             <button class="nav-btn" id="button4">Sheets</button>
             <button class="nav-btn" id="button5">About</button>
@@ -154,37 +205,28 @@
         </div>
     </nav>
 
-    <!-- Centered content with text and back button -->
-    <div class="center-content">
-        <div class="message-frame">
-            Arabic videos for Junior 5 is not available at the moment.
-        </div>
-
-        <!-- Back button -->
-        <button class="back-btn" onclick="window.history.back()">Go Back</button>
-    </div>
-
-    <!-- JavaScript functionality -->
+    <!-- JavaScript -->
     <script>
         document.getElementById('button1').addEventListener('click', function() {
-            window.location.href = 'main_padge.html'; // Redirects to 'Video'
+            window.location.href = 'index.html';
         });
 
         document.getElementById('button2').addEventListener('click', function() {
-            window.location.href = 'Contests.html'; // Redirects to 'Contests'
+            window.location.href = 'Activities.html';
         });
 
         document.getElementById('button3').addEventListener('click', function() {
-            window.location.href = 'padge2.html'; // Redirects to 'Timetables'
+            window.location.href = 'padge2.html';
         });
 
         document.getElementById('button4').addEventListener('click', function() {
-            window.location.href = 'Sheets.html'; // Redirects to 'Sheets'
+            window.location.href = 'Sheets.html';
         });
 
         document.getElementById('button5').addEventListener('click', function() {
-            window.location.href = 'About.html'; // Redirects to 'About'
+            window.location.href = 'About.html';
         });
     </script>
+
 </body>
 </html>
