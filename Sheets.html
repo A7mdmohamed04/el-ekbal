@@ -2,39 +2,190 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Videos</title>  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Videos</title>
     <style>
-        /* General reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Set background on the <html> element */
+        /* Set background images for different screen sizes */
         html {
             height: 100%;
-            background-color: #D3D3D3;
-            background-image: url('desktop_sheet_background.jpg'); /* Default desktop background */
+            background-image: url('rm222-mind-26.jpg'); /* Custom Background Image for Desktop */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
 
-        /* Ensure body takes full height and doesn't interfere with background */
+        @media (max-width: 768px) {
+            html {
+                background-image: url('rm222-mind-24.jpg'); /* Custom Background Image for Mobile */
+            }
+        }
+
         body {
             height: 100%;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             font-family: Arial, sans-serif;
-            padding-top: 80px; /* Prevent overlap with navbar */
+            position: relative; /* Allow absolute positioning for children */
+            padding-top: 100px; /* Increased to prevent overlap with navbar */
         }
 
-        /* Mobile-specific background */
+        /* Square Wrapper */
+        .square-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 600px;
+            background-image: url('bgs1.jpg'); /* Custom Background Image for Square */
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            padding: 20px;
+            gap: 15px;
+            position: relative;
+            top: 30px; /* Lower the square-wrapper slightly */
+        }
+
+        /* Title for Videos inside the square wrapper */
+        .video-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            text-align: left;
+        }
+
+        /* Grade text styling */
+        .square-wrapper-text {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: hsl(0, 0%, 100%);
+        }
+
+        /* Images positioned at bottom corners */
+        .bottom-left {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 230px;
+            display: none;
+        }
+
+        .bottom-right {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 230px;
+            display: none;
+        }
+
+        /* Ensure images are visible only on desktop */
+        @media (min-width: 769px) {
+            .bottom-left,
+            .bottom-right {
+                display: block;
+            }
+        }
+        
+        /* Images positioned at bottom corners */
+        .upper-left {
+            position: absolute;
+            bottom: 270px;
+            left: 10px;
+            width: 230px;
+            display: none;
+        }
+
+        .upper-right {
+            position: absolute;
+            bottom: 270px;
+            right: 10px;
+            width: 230px;
+            display: none;
+        }
+
+        /* Ensure images are visible only on desktop */
+        @media (min-width: 769px) {
+            .upper-left,
+            .upper-right {
+                display: block;
+            }
+        }
+
+
+        /* Ensure the image is displayed correctly */
+        .square-wrapper img {
+            width: 250px;
+            height: auto;
+            max-height: 170px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        /* Grid layout to handle any number of buttons */
+        .square-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            width: 100%;
+        }
+
+        .square-btn {
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .square-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .square-btn.full-width {
+            grid-column: span 2;
+        }
+
+        /* Center the square wrapper for desktop and mobile */
+        @media (min-width: 769px) {
+            .square-wrapper {
+                position: absolute;
+                top: 59%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+
         @media (max-width: 768px) {
-            html {
-                background-image: url('yellow_background.jpg'); /* Mobile background */
+            .square-wrapper {
+                position: absolute;
+                top: 55%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                height: auto;
+                padding: 30px;
+            }
+
+            .square-buttons {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -52,11 +203,13 @@
             z-index: 10;
         }
 
+        /* Navigation button container */
         .nav-buttons {
             display: flex;
             flex-grow: 1;
         }
 
+        /* Button styling */
         .nav-btn {
             color: white;
             text-align: center;
@@ -76,6 +229,7 @@
             color: #ffcc00;
         }
 
+        /* Logo styling */
         .nav-image img {
             width: 80px;
             height: 80px;
@@ -83,14 +237,16 @@
             object-fit: cover;
         }
 
+        /* Mobile-specific image adjustments */
         @media (max-width: 768px) {
             .nav-image img {
                 width: 0px;
                 height: 0px;
-                content: url('el_ekbal_logo.png'); /* Mobile logo */
+                content: url('el_ekbal_logo.png');
             }
         }
 
+        /* Sliding menu styling */
         .menu {
             position: fixed;
             top: 0;
@@ -117,6 +273,7 @@
             }
         }
 
+        /* Toggle button styling */
         .menu-btn {
             position: fixed;
             right: 20px;
@@ -137,29 +294,9 @@
             }
         }
 
-        .square-btn {
-            position: absolute;
-            bottom: 20px;
-            left: 10px;
-            width: 43px;
-            height: 43px;
-            background-color: #007bff;
-            border-radius: 16px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
+        
 
-        .square-btn img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .square-btn:hover {
-            transform: scale(1.1);
-        }
-
+        /* Menu item styling */
         .menu-item {
             background-color: #007bff;
             border: none;
@@ -177,70 +314,16 @@
         .menu-item:hover {
             background-color: #0056b3;
         }
-
-        .content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            flex-grow: 1;
-            font-size: 24px;
-            color: #333;
-            text-align: center;
-        }
-
-        .title {
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            margin-top: -20px;
-        }
-
-        @media (min-width: 769px) {
-            .title {
-                display: none;
-            }
-        }
-
-        .grade-buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            width: 80%;
-            max-width: 1000px;
-        }
-
-        .grade-btn {
-            padding: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            background-color: #007bff;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .grade-btn:hover {
-            background-color: #0056b3;
-        }
-
-        @media (max-width: 768px) {
-            .grade-buttons {
-                grid-template-columns: repeat(2, 1fr);
-                width: 90%;
-            }
-        }
     </style>
 </head>
 <body>
 
+    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-buttons">
-            <button class="nav-btn" id="button1">Home</button>
-            <button class="nav-btn" id="button2">Videos</button>
-            <button class="nav-btn" id="button3">Activities</button>
+            <button class="nav-btn" id="button1">Videos</button>
+            <button class="nav-btn" id="button2">Activities</button>
+            <button class="nav-btn" id="button3">Sheets</button>
             <button class="nav-btn" id="button4">About</button>
         </div>
         <div class="nav-image">
@@ -248,55 +331,61 @@
         </div>
     </nav>
 
+    <!-- Sliding Menu -->
     <div class="menu" id="menu">
-        <button class="square-btn" id="imageButton">
-            <img src="teacher.webp" alt="Button Image">
+            
         </button>
     </div>
 
+    <!-- Menu Toggle Button -->
     <button class="menu-btn" id="toggleMenu">☰</button>
 
-    <div class="content">
-        <div class="grade-buttons">
-            <button class="grade-btn" id="grade1">Junior 4</button>
-            <button class="grade-btn" id="grade2">Junior 5</button>
-            <button class="grade-btn" id="grade3">Junior 6</button>
-            <button class="grade-btn" id="grade4">Middle 1</button>
-            <button class="grade-btn" id="grade5">Middle 2</button>
-            <button class="grade-btn" id="grade6">Middle 3</button>
-            <button class="grade-btn" id="grade7">Senior 1</button>
-            <button class="grade-btn" id="grade8">Senior 2</button>
+    <!-- Square Wrapper -->
+    <div class="square-wrapper">
+        <div class="video-title">Sheets</div>
+        <img src="elekbal_logoo.png" alt="Square Image">
+        <div class="square-wrapper-text">Grade</div>
+        
+        <div class="square-buttons" id="buttonContainer">
+            <!-- Buttons will be dynamically added here -->
         </div>
     </div>
-    <script>
-        document.getElementById('button1').addEventListener('click', function() {
-            window.location.href = 'index.html';
-        });
 
-        document.getElementById('button2').addEventListener('click', function() {
+    <!-- Bottom corner images -->
+    <img src="elekbal_logoo.png" alt="Left Bottom Image" class="bottom-left">
+    <img src="elekbal_logoo.png" alt="Right Bottom Image" class="bottom-right">
+    <img src="elekbal_logoo.png" alt="Left Bottom Image" class="upper-left">
+    <img src="elekbal_logoo.png" alt="Right Bottom Image" class="upper-right">
+
+
+    <script>
+        // Navbar button actions
+        document.getElementById('button1').addEventListener('click', function() {
             window.location.href = 'Video.html';
         });
 
-        document.getElementById('button3').addEventListener('click', function() {
+        document.getElementById('button2').addEventListener('click', function() {
             window.location.href = 'Activities.html';
+        });
+
+        document.getElementById('button3').addEventListener('click', function() {
+            window.location.href = 'Sheets.html';
         });
 
         document.getElementById('button4').addEventListener('click', function() {
             window.location.href = 'About.html';
         });
 
+        // Sliding menu functionality
         const menu = document.getElementById('menu');
         const toggleMenu = document.getElementById('toggleMenu');
         const imageButton = document.getElementById('imageButton');
 
         toggleMenu.addEventListener('click', function() {
-            if (menu.style.right === '0px') {
-                menu.style.right = '-100%';
-            } else {
-                menu.style.right = '0';
-            }
+            menu.style.right = menu.style.right === '0px' ? '-100%' : '0';
         });
 
+        // Create menu items dynamically
         const menuItems = [
             { text: 'Announcements', link: 'Announcements.html' },
             { text: 'Timetables', link: 'padge2.html' },
@@ -309,47 +398,50 @@
             const menuItem = document.createElement('div');
             menuItem.textContent = item.text;
             menuItem.className = 'menu-item';
+
             menuItem.addEventListener('click', () => {
                 window.location.href = item.link;
             });
+
             menu.appendChild(menuItem);
         });
 
-        imageButton.addEventListener('click', () => {
-            window.location.href = 'Teacher_padge.html';
+       
+        // Button labels and corresponding HTML pages
+        const buttonLabels = [
+            { label: "Junior 4", page: "Junior4_videos.html" },
+            { label: "Junior 5", page: "Junior5_videos.html" },
+            { label: "Junior 6", page: "Junior6_videos.html" },
+            { label: "Middle 1", page: "Middle1_videos.html" },
+            { label: "Middle 2", page: "Middle2_videos.html" },
+            { label: "Middle 3", page: "Middle3_videos.html" },
+            { label: "Senior 1", page: "Senior1_videos.html" },
+            { label: "Senior 2", page: "Senior2_videos.html" }
+        ];
+
+        // Get the button container
+        const buttonContainer = document.getElementById('buttonContainer');
+
+        // Create buttons dynamically
+        buttonLabels.forEach(({ label, page }) => {
+            const button = document.createElement('button');
+            button.className = 'square-btn';
+            button.textContent = label;
+
+            // Set the button click event to lead to the corresponding HTML page
+            button.addEventListener('click', () => {
+                window.location.href = page;
+            });
+
+            buttonContainer.appendChild(button);
         });
 
-        document.getElementById('grade1').addEventListener('click', function() {
-            window.location.href = 'Junior4_sheets.html';
-        });
-
-        document.getElementById('grade2').addEventListener('click', function() {
-            window.location.href = 'Junior5_sheets.html';
-        });
-
-        document.getElementById('grade3').addEventListener('click', function() {
-            window.location.href = 'Junior6_sheets.html';
-        });
-
-        document.getElementById('grade4').addEventListener('click', function() {
-            window.location.href = 'Middle1_sheets.html';
-        });
-
-        document.getElementById('grade5').addEventListener('click', function() {
-            window.location.href = 'Middle2_sheets.html';
-        });
-
-        document.getElementById('grade6').addEventListener('click', function() {
-            window.location.href = 'Middle3_sheets.html';
-        });
-
-        document.getElementById('grade7').addEventListener('click', function() {
-            window.location.href = 'Senior1_sheets.html';
-        });
-
-        document.getElementById('grade8').addEventListener('click', function() {
-            window.location.href = 'Senior2_sheets.html';
-        });
+        // Adjust the last button if the number of buttons is odd
+        const buttons = buttonContainer.querySelectorAll('.square-btn');
+        if (buttons.length % 2 !== 0) {
+            buttons[buttons.length - 1].classList.add('full-width');
+        }
     </script>
+
 </body>
 </html>
