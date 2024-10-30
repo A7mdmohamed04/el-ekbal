@@ -173,21 +173,31 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .square-wrapper {
-                position: absolute;
-                top: 56%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 90%;
-                height: auto;
-                padding: 30px;
-            }
+        /* Ensure square wrapper is always under the menu button with 5px spacing */
+@media (max-width: 768px) {
+    .square-wrapper {
+        position: relative; /* Change from absolute to relative */
+        margin-top: 5px; /* 5px space under the menu button */
+        margin-left: auto;
+        margin-right: auto;
+        width: calc(100% - 20px); /* Prevents edges from touching screen (10px padding on both sides) */
+        max-width: 600px; /* Ensure it doesn't exceed the original width */
+        padding: 30px; /* Keep the padding consistent */
+    }
+}
+
+/* Optional: Add some spacing for better appearance on very small screens */
+body {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
 
             .square-buttons {
                 grid-template-columns: repeat(2, 1fr);
             }
-        }
+        
 
         /* Navigation bar styling */
         .navbar {
@@ -314,6 +324,7 @@
         .menu-item:hover {
             background-color: #0056b3;
         }
+        
     </style>
 </head>
 <body>
@@ -321,7 +332,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-buttons">
-            <button class="nav-btn" id="button1">Home</button>
+            <button class="nav-btn" id="button1">Videos</button>
             <button class="nav-btn" id="button2">Activities</button>
             <button class="nav-btn" id="button3">Sheets</button>
             <button class="nav-btn" id="button4">About</button>
@@ -361,7 +372,7 @@
     <script>
         // Navbar button actions
         document.getElementById('button1').addEventListener('click', function() {
-            window.location.href = 'index.html';
+            window.location.href = 'Video.html';
         });
 
         document.getElementById('button2').addEventListener('click', function() {
