@@ -185,7 +185,7 @@
         }
 
         .bottom-right-text {
-            bottom: 20px;
+            top: 20px;
             right: 20px;
             text-align: right;
             font-family: 'Georgia', serif;
@@ -288,7 +288,7 @@
             text-align: center;
             opacity: 0;
             transform: translateY(10px);
-            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
             position: relative;
             z-index: 15;
             color: black;
@@ -305,7 +305,7 @@
             text-align: center;
             opacity: 0;
             transform: translateY(10px);
-            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
             position: relative;
             z-index: 15;
             color: black;
@@ -464,16 +464,26 @@
             const searchWrapper = document.getElementById('searchWrapper');
             const backButton = document.getElementById('backButton');
             const downloadButton = document.getElementById('downloadButton');
+            const rectangles = document.querySelectorAll('.info-rectangle, .name-rectangle');
 
+            // Fade out all elements with the same timing
+            rectangles.forEach(rect => {
+                rect.style.opacity = '0';
+                rect.style.transform = 'translateY(10px)';
+                rect.style.transition = 'opacity 1.5s ease-in-out, transform 1.5s ease-in-out';
+            });
             studentInfo.style.opacity = '0';
             backButton.style.opacity = '0';
+            backButton.style.transform = 'translateY(10px)';
             downloadButton.style.opacity = '0';
+            downloadButton.style.transform = 'translateY(10px)';
 
             setTimeout(() => {
                 studentInfo.innerHTML = '';
                 mobilePhoto.style.display = 'block';
                 searchWrapper.style.display = 'flex';
 
+                // Fade in photo and search bar simultaneously
                 mobilePhoto.style.opacity = '1';
                 searchWrapper.style.opacity = '1';
             }, 1500);
