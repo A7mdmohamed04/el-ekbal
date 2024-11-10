@@ -28,7 +28,17 @@
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
-            background-color: white;
+            background-image: url('bgblur2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        body.video-active {
+            @media (min-width: 769px) {
+                overflow: hidden;
+                height: 100vh;
+            }
         }
 
         /* Keeping original navbar styles */
@@ -163,51 +173,143 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* New styles for unavailable content */
-        .unavailable-container {
+        /* New Video Section Styles */
+        .video-container {
+            padding-top: 80px;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding-top: 80px;
-            text-align: center;
         }
 
-        .unavailable-icon {
-            font-size: 5rem;
-            color: var(--primary-color);
-            animation: pulse 2s infinite;
+        .selection-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
         }
 
-        .unavailable-text {
-            font-size: 2rem;
-            color: var(--primary-color);
+        .selection-container h2 {
+            color: white;
+        }
+
+        .grade-selection, .subject-selection, .teacher-selection, .lesson-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
             margin-top: 2rem;
-            font-weight: 600;
+        }
+
+        .selection-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .selection-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .selection-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             opacity: 0;
-            animation: fadeIn 1s ease-in forwards;
-            animation-delay: 0.5s;
+            transition: opacity 0.3s ease;
+            z-index: 1;
         }
 
-        .unavailable-subtext {
-            font-size: 1.2rem;
-            color: var(--dark-color);
-            margin-top: 1rem;
+        .selection-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .selection-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .selection-card p {
+            color: #666;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .selection-card.teacher-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-right: 120px;
+        }
+
+        .teacher-photo {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            z-index: 2;
+        }
+
+        .video-player {
+            width: 80%;
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
             opacity: 0;
-            animation: fadeIn 1s ease-in forwards;
-            animation-delay: 1s;
+            transform: scale(0.95);
+            transition: all 0.5s ease;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        .video-player.active {
+            opacity: 1;
+            transform: scale(1);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .back-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @media (max-width: 768px) {
@@ -228,26 +330,15 @@
             }
 
             .mobile-menu .phone-btn {
-                display: flex;
-                justify-content: center;
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                background: var(--primary-color);
-                border-radius: 50%;
-                width: 50px;
-                height: 50px;
-                margin: 0;
-                opacity: 1;
-                z-index: 1001;
-                -webkit-tap-highlight-color: transparent;
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                user-select: none;
+                display: none;
             }
 
-            .mobile-menu.active .phone-btn {
-                opacity: 1;
+            .selection-container {
+                width: 95%;
+            }
+
+            .grade-selection, .subject-selection, .teacher-selection, .lesson-selection {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -289,10 +380,73 @@
         </div>
     </nav>
 
-    <div class="unavailable-container">
-        <i class="fas fa-video unavailable-icon"></i>
-        <h1 class="unavailable-text">Videos Currently Unavailable</h1>
-        <p class="unavailable-subtext">Please check back later for updates</p>
+    <div class="video-container">
+        <div class="selection-container" id="gradeSelection">
+            <h2>Select Your Grade</h2>
+            <div class="grade-selection">
+                <div class="selection-card" onclick="showSubjects('J4')">
+                    <h3>Junior 4</h3>
+                    <p>Grade 4</p>
+                </div>
+                <div class="selection-card" onclick="showSubjects('J5')">
+                    <h3>Junior 5</h3>
+                    <p>Grade 5</p>
+                </div>
+                <div class="selection-card" onclick="showSubjects('J6')">
+                    <h3>Junior 6</h3>
+                    <p>Grade 6</p>
+                </div>
+                <div class="selection-card" onclick="showSubjects('M1')">
+                    <h3>Middle 1</h3>
+                    <p>Grade 7</p>
+                </div>
+                <div class="selection-card" onclick="showSubjects('M2')">
+                    <h3>Middle 2</h3>
+                    <p>Grade 8</p>
+                </div>
+                <div class="selection-card" onclick="showSubjects('M3')">
+                    <h3>Middle 3</h3>
+                    <p>Grade 9</p>
+                </div>
+                <div class="selection-card" onclick="showSubjects('S1')">
+                    <h3>Senior 1</h3>
+                    <p>Grade 10</p>
+                </div>
+                <div class="selection-card" onclick="showSubjects('S2')">
+                    <h3>Senior 2</h3>
+                    <p>Grade 11</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="selection-container" id="subjectSelection" style="display: none;">
+            <button class="back-btn" onclick="goBack('subject')">← Back to Grades</button>
+            <h2>Select Subject</h2>
+            <div class="subject-selection">
+                <!-- Will be populated dynamically -->
+            </div>
+        </div>
+
+        <div class="selection-container" id="teacherSelection" style="display: none;">
+            <button class="back-btn" onclick="goBack('teacher')">← Back to Subjects</button>
+            <h2>Select Teacher</h2>
+            <div class="teacher-selection">
+                <!-- Will be populated dynamically -->
+            </div>
+        </div>
+
+        <div class="selection-container" id="lessonSelection" style="display: none;">
+            <button class="back-btn" onclick="goBack('lesson')">← Back to Teachers</button>
+            <h2>Select Lesson</h2>
+            <div class="lesson-selection">
+                <!-- Will be populated dynamically -->
+            </div>
+        </div>
+
+        <div class="video-player" id="videoPlayer" style="display: none;">
+            <button class="back-btn" onclick="goBack('video')">← Back to Lessons</button>
+            <!-- Video player will be inserted here -->
+        </div>
     </div>
 
     <script>
@@ -303,4 +457,124 @@
             menuBtn.classList.toggle('active');
             mobileMenu.classList.toggle('active');
         });
+
+        // Video section functionality
+        let currentGrade = 'J4';
+
+        function goBack(currentView) {
+            if(currentView === 'video') {
+                document.body.classList.remove('video-active');
+            }
+            
+            switch(currentView) {
+                case 'subject':
+                    document.getElementById('subjectSelection').style.display = 'none';
+                    document.getElementById('gradeSelection').style.display = 'block';
+                    break;
+                case 'teacher':
+                    document.getElementById('teacherSelection').style.display = 'none';
+                    document.getElementById('subjectSelection').style.display = 'block';
+                    break;
+                case 'lesson':
+                    document.getElementById('lessonSelection').style.display = 'none';
+                    document.getElementById('teacherSelection').style.display = 'block';
+                    break;
+                case 'video':
+                    document.getElementById('videoPlayer').style.display = 'none';
+                    document.getElementById('lessonSelection').style.display = 'block';
+                    break;
+            }
+        }
+
+        function showSubjects(grade) {
+            currentGrade = grade;
+            document.getElementById('gradeSelection').style.display = 'none';
+            const subjectContainer = document.getElementById('subjectSelection');
+            subjectContainer.style.display = 'block';
+            
+            let subjects = ['Math', 'Science', 'English', 'Arabic'];
+            if (grade === 'S1') {
+                subjects = ['Math', 'In.Sci', 'English', 'Arabic'];
+            }
+            
+            const subjectHTML = subjects.map(subject => `
+                <div class="selection-card" onclick="showTeachers('${subject}')">
+                    <h3>${subject}</h3>
+                    <p>${grade} ${subject}</p>
+                </div>
+            `).join('');
+            
+            document.querySelector('.subject-selection').innerHTML = subjectHTML;
+        }
+
+        function showTeachers(subject) {
+            document.getElementById('subjectSelection').style.display = 'none';
+            const teacherContainer = document.getElementById('teacherSelection');
+            teacherContainer.style.display = 'block';
+            
+            let teachers = ['Mr. Ahmed', 'Mrs. Sarah', 'Mr. Mohamed', 'Mrs. Fatima'];
+            if (currentGrade === 'S1' && subject === 'In.Sci') {
+                const teacherHTML = `
+                    <div class="selection-card teacher-card" onclick="showLessons('${subject}', 'Mr. Omar Shaalan')">
+                        <div>
+                            <h3>Mr. Omar Shaalan</h3>
+                            <p>${subject} Teacher</p>
+                        </div>
+                        <img src="Mr_Omar_Shaalan.png" alt="Mr. Omar Shaalan" class="teacher-photo">
+                    </div>
+                `;
+                document.querySelector('.teacher-selection').innerHTML = teacherHTML;
+                return;
+            }
+            
+            const teacherHTML = teachers.map(teacher => `
+                <div class="selection-card" onclick="showLessons('${subject}', '${teacher}')">
+                    <h3>${teacher}</h3>
+                    <p>${subject} Teacher</p>
+                </div>
+            `).join('');
+            
+            document.querySelector('.teacher-selection').innerHTML = teacherHTML;
+        }
+
+        function showLessons(subject, teacher) {
+            document.getElementById('teacherSelection').style.display = 'none';
+            const lessonContainer = document.getElementById('lessonSelection');
+            lessonContainer.style.display = 'block';
+            
+            const lessons = ['Aquatic ecosystem', 'Lesson 2', 'Lesson 3', 'Lesson 4'];
+            const lessonHTML = lessons.map(lesson => `
+                <div class="selection-card" onclick="showVideo('${subject}', '${teacher}', '${lesson}')">
+                    <h3>${lesson}</h3>
+                    <p>${subject} - ${lesson}</p>
+                </div>
+            `).join('');
+            
+            document.querySelector('.lesson-selection').innerHTML = lessonHTML;
+        }
+
+        function showVideo(subject, teacher, lesson) {
+            // Special case for S1 In.Sci Lesson 1
+            if (currentGrade === 'S1' && subject === 'In.Sci' && lesson === 'Aquatic ecosystem') {
+                document.getElementById('lessonSelection').style.display = 'none';
+                const videoPlayer = document.getElementById('videoPlayer');
+                videoPlayer.style.display = 'block';
+                
+                videoPlayer.innerHTML = `
+                    <button class="back-btn" onclick="goBack('video')">← Back to Lessons</button>
+                    <iframe width="100%" height="450" src="https://www.youtube.com/embed/rN62JqpFBk0"
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+                        gyroscope; picture-in-picture" allowfullscreen></iframe>
+                `;
+                
+                setTimeout(() => {
+                    videoPlayer.classList.add('active');
+                    document.body.classList.add('video-active');
+                }, 100);
+                return;
+            }
+
+            // For all other cases
+            window.location.href = 'videos_404.html';
+        }
     </script>
