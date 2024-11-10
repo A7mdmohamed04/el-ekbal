@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Monthly marks</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent; /* Removes tap highlight on mobile */
+        }
+
+        /* Prevent scrolling */
+        html,
+        body {
+            overflow: hidden;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background-color: #D3D3D3;
+            position: relative;
+            min-height: 100vh;
+            padding-top: 80px; /* Add padding to account for fixed navbar */
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            body {
+                background-image: url('rm222-mind-24.jpg');
+                background-size: cover;
+                background-position: center;
+                padding: 80px 20px 20px; /* Adjust top padding for navbar */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+            }
+
+            .bottom-left,
+            .bottom-right,
+            .upper-left,
+            .upper-right {
+                display: none;
+            }
+
+            .bottom-left {
+                bottom: 5%;
+                left: 60px;
+            }
+
+            .bottom-right {
+                bottom: 5%;
+                right: 5%;
+            }
+
+            .corner-text {
+                font-size: 10px !important;
+                color: black !important;
+            }
+
+            .top-right-text {
+                font-size: 14px !important;
+            }
+
+            .bottom-left-text {
+                left: 5px !important;
+                color: white !important;
+            }
+
+            .bottom-right-text {
+                right: 5px !important;
+                color: white !important;
+            }
+
+            .info-rectangle {
+                font-size: 12px !important;
+                width: calc(50% - 5px) !important;
+            }
+
+            .name-rectangle {
+                font-size: 13px !important;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        /* Desktop styles */
+        @media (min-width: 769px) {
+            body {
+                background-image: url('rm222-mind-26.jpg');
+                background-size: cover;
+                background-position: center;
+            }
+
+            .bottom-left,
+            .bottom-right,
+            .upper-left,
+            .upper-right {
+                display: block;
+            }
+
+            .upper-left {
+                top: 15%;
+                left: 60px;
+            }
+
+            .upper-right {
+                top: 15%;
+                right: 10%;
+            }
+
+            .bottom-left {
+                bottom: 15%;
+                left: 60px;
+            }
+
+            .bottom-right {
+                bottom: 15%;
+                right: 10%;
+            }
+
+            .square-wrapper {
+                margin-top: 20px;
+            }
+        }
+
+        img {
+            width: 150%;
+            height: 150%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Styling for the corner images */
+        .corner-image {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+        }
+
+        /* Square wrapper styling */
+        .square-wrapper {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+            max-width: 600px;
+            height: 400px;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-image: url('bgblur2.jpg');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .corner-text {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: black;
+            font-size: 14px;
+            z-index: 20;
+        }
+
+        .bottom-left-text {
+            bottom: 20px;
+            left: 20px;
+            text-align: left;
+            font-family: 'Georgia', serif;
+            color: white;
+        }
+
+        .bottom-right-text {
+            top: 20px;
+            right: 20px;
+            text-align: right;
+            font-family: 'Georgia', serif;
+            color: white;
+        }
+
+        .top-right-text {
+            top: 20px;
+            left: 20px;
+            text-align: left;
+            font-family: 'Georgia', serif;
+            font-size: 18px;
+        }
+
+        .mobile-photo {
+            display: block;
+            margin-bottom: 25px;
+            text-align: center;
+            transition: opacity 1.5s ease-in-out;
+            margin-top: 34px;
+            position: relative;
+            z-index: 15;
+        }
+
+        .mobile-photo img {
+            width: 150%;
+            max-width: 200px;
+            height: auto;
+        }
+
+        .search-bar-wrapper {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            transition: opacity 1.5s ease-in-out;
+            z-index: 15;
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 700px;
+            padding: 10px 15px;
+            padding-right: 40px;
+            border: 2px solid black;
+            border-radius: 30px;
+            font-size: 18px;
+            margin-top: -35px;
+        }
+
+        .search-button {
+            position: absolute;
+            right: 15px;
+            top: -110%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            color: black;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        .search-button i {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E") center/contain no-repeat;
+        }
+
+        .error-message {
+            visibility: hidden;
+            color: red;
+            margin-top: 10px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .student-info {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+            width: 100%;
+            opacity: 0;
+            position: relative;
+            z-index: 15;
+        }
+
+        .info-rectangle {
+            background-color: #fff;
+            padding: 8px 12px;
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: calc(33.33% - 10px);
+            font-size: 14px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+            position: relative;
+            z-index: 15;
+            color: black;
+        }
+
+        .name-rectangle {
+            width: 100%;
+            margin-bottom: 10px;
+            background-color: #fff;
+            padding: 8px 12px;
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+            position: relative;
+            z-index: 15;
+            color: black;
+        }
+
+        .back-button, .download-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+            position: relative;
+            z-index: 15;
+            -webkit-tap-highlight-color: transparent; /* Removes tap highlight */
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            position: relative;
+            z-index: 15;
+        }
+
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Custom Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #007bff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            padding: 1rem 5%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: 0.3s;
+            background: var(--primary-color);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            color: var(--light-color);
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            margin-right: 3rem;
+        }
+
+        .nav-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 500;
+            -webkit-tap-highlight-color: transparent; /* Removes tap highlight */
+        }
+
+        .menu-btn {
+            display: none;
+            color: var(--light-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .menu-btn .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--light-color);
+            transition: 0.3s;
+        }
+
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--primary-color);
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.active {
+            max-height: 300px;
+            padding: 1rem 0;
+        }
+
+        .mobile-menu a:not(.phone-btn) {
+            display: block;
+            color: var(--light-color);
+            text-decoration: none;
+            padding: 0.5rem 5%;
+            font-weight: 500;
+            -webkit-tap-highlight-color: transparent; /* Removes tap highlight */
+        }
+
+        .menu-btn.active .bar:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .menu-btn.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active .bar:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .phone-btn {
+            color: var(--light-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            outline: none;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            position: absolute;
+            right: -50px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .phone-btn i {
+            font-size: 1.8rem;
+            transform: rotate(-105deg);
+        }
+
+        .home-icon {
+            display: none;
+            color: var(--light-color);
+            font-size: 1.5rem;
+            text-decoration: none;
+            margin-right: 1rem;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .menu-btn {
+                display: block;
+            }
+
+            .phone-btn {
+                display: none;
+            }
+
+            .home-icon {
+                display: block;
+            }
+
+            .mobile-menu .phone-btn {
+                display: flex;
+                justify-content: center;
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: var(--primary-color);
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                margin: 0;
+                opacity: 1;
+                z-index: 1001;
+                -webkit-tap-highlight-color: transparent;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                user-select: none;
+            }
+
+            .mobile-menu.active .phone-btn {
+                opacity: 1;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="logo">Ekbal School</a>
+            <div style="display: flex; align-items: center;">
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="activities.html">Activities</a>
+                    <a href="sheets.html">Sheets</a>
+                    <a href="timetables.html">Timetables</a>
+                    <a href="videos.html">Videos</a>
+                </div>
+                <a href="index.html" class="home-icon">
+                    <i class="fas fa-home"></i>
+                </a>
+                <button class="menu-btn">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+            <a href="contact_us.html" class="phone-btn">
+                <i class="fas fa-phone"></i>
+            </a>
+        </div>
+        <div class="mobile-menu">
+            <a href="activities.html">Activities</a>
+            <a href="sheets.html">Sheets</a>
+            <a href="timetables.html">Timetables</a>
+            <a href="videos.html">Videos</a>
+            <a href="contact_us.html" class="phone-btn">
+                <i class="fas fa-phone"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Corner images -->
+    <div class="corner-image upper-left">
+        <img src="c3.png" alt="Upper Left Corner Image">
+    </div>
+
+    <div class="corner-image upper-right">
+        <img src="c4.png" alt="Upper Right Corner Image">
+    </div>
+
+    <div class="corner-image bottom-left">
+        <img src="c7.png" alt="Left Corner Image">
+    </div>
+
+    <div class="corner-image bottom-right">
+        <img src="c8.png" alt="Right Corner Image">
+    </div>
+
+    <!-- Student Search and Certificate Section -->
+    <div class="square-wrapper" id="squareWrapper">
+        <div class="corner-text bottom-left-text">
+            <span>Head master</span>
+            <span>DR. Ahmed Abdelfattah</span>
+        </div>
+        
+        <div class="corner-text bottom-right-text">
+            <span>School Principal</span>
+            <span>MR. Magdy El Sakhawy</span>
+        </div>
+
+        <div class="mobile-photo" id="mobilePhoto">
+            <img src="boys_departments_logo.png" alt="Mobile Photo">
+        </div>
+
+        <div class="search-container">
+            <div class="search-bar-wrapper" id="searchWrapper">
+                <input type="text" class="search-bar" id="searchInput" placeholder="Enter your student code...">
+                <button class="search-button" onclick="searchCode()">
+                    <i></i>
+                </button>
+            </div>
+            <div class="error-message" id="errorMessage">Code not found!</div>
+        </div>
+
+        <div class="student-info" id="studentInfo"></div>
+        <div class="button-container">
+            <button class="back-button" id="backButton" onclick="resetSearch()">Back</button>
+            <button class="download-button" id="downloadButton" onclick="downloadResults()">Download</button>
+        </div>
+    </div>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+        // Fetch student data
+        async function fetchData() {
+            try {
+                const response = await fetch('J4.json');
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching student data:', error);
+                return [];
+            }
+        }
+
+        async function searchCode() {
+            const searchInput = document.getElementById('searchInput').value.trim();
+            const errorMessage = document.getElementById('errorMessage');
+            const studentInfo = document.getElementById('studentInfo');
+            const mobilePhoto = document.getElementById('mobilePhoto');
+            const searchWrapper = document.getElementById('searchWrapper');
+            const backButton = document.getElementById('backButton');
+            const downloadButton = document.getElementById('downloadButton');
+
+            if (!searchInput) return;
+
+            const students = await fetchData();
+            const student = students.find(stu => stu.Code === searchInput);
+
+            if (student) {
+                mobilePhoto.style.opacity = '0';
+                searchWrapper.style.opacity = '0';
+
+                setTimeout(() => {
+                    mobilePhoto.style.display = 'none';
+                    searchWrapper.style.display = 'none';
+                    errorMessage.style.visibility = 'hidden';
+
+                    const studentDetails = `
+                        <div class="name-rectangle"><strong>Name:</strong> ${student["Student Name"]}</div>
+                        <div class="info-rectangle"><strong>Arabic:</strong> ${student.Arabic}</div>
+                        <div class="info-rectangle"><strong>English:</strong> ${student.English}</div>
+                        <div class="info-rectangle"><strong>Math:</strong> ${student.Math}</div>
+                        <div class="info-rectangle"><strong>Chemistry:</strong> ${student.Chemistry}</div>
+                        <div class="info-rectangle"><strong>Religion:</strong> ${student.Religion1}</div>
+                        <div class="info-rectangle"><strong>Technology:</strong> ${student.Technology}</div>
+                    `;
+                    studentInfo.innerHTML = studentDetails;
+
+                    const rectangles = document.querySelectorAll('.info-rectangle, .name-rectangle');
+                    rectangles.forEach((rect, index) => {
+                        setTimeout(() => {
+                            rect.style.opacity = '1';
+                            rect.style.transform = 'translateY(0)';
+                        }, index * 500);
+                    });
+
+                    studentInfo.style.opacity = '1';
+
+                    setTimeout(() => {
+                        backButton.style.opacity = '1';
+                        backButton.style.transform = 'translateY(0)';
+                        downloadButton.style.opacity = '1';
+                        downloadButton.style.transform = 'translateY(0)';
+                    }, rectangles.length * 500);
+                }, 1500);
+            } else {
+                errorMessage.style.visibility = 'visible';
+            }
+        }
+
+        function resetSearch() {
+            const studentInfo = document.getElementById('studentInfo');
+            const mobilePhoto = document.getElementById('mobilePhoto');
+            const searchWrapper = document.getElementById('searchWrapper');
+            const backButton = document.getElementById('backButton');
+            const downloadButton = document.getElementById('downloadButton');
+            const rectangles = document.querySelectorAll('.info-rectangle, .name-rectangle');
+
+            // Fade out all elements with the same timing
+            rectangles.forEach(rect => {
+                rect.style.opacity = '0';
+                rect.style.transform = 'translateY(10px)';
+                rect.style.transition = 'opacity 1.5s ease-in-out, transform 1.5s ease-in-out';
+            });
+            studentInfo.style.opacity = '0';
+            backButton.style.opacity = '0';
+            backButton.style.transform = 'translateY(10px)';
+            downloadButton.style.opacity = '0';
+            downloadButton.style.transform = 'translateY(10px)';
+
+            setTimeout(() => {
+                studentInfo.innerHTML = '';
+                mobilePhoto.style.display = 'block';
+                searchWrapper.style.display = 'flex';
+
+                // Fade in photo and search bar simultaneously
+                mobilePhoto.style.opacity = '1';
+                searchWrapper.style.opacity = '1';
+            }, 1500);
+        }
+
+        async function downloadResults() {
+            const squareWrapper = document.getElementById('squareWrapper');
+            const backButton = document.getElementById('backButton');
+            const downloadButton = document.getElementById('downloadButton');
+            const searchContainer = document.querySelector('.search-container');
+            
+            // Temporarily hide elements we don't want in the screenshot
+            backButton.style.display = 'none';
+            downloadButton.style.display = 'none';
+            searchContainer.style.display = 'none';
+
+            try {
+                const canvas = await html2canvas(squareWrapper, {
+                    scale: 2,
+                    useCORS: true,
+                    backgroundColor: null,
+                    width: squareWrapper.offsetWidth,
+                    height: squareWrapper.offsetHeight,
+                    onclone: (clonedDoc) => {
+                        const clonedWrapper = clonedDoc.querySelector('#squareWrapper');
+                        clonedWrapper.style.position = 'static';
+                        clonedWrapper.style.transform = 'none';
+                    }
+                });
+
+                // Convert to image and download
+                const image = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.href = image;
+                link.download = 'student_results.png';
+                link.click();
+            } catch (error) {
+                console.error('Error taking screenshot:', error);
+            } finally {
+                // Restore hidden elements
+                backButton.style.display = 'block';
+                downloadButton.style.display = 'block';
+                searchContainer.style.display = 'block';
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                searchCode();
+            }
+        });
+
+        const menuBtn = document.querySelector('.menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Contact Us - Ekbal School</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #007bff;
+            --dark-color: #0056b3;
+            --light-color: #f5f5f5;
+            --accent-color: #004085;
+            --text-color: #2c3e50;
+            --secondary-color: #3498db;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--light-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: 0.3s;
+            background: var(--primary-color);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            color: var(--light-color);
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            margin-right: 3rem;
+        }
+
+        .nav-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .menu-btn {
+            display: none;
+            color: var(--light-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .menu-btn .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--light-color);
+            transition: 0.3s;
+        }
+
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--primary-color);
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.active {
+            max-height: 300px;
+            padding: 1rem 0;
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: var(--light-color);
+            text-decoration: none;
+            padding: 0.5rem 5%;
+            font-weight: 500;
+        }
+
+        .menu-btn.active .bar:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .menu-btn.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active .bar:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .home-icon {
+            display: none;
+            color: var(--light-color);
+            font-size: 1.5rem;
+            text-decoration: none;
+            margin-right: 1rem;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .contact-wrapper {
+            margin-top: 80px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color), var(--accent-color));
+            animation: gradientShift 15s ease infinite;
+            background-size: 300% 300%;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .contact-container {
+            width: 95%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-header h1 {
+            color: var(--accent-color);
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            background: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group label {
+            position: absolute;
+            left: 0.8rem;
+            top: 0.8rem;
+            color: #666;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            font-size: 0.9rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+        }
+
+        .form-group input:focus + label,
+        .form-group textarea:focus + label,
+        .form-group input:not(:placeholder-shown) + label,
+        .form-group textarea:not(:placeholder-shown) + label {
+            transform: translateY(-2rem);
+            font-size: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            background: var(--dark-color);
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .info-item {
+            padding: 1rem;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards;
+            animation-delay: calc(var(--delay) * 0.2s);
+        }
+
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-item p {
+            font-size: 0.9rem;
+        }
+
+        @media (min-width: 480px) {
+            .contact-wrapper {
+                padding: 2rem;
+            }
+
+            .contact-container {
+                padding: 2rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .contact-info {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+
+            .submit-btn {
+                width: auto;
+                padding: 1rem 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .menu-btn {
+                display: block;
+            }
+
+            .home-icon {
+                display: block;
+            }
+        }
+
+        /* Handle iOS input zoom */
+        @supports (-webkit-touch-callout: none) {
+            .form-group input,
+            .form-group textarea {
+                font-size: 16px !important;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="logo">Ekbal School</a>
+            <div style="display: flex; align-items: center;">
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="activities.html">Activities</a>
+                    <a href="monthly_marks.html">Monthly marks</a>
+                    <a href="sheets.html">Sheets</a>
+                    <a href="timetables.html">Timetables</a>
+                    <a href="videos.html">Videos</a>
+                </div>
+                <a href="index.html" class="home-icon">
+                    <i class="fas fa-home"></i>
+                </a>
+                <button class="menu-btn">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <a href="activities.html">Activities</a>
+            <a href="monthly_marks.html">Monthly marks</a>
+            <a href="sheets.html">Sheets</a>
+            <a href="timetables.html">Timetables</a>
+            <a href="videos.html">Videos</a>
+        </div>
+    </nav>
+
+    <div class="contact-wrapper">
+        <div class="contact-container">
+            <div class="contact-header">
+                <h1>Get in Touch</h1>
+                <p>We'd love to hear from you!</p>
+            </div>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder=" " required>
+                    <label for="name">Your Name</label>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" id="email" placeholder=" " required>
+                    <label for="email">Email Address</label>
+                </div>
+                
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder=" ">
+                    <label for="phone">Phone Number (Optional)</label>
+                </div>
+                
+                <div class="form-group">
+                    <textarea id="message" rows="4" placeholder=" " required></textarea>
+                    <label for="message">Your Message</label>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+
+            <div class="contact-info">
+                <div class="info-item" style="--delay: 1">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Address</h3>
+                    <p>Abis, Alexandria, Egypts</p>
+                </div>
+                
+                <div class="info-item" style="--delay: 2">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p>+1 234 567 890</p>
+                </div>
+                
+                <div class="info-item" style="--delay: 3">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>contact@ekbalschool.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const menuBtn = document.querySelector('.menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = document.querySelector('.submit-btn');
+            
+            // Get form data
+            const formData = {
+                service_id: "service_o3ydccm",
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Simulate form submission
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            
+            setTimeout(() => {
+                btn.textContent = 'Message Sent!';
+                btn.style.background = '#4CAF50';
+                
+                // Reset form
+                setTimeout(() => {
+                    document.getElementById('contactForm').reset();
+                    btn.disabled = false;
+                    btn.textContent = 'Send Message';
+                    btn.style.background = '';
+                }, 2000);
+            }, 1500);
+        });
+
+        // Animate form groups on scroll
+        const formGroups = document.querySelectorAll('.form-group');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        formGroups.forEach(group => {
+            group.style.transform = 'translateY(20px)';
+            group.style.opacity = '0';
+            group.style.transition = 'all 0.5s ease';
+            observer.observe(group);
+        });
+    </script>
+</body>
+</html>
