@@ -11,6 +11,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent; /* Removes tap highlight on mobile */
         }
 
         /* Prevent scrolling */
@@ -332,6 +333,7 @@
             transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
             position: relative;
             z-index: 15;
+            -webkit-tap-highlight-color: transparent; /* Removes tap highlight */
         }
 
         .button-container {
@@ -402,6 +404,7 @@
             color: var(--light-color);
             text-decoration: none;
             font-weight: 500;
+            -webkit-tap-highlight-color: transparent; /* Removes tap highlight */
         }
 
         .menu-btn {
@@ -451,6 +454,7 @@
             text-decoration: none;
             padding: 0.5rem 5%;
             font-weight: 500;
+            -webkit-tap-highlight-color: transparent; /* Removes tap highlight */
         }
 
         .menu-btn.active .bar:nth-child(1) {
