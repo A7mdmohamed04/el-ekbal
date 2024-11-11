@@ -267,6 +267,7 @@
             border-radius: 50%;
             object-fit: cover;
             z-index: 2;
+            border: none;
         }
 
         .video-player {
@@ -498,7 +499,7 @@
             const subjectContainer = document.getElementById('subjectSelection');
             subjectContainer.style.display = 'block';
             
-            let subjects = ['Math', 'In.Sci', 'English', 'Arabic'];
+            let subjects = ['Arabic', 'English', 'In.Sci', 'Math', 'Philosophy', 'Sec. Language'];
             
             const subjectHTML = subjects.map(subject => `
                 <div class="selection-card" onclick="showTeachers('${subject}')">
@@ -522,7 +523,48 @@
                             <h3>Mr. Omar Shaalan</h3>
                             <p>${subject} Teacher</p>
                         </div>
-                        <img src="Mr_Omar_Shaalan.png" alt="Mr. Omar Shaalan" class="teacher-photo">
+                        <img src="https://drive.google.com/file/d/1JNHbE2f2Axt_VkuvVox4kIBh9cHrclrv/view?usp=drive_link" alt="Mr. Omar Shaalan" class="teacher-photo">
+                    </div>
+                `;
+                document.querySelector('.teacher-selection').innerHTML = teacherHTML;
+                return;
+            }
+
+            if (currentGrade === 'S1' && subject === 'Philosophy') {
+                const teacherHTML = `
+                    <div class="selection-card teacher-card" onclick="showLessons('${subject}', 'Mr. Mohamed Kotb')">
+                        <div>
+                            <h3>Mr. Mohamed Kotb</h3>
+                            <p>${subject} Teacher</p>
+                        </div>
+                    </div>
+                `;
+                document.querySelector('.teacher-selection').innerHTML = teacherHTML;
+                return;
+            }
+
+            if (currentGrade === 'S1' && subject === 'Sec. Language') {
+                const teacherHTML = `
+                    <div class="selection-card teacher-card" onclick="showLessons('French', 'French Teacher')">
+                        <div>
+                            <h3>French</h3>
+                            <p>French Language</p>
+                        </div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" alt="French Flag" class="teacher-photo">
+                    </div>
+                    <div class="selection-card teacher-card" onclick="showLessons('German', 'German Teacher')">
+                        <div>
+                            <h3>German</h3>
+                            <p>German Language</p>
+                        </div>
+                        <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="German Flag" class="teacher-photo">
+                    </div>
+                    <div class="selection-card teacher-card" onclick="showLessons('Italian', 'Italian Teacher')">
+                        <div>
+                            <h3>Italian</h3>
+                            <p>Italian Language</p>
+                        </div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg" alt="Italian Flag" class="teacher-photo">
                     </div>
                 `;
                 document.querySelector('.teacher-selection').innerHTML = teacherHTML;
