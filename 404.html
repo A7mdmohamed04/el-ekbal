@@ -28,8 +28,10 @@
             overflow: hidden;
         }
 
-        .logo {
-            width: 150px;
+        .school-name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1e90ff;
             margin-bottom: 20px;
             animation: float 3s ease-in-out infinite;
         }
@@ -84,20 +86,20 @@
 </head>
 <body>
     <div class="container">
-        <img src="https://i.ibb.co/kg0Ldpw/boys-departments-logo.png" alt="Boys Departments Logo" class="logo">
+        <div class="school-name">Ekbal School</div>
         <div class="error-code">404</div>
         <div class="text">Oops! The page you're looking for seems to have drifted away.</div>
         <button class="back-btn" onclick="window.history.back()">Back</button>
     </div>
 
     <script>
-        // Add shimmer effect to the logo
-        const logo = document.querySelector('.logo');
-        logo.addEventListener('mouseover', () => {
-            logo.style.filter = 'brightness(1.2)';
+        // Add shimmer effect to the school name
+        const schoolName = document.querySelector('.school-name');
+        schoolName.addEventListener('mouseover', () => {
+            schoolName.style.filter = 'brightness(1.2)';
         });
-        logo.addEventListener('mouseout', () => {
-            logo.style.filter = 'brightness(1)';
+        schoolName.addEventListener('mouseout', () => {
+            schoolName.style.filter = 'brightness(1)';
         });
     </script>
 </body>
