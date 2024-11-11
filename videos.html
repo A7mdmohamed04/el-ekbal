@@ -488,14 +488,17 @@
 
         function showSubjects(grade) {
             currentGrade = grade;
+            // Redirect to 404 page for all grades except S1
+            if (grade !== 'S1') {
+                window.location.href = 'videos_404.html';
+                return;
+            }
+            
             document.getElementById('gradeSelection').style.display = 'none';
             const subjectContainer = document.getElementById('subjectSelection');
             subjectContainer.style.display = 'block';
             
-            let subjects = ['Math', 'Science', 'English', 'Arabic'];
-            if (grade === 'S1') {
-                subjects = ['Math', 'In.Sci', 'English', 'Arabic'];
-            }
+            let subjects = ['Math', 'In.Sci', 'English', 'Arabic'];
             
             const subjectHTML = subjects.map(subject => `
                 <div class="selection-card" onclick="showTeachers('${subject}')">
@@ -512,7 +515,6 @@
             const teacherContainer = document.getElementById('teacherSelection');
             teacherContainer.style.display = 'block';
             
-            let teachers = ['Mr. Ahmed', 'Mrs. Sarah', 'Mr. Mohamed', 'Mrs. Fatima'];
             if (currentGrade === 'S1' && subject === 'In.Sci') {
                 const teacherHTML = `
                     <div class="selection-card teacher-card" onclick="showLessons('${subject}', 'Mr. Omar Shaalan')">
@@ -527,14 +529,7 @@
                 return;
             }
             
-            const teacherHTML = teachers.map(teacher => `
-                <div class="selection-card" onclick="showLessons('${subject}', '${teacher}')">
-                    <h3>${teacher}</h3>
-                    <p>${subject} Teacher</p>
-                </div>
-            `).join('');
-            
-            document.querySelector('.teacher-selection').innerHTML = teacherHTML;
+            window.location.href = 'videos_404.html';
         }
 
         function showLessons(subject, teacher) {
@@ -542,7 +537,7 @@
             const lessonContainer = document.getElementById('lessonSelection');
             lessonContainer.style.display = 'block';
             
-            const lessons = ['Aquatic ecosystem', 'Lesson 2', 'Lesson 3', 'Lesson 4'];
+            const lessons = ['Aquatic ecosystem'];
             const lessonHTML = lessons.map(lesson => `
                 <div class="selection-card" onclick="showVideo('${subject}', '${teacher}', '${lesson}')">
                     <h3>${lesson}</h3>
@@ -574,7 +569,6 @@
                 return;
             }
 
-            // For all other cases
             window.location.href = 'videos_404.html';
         }
     </script>

@@ -180,7 +180,7 @@
             flex-direction: column;
             align-items: center;
             height: calc(100vh - 140px); /* Increased height */
-            width: 800px; /* Increased width */
+            width: 850px; /* Increased width */
             background: url('bgblur2.jpg');
             border-radius: 20px;
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
@@ -252,11 +252,11 @@
 
         .timetable-image {
             display: none;
-            max-width: 100%;
-            max-height: calc(100vh - 400px); /* Fixed max height */
+            max-width: 105%; /* Increased from 100% */
+            max-height: calc(100vh - 380px); /* Slightly increased height */
             border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            margin-top: -15px; /* Reduced by additional 15px */
+            margin-top: -15px;
             border: 3px solid var(--primary-color);
             transform: translateY(0);
             transition: transform 0.3s ease;
@@ -271,8 +271,8 @@
 
         .placeholder-image {
             display: block;
-            width: 70%;
-            height: calc(100vh - 300px); /* Increased height */
+            width: 75%; /* Increased from 70% */
+            height: calc(100vh - 280px); /* Increased height */
             background-color: #4a4a4a;
             border-radius: 15px;
             display: flex;
@@ -314,7 +314,7 @@
             transition: all 0.3s ease;
             margin: 0.5rem;
             margin-bottom: 0;
-            margin-top: 50px;
+            margin-top: 40px;
             opacity: 0;
         }
 
@@ -436,7 +436,7 @@
                 margin: 100px 20px 70px;
                 padding: 2rem 1rem;
                 width: calc(100% - 40px); /* Full width minus margins */
-                height: calc(100vh - 170px); /* Fixed height for mobile */
+                height: calc(100% - 185px); /* Adjusted to end 15px after download button */
             }
 
             .class-selector {
