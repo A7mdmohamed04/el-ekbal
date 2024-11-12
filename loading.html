@@ -132,12 +132,20 @@
     </div>
 
     <script>
+        let redirectAttempted = false;
+
         function skipLoading() {
-            window.location.href = 'videos copy.html';
+            if (!redirectAttempted) {
+                redirectAttempted = true;
+                window.location.href = 'videos.html';
+            }
         }
 
         setTimeout(() => {
-            window.location.href = 'videos copy.html';
+            if (!redirectAttempted) {
+                redirectAttempted = true;
+                window.location.href = 'videos.html';
+            }
         }, 3000);
     </script>
 </body>
