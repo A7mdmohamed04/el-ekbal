@@ -1,16 +1,31 @@
 <!DOCTYPE html>
-<html dir="rtl">
-<html lang="en">
+<html dir="rtl" lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
     <base target="_top">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            overscroll-behavior: none;
+            -webkit-tap-highlight-color: transparent;
         }
+
+        html, body {
+            overflow: hidden;
+            height: 100%;
+            position: fixed;
+            width: 100%;
+            background-image: url('https://i.ibb.co/L6nFB06/bg-blur.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            image-rendering: optimizeQuality;
+            -webkit-font-smoothing: antialiased;
+        }
+
         :root {
             --primary-color: #007bff;
             --secondary-color: #3498db;
@@ -19,37 +34,128 @@
             --dark-color: #007bff;
         }
 
-
-        .placeholder {
-            display: block;
-            width: 45%;
-            height: calc(100vh - 200px); /* Increased height */
-            background-color: #4a4a4a;
-            background-image: url("back.jpg");
-            border-radius: 15px;
+        .main-wrapper {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            color: white;
-            font-size: 1.5rem;
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 0px;
-            margin-bottom: auto;
-            border: 3px solid var(--primary-color);
-            object-fit: contain;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            padding: 0 15px;
+            background-image: url('https://i.ibb.co/L6nFB06/bg-blur.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            image-rendering: optimizeQuality;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .main-wrapper .circle-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid var(--primary-color);
+            position: absolute;
+            top: 38px;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+            background-color: #ffffff !important;
+            z-index: 2;
+            color-scheme: light;
+        }
+
+        .main-wrapper .circle-photo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 5px;
+            background-color: var(--primary-color);
+        }
+
+        .main-wrapper .circle-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: optimizeQuality;
+            -webkit-font-smoothing: antialiased;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        .main-wrapper .content-wrapper {
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
             box-shadow: 0 20px 30px rgba(0, 123, 255, 0.3);
             transition: 0.5s;
+            overflow: hidden;
+            margin-top: 68px;
+            background-color: rgba(255, 255, 255, 0.9);
         }
-        .placeholder:hover {
-        box-shadow: 0 60px 70px rgba(0, 123, 255, 0.3);
-      }
-        .placeholder select{
-            margin: 2rem 0;
-            padding: 1rem 2.5rem;
+
+        .main-wrapper .heading {
+            color: #ffffff;
+            background-color: var(--primary-color);
+            width: 100%;
+            padding: 8px;
+            text-align: center;
+            font-size: clamp(16px, 4vw, 22px);
+            font-family: system-ui;
+            transition: 0.5s;
+            padding-top: 43px;
+            position: relative;
+        }
+
+        .main-wrapper .placeholder {
+            width: 100%;
+            height: calc(100vh - 300px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-size: clamp(16px, 4vw, 1.5rem);
+            text-align: center;
+            border: 3px solid var(--primary-color);
+            border-top: none;
+            object-fit: contain;
+            transition: 0.5s;
+            padding: 1rem;
+            overflow: hidden;
+            position: relative;
+            background-image: url('https://i.ibb.co/c241gBb/back.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            image-rendering: optimizeQuality;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .main-wrapper .content-wrapper:hover {
+            box-shadow: 0 30px 40px rgba(0, 123, 255, 0.3);
+        }
+
+        .main-wrapper .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            align-items: center;
+            max-height: 100%;
+        }
+
+        .main-wrapper .placeholder select,
+        .main-wrapper .view,
+        .main-wrapper .code {
+            margin: 0.5rem 0;
+            padding: 0.8rem 2rem;
+            font-size: clamp(14px, 3.5vw, 1.2rem);
             border-radius: 50px;
             border: 2px solid var(--primary-color);
             background: white;
@@ -57,154 +163,90 @@
             cursor: pointer;
             transition: all 0.3s ease;
             animation: fadeIn 1s ease;
-            width: 300px;
+            width: 90%;
+            max-width: 300px;
             text-align: center;
             outline: none;
-            margin-top: -15px; /* Moved up by 15px */
             appearance: none;
             -webkit-appearance: none;
-            background-image: url("");
+            background-image: url("https://i.ibb.co/c241gBb/back.jpg");
             background-position: right 1rem center;
             background-size: 1.5em;
             padding-right: 3rem;
             box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-        }
-        .placeholder select:hover{
-        transform: scale(1.02);
-        box-shadow: 0 30px 40px rgba(0, 123, 255, 0.3);
-      }
-      .view{
-            margin: 2rem 0;
-            padding: 1rem 2.5rem;
-            align-items: center;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            border: 2px solid var(--primary-color);
-            background: white;
-            color: var(--primary-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            animation: fadeIn 1s ease;
-            width: 300px;
-            text-align: center;
-            outline: none;
-            margin-top: -15px; /* Moved up by 15px */
-            appearance: none;
-            -webkit-appearance: none;
-            background-image: url("");
-            background-position: right 1rem center;
-            background-size: 1.5em;
-            padding-right: 3rem;
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-        }
-        .view:hover {
-        transform: scale(1.02);
-        box-shadow: 0 30px 40px rgba(0, 123, 255, 0.3);
-      }
-      .code{
-            margin: 2rem 0;
-            padding: 1rem 2.5rem;
-            align-items: center;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            border: 2px solid var(--primary-color);
-            background: white;
-            color: var(--primary-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            animation: fadeIn 1s ease;
-            width: 350px;
-            text-align: center;
-            outline: none;
-            margin-top: -15px; /* Moved up by 15px */
-            appearance: none;
-            -webkit-appearance: none;
-            background-image: url("");
-            background-position: right 1rem center;
-            background-size: 1.5em;
-            padding-right: 3rem;
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-        }
-        .code:hover {
-        transform: scale(1.02);
-        box-shadow: 0 30px 40px rgba(0, 123, 255, 0.3);
-      }
-        .heading{
-          margin-top: 5%;
-          margin-left: auto;
-          margin-right: auto;
-          color: #ffffff;
-          background-color: #007bff;
-          width: 43%;
-          height: 15%;
-          text-align: center;
-          font-size: 25px;
-          border-top-left-radius: 15px;
-          border-top-right-radius: 15px;
-          box-shadow: 0 20px 30px rgba(38, 110, 236, 0.809);
-          font-family: system-ui;
-          transition: 0.5s;
-        }
-        .developers{
-          color: ffffff#;
-          font-weight: 500;
-          
-          font-family: system-ui;
+            -webkit-tap-highlight-color: transparent;
+            image-rendering: optimizeQuality;
+            -webkit-font-smoothing: antialiased;
         }
 
+        .main-wrapper .placeholder select:hover,
+        .main-wrapper .view:hover,
+        .main-wrapper .code:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 20px rgba(0, 123, 255, 0.3);
+        }
 
+        .main-wrapper .developers {
+            color: #000000;
+            font-weight: 500;
+            font-family: system-ui;
+            font-size: clamp(12px, 3vw, 16px);
+        }
 
+        @media (max-width: 480px) {
+            .main-wrapper {
+                justify-content: center;
+            }
+            
+            .main-wrapper .placeholder {
+                height: calc(100vh - 250px);
+                padding: 0.5rem;
+            }
+
+            .main-wrapper .circle-photo {
+                width: 100px;
+                height: 100px;
+                top: 50px;
+            }
+
+            .main-wrapper .circle-photo::after {
+                width: 120px;
+            }
+
+            .main-wrapper .heading {
+                padding-top: 33px;
+            }
+
+            .main-wrapper .content-wrapper {
+                margin-top: 50px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="heading">Monthly Marks</div>
-    <div class="placeholder">
-        <div class="developers"></div>
-      
-        <?var url = getUrl();?>
-        <form method="post" action="<?= url ?>">
-        <select name='cl' required>
-        <option value="">Select Your Grade</option>
-        <option value="M1">Middle One</option>
-        <option value="M2">Middle Two</option>
-        </select>
-    
-
-        </td>
-        </tr>
-
-        <tr>
-          <td>
-            <center>
-              <input class="code" style="color: #007bff;" type="text" name="rl" placeholder=" Enter Your Code " required>
-            
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <center>
-              <input class="view" type="submit" value="View" name="Submit">
-              </form>
-          </td>
-        </tr>
-        <hr>
-        <hr>
-        <hr>
-        <tr>
-          <td>
-            <center>
-              <div class="developers">Developed by Youssef Zidan <br><br> Supervisor Mr.Hassan Magdy </div>
-          </td>
-        </tr>
-        
-        <hr>
-        <hr>
-        <hr>
-        <tr>
-
-        </table>
-        <br><br>
+    <div class="main-wrapper">
+        <div class="content-wrapper">
+            <div class="circle-photo">
+                <img src="https://i.ibb.co/6NnmDDW/e-logo-01.png" alt="Logo" loading="eager" decoding="sync" fetchpriority="high">
+            </div>
+            <div class="heading">
+                Monthly Marks
+            </div>
+            <div class="placeholder">
+                <div class="developers"></div>
+                <?var url = getUrl();?>
+                <form method="post" action="<?= url ?>" class="form-group">
+                    <select name='cl' required>
+                        <option value="">Select Your Grade</option>
+                        <option value="M1">Middle One</option>
+                        <option value="M2">Middle Two</option>
+                    </select>
+                    <input class="code" style="color: #007bff;" type="text" name="rl" placeholder=" Enter Your Code " required>
+                    <input class="view" type="submit" value="View" name="Submit">
+                </form>
+                <div class="developers"></div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
-colo
