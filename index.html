@@ -138,29 +138,14 @@
             color: var(--light-color);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease, transform 0.3s ease;
             letter-spacing: 1px;
             font-family: 'Poppins', sans-serif;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--secondary-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--secondary-color);
-            transform: translateY(-2px);
+            color: #4aa3df;
+            opacity: 1;
         }
 
         .nav-links span {
@@ -174,12 +159,12 @@
             margin-left: auto;
             text-decoration: none;
             cursor: pointer;
-            transition: color 0.3s ease, transform 0.3s ease;
+            transition: color 0.3s ease;
         }
 
         .teacher-icon:hover {
-            color: var(--secondary-color);
-            transform: scale(1.1);
+            color: #4aa3df;
+            opacity: 1;
         }
 
         @media (max-width: 768px) {
@@ -240,13 +225,14 @@
             text-decoration: none;
             padding: 0.5rem 5%;
             font-weight: 500;
-            transition: color 0.3s ease, background-color 0.3s ease;
             letter-spacing: 1px;
+            transition: color 0.3s ease, background-color 0.3s ease;
         }
 
         .mobile-menu a:not(.phone-btn):hover {
-            color: var(--secondary-color);
+            color: #4aa3df;
             background-color: rgba(255, 255, 255, 0.1);
+            opacity: 1;
         }
 
         .menu-btn.active .bar:nth-child(1) {
@@ -495,6 +481,7 @@
             background: var(--background-color);
             text-align: center;
             margin-bottom: 25px; /* Reduced from 60px to 25px */
+            margin-top: -60px; /* Changed from -30px to -60px to move up by 30px more */
         }
 
         .developers h2 {
@@ -611,7 +598,7 @@
     <div class="hero-text">
         <img src="https://i.ibb.co/287m7jB/cropped-00.webp" alt="School Logo" class="logo-image">
         <h1>Ekbal Language School</h1>
-        <p>Welcome to the boys department</p>
+        <p>Boys Department</p>
     </div>
 
     <nav class="navbar">
@@ -658,26 +645,43 @@
         </div>
     </div>
 
+    <div class="content-wrapper">
+        <div class="square-wrapper">
+            <img src="https://i.ibb.co/r57Tcn0/headmaster.jpg" alt="Headmaster Image">
+        </div>
+        <div class="video-section">
+            <div class="video-container">
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/ZlXmwIGkrJk?si=jNfLhF1573Y-KHbT" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/NGWM3YgsMXs?si=8V9Mk6Giw1_pmlod" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/Ntb72VeFQj4?si=5KejHBpcIUDwtEnd" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     <!-- Faculty Section -->
     <section id="faculty" class="faculty">
         <h2>All thanks To:</h2>
         <div class="faculty-grid">
-            <div class="faculty-card" data-info="Mr. Magdy el sakhawy is our esteemed School Principal with over 20 years of experience in education. He has led numerous educational initiatives and maintains high academic standards across all programs.">
+            <div class="faculty-card" data-info="">
                 <img src="https://via.placeholder.com/200x200.png?text=Principal" alt="Faculty Member" class="faculty-img">
                 <h3>Mr. Magdy El Sakhawy</h3>
                 <p>School Principal</p>
             </div>
-            <div class="faculty-card" data-info="Dr. Ahmed abdelfatah serves as our Head master, bringing extensive experience in curriculum development and student mentoring. He holds a Ph.D. in Education and has published several papers on modern teaching methodologies.">
+            <div class="faculty-card" data-info="">
                 <img src="https://via.placeholder.com/200x200.png?text=Headmaster" alt="Faculty Member" class="faculty-img">
                 <h3>Dr. Ahmed Abdelfatah</h3>
                 <p>Head master</p>
             </div>
-            <div class="faculty-card" data-info="Mr. Ahmed is a dedicated Supervision staff member who ensures smooth daily operations and maintains excellent communication between faculty and administration.">
+            <div class="faculty-card" data-info="">
                 <img src="https://via.placeholder.com/200x200.png?text=Supervisor" alt="Faculty Member" class="faculty-img">
                 <h3>Mr. Ahmed Hassanien</h3>
                 <p>Supervisor</p>
             </div>
-            <div class="faculty-card" data-info="Mr. Hassan oversees student activities and academic progress as part of our Supervision team. He has implemented several successful student engagement programs.">
+            <div class="faculty-card" data-info="">
                 <img src="https://via.placeholder.com/200x200.png?text=Supervisor" alt="Faculty Member" class="faculty-img">
                 <h3>Mr. Hassan Magdy</h3>
                 <p>Supervisor</p>
