@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
-    <title>ELS School - Excellence in Education</title>
+    <title>Excellence in Education</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="scroll.css">
     <style>
         * {
             margin: 0;
@@ -16,11 +17,13 @@
         }
 
         :root {
-            --primary-color: #0c0c0c;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
+            --primary-color: #003470;
+            --secondary-color: #003470;
+            --accent-color: #003470;
             --light-color: #fff;
-            --dark-color: #0c0c0c;
+            --dark-color: #003470;
+            --background-color: #fff;
+            --text-color: #0c0c0c;
             font-family: 'Oswald', sans-serif;
             font-size: 16px;
         }
@@ -29,17 +32,31 @@
             font-family: 'Oswald', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
-            background-color: white;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            --primary-color: #1a1a1a;
+            --secondary-color: #4aa3df;
+            --accent-color: #e74c3c;
+            --light-color: #f0f0f0;
+            --dark-color: #121212;
+            --background-color: #121212;
+            --top-color: #1e1e1e;
+            --text-color: #f0f0f0;
         }
 
         .hero-image {
             width: 100%;
-            height: calc(100vh - 300px);
+            height: calc(100vh - 250px);
             object-fit: cover;
             display: block;
             position: relative;
-            filter: blur(2px);
+            filter: blur(2px) contrast(115%);
             z-index: 1;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .hero-text {
@@ -48,42 +65,55 @@
             top: calc(35% - 20px);
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 1;
+            z-index: 2;
             color: white;
         }
 
         .hero-text h1 {
-            font-size: 1.7rem;
-            margin-bottom: 7px;
-            letter-spacing: 4px;
+            font-size: 3rem;
+            margin-bottom: 0.7rem;
+            letter-spacing: 3px;
+            white-space: nowrap;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         @media (max-width: 768px) {
             .hero-text h1 {
-                letter-spacing: 2px;
+                letter-spacing: 1px;
                 white-space: nowrap;
-                font-size: 1.4rem;
+                font-size: 2rem;
             }
         }
 
         .hero-text p {
             font-size: 1.2rem;
             letter-spacing: 2px;
-            color: #d3d3d3;
+            margin-bottom: 1.5rem;
+            color: #f0f0f0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            white-space: nowrap;
         }
 
         .logo-image {
-            width: 350px;
-            margin-bottom: 20px;
+            width: 250px;
+            height: auto;
+            margin-bottom: 0.5rem;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
+            transition: transform 0.3s ease;
+        }
+
+        .logo-image:hover {
+            transform: scale(1.05);
         }
 
         .navbar {
-            padding: 1.6rem 5%;
+            padding: 1.2rem 5%;
             width: 100%;
             background: var(--primary-color);
             margin-top: -4px;
             position: relative;
-            z-index: 2;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         @media (max-width: 768px) {
@@ -108,6 +138,34 @@
             color: var(--light-color);
             text-decoration: none;
             font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            letter-spacing: 1px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-links span {
+            color: #d3d3d3;
+            pointer-events: none;
         }
 
         .teacher-icon {
@@ -116,6 +174,12 @@
             margin-left: auto;
             text-decoration: none;
             cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .teacher-icon:hover {
+            color: var(--secondary-color);
+            transform: scale(1.1);
         }
 
         @media (max-width: 768px) {
@@ -176,6 +240,13 @@
             text-decoration: none;
             padding: 0.5rem 5%;
             font-weight: 500;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .mobile-menu a:not(.phone-btn):hover {
+            color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .menu-btn.active .bar:nth-child(1) {
@@ -198,6 +269,7 @@
             display: flex;
             justify-content: space-between;
             margin: 45px 5%;
+            gap: 40px; /* Increased space between square wrapper and videos */
         }
 
         .video-section {
@@ -206,7 +278,7 @@
 
         .video-container {
             position: relative;
-            padding-bottom: 45%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
             height: 0;
             overflow: hidden;
             margin-bottom: 20px;
@@ -219,17 +291,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 5px;
+            border-radius: 10px;
         }
 
         .square-wrapper {
-            width: 50%;
+            width: 65%;
             padding-top: 50%;
             position: relative;
             overflow: hidden;
             background-color: #f0f0f0;
-            border: 3px solid #3498db;
-            border-radius: 5px;
+            border-radius: 10px;
             box-shadow: 0 20px 30px rgba(0,0,0,0.1);
         }
 
@@ -240,11 +311,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         @media (max-width: 768px) {
             .content-wrapper {
                 flex-direction: column;
+                gap: 50px; /* Adjust gap for mobile */
             }
 
             .video-section, .square-wrapper {
@@ -260,20 +333,21 @@
         /* Faculty Section */
         .faculty {
             padding: 5rem 5%;
-            background: var(--light-color);
+            background: var(--background-color);
             clear: both;
             text-align: center;
         }
 
         .faculty h2 {
-            font-size: 3rem;
-            color: var(--primary-color);
+            font-size: 2.7rem;
+            color: var(--text-color);
             margin-bottom: 2rem;
             text-transform: uppercase;
             letter-spacing: 3px;
             position: relative;
             display: inline-block;
             margin-bottom: 60px;
+            white-space: nowrap;
         }
 
         .faculty h2::after {
@@ -285,6 +359,7 @@
             position: absolute;
             bottom: -10px;
             left: 25%;
+            border-radius: 2px;
         }
 
         .faculty-grid {
@@ -298,10 +373,10 @@
             position: relative;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: #f9f9f9;
+            background: #b8b8b87c;
             border-radius: 15px;
             padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         .faculty-card:hover {
@@ -317,6 +392,7 @@
             object-fit: cover;
             transition: all 0.3s ease;
             border: 5px solid var(--secondary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .faculty-card:hover .faculty-img {
@@ -325,7 +401,7 @@
 
         .faculty-card h3 {
             font-size: 1.5rem;
-            color: var(--primary-color);
+            color: var(--text-color);
             margin-bottom: 0.5rem;
         }
 
@@ -339,8 +415,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0);
-            background: rgba(255, 255, 255, 0.95);
-            color: var(--primary-color);
+            background: var(--background-color);
+            color: var(--text-color);
             padding: 2.5rem;
             border-radius: 20px;
             z-index: 1001;
@@ -377,7 +453,7 @@
             right: 15px;
             background: var(--secondary-color);
             border: none;
-            color: white;
+            color: var(--light-color);
             font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -416,14 +492,14 @@
         /* Developers Section */
         .developers {
             padding: 5rem 5%;
-            background: #f0f8ff;
+            background: var(--background-color);
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 25px; /* Reduced from 60px to 25px */
         }
 
         .developers h2 {
             font-size: 3rem;
-            color: var(--primary-color);
+            color: var(--text-color);
             margin-bottom: 3rem;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -436,10 +512,11 @@
             display: block;
             width: 50%;
             height: 3px;
-            background: var(--secondary-color);
+            background: var(--accent-color);
             position: absolute;
             bottom: -10px;
             left: 25%;
+            border-radius: 2px;
         }
 
         .developers .faculty-grid {
@@ -449,7 +526,7 @@
         }
 
         .developers .faculty-card {
-            background: white;
+            background: #b8b8b87c;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -458,12 +535,12 @@
         }
 
         .developers .faculty-img {
-            border: 5px solid var(--accent-color);
+            border: none;
         }
 
         /* Footer */
         .footer {
-            background: #000;
+            background: var(--primary-color);
             color: var(--light-color);
             padding: 3rem 5%;
             text-align: center;
@@ -540,11 +617,11 @@
     <nav class="navbar">
         <div class="nav-content">
             <div class="nav-links">
-                <a href="monthly_marks.html">Monthly marks</a> <span style="color: #d3d3d3;">/</span>
-                <a href="timetable.html">Timetables</a> <span style="color: #d3d3d3;">/</span>
-                <a href="Groups.html">Groups</a> <span style="color: #d3d3d3;">/</span>
-                <a href="awards.html">Awards</a> <span style="color: #d3d3d3;">/</span>
-                <a href="activities.html">Activities</a> <span style="color: #d3d3d3;">/</span>
+                <a href="monthly_marks.html">Monthly marks</a> <span>/</span>
+                <a href="timetable.html">Timetables</a> <span>/</span>
+                <a href="Groups.html">Groups</a> <span>/</span>
+                <a href="awards.html">Awards</a> <span>/</span>
+                <a href="activities.html">Activities</a> <span>/</span>
                 <a href="about.html">About</a>
             </div>
             <a href="teachers.html" class="fas fa-chalkboard-teacher teacher-icon"></a>
@@ -570,20 +647,20 @@
         </div>
         <div class="video-section">
             <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/ZlXmwIGkrJk?si=jNfLhF1573Y-KHbT" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
             <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/NGWM3YgsMXs?si=8V9Mk6Giw1_pmlod" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
             <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/Ntb72VeFQj4?si=5KejHBpcIUDwtEnd" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
         </div>
     </div>
 
     <!-- Faculty Section -->
     <section id="faculty" class="faculty">
-        <h2>All thanks To :</h2>
+        <h2>All thanks To:</h2>
         <div class="faculty-grid">
             <div class="faculty-card" data-info="Mr. Magdy el sakhawy is our esteemed School Principal with over 20 years of experience in education. He has led numerous educational initiatives and maintains high academic standards across all programs.">
                 <img src="https://via.placeholder.com/200x200.png?text=Principal" alt="Faculty Member" class="faculty-img">
@@ -612,15 +689,15 @@
     <section id="developers" class="developers">
         <h2>Developers</h2>
         <div class="faculty-grid">
-            <div class="faculty-card" data-info="Youssef Zidan is our visionary developer driving innovation within our educational platform. With a passion for crafting seamless digital experiences, he specializes in platform design, enhancing user engagement, optimizing functionality, and delivering cutting-edge features that elevate our technology to new heights.">
-                <img src="https://via.placeholder.com/200x200.png?text=Frontend" alt="Developer" class="faculty-img">
-                <h3>Youssef Zidan</h3>
-                <p>Web Developer UI & UX Designer</p>
-            </div>
-            <div class="faculty-card" data-info="Ahmed Kabary is our talented Network Developer who maintains and enhances our digital infrastructure. He specializes in creating user-friendly educational technology solutions.">
-                <img src="https://via.placeholder.com/200x200.png?text=Backend" alt="Developer" class="faculty-img">
+            <div class="faculty-card" data-info="">
+                <img src="https://i.ibb.co/5GNjwJw/p2.png" alt="Developer" class="faculty-img" style="width: 200px; height: 200px; object-fit: cover;">
                 <h3>Ahmed Kabary</h3>
-                <p>Programming and Networking dev</p>
+                <p>Programming and Networking Dev</p>
+            </div>
+            <div class="faculty-card" data-info="">
+                <img src="https://i.ibb.co/0MsgcDV/p1.png" alt="Developer" class="faculty-img" style="width: 200px; height: 200px; object-fit: cover;">
+                <h3>Youssef Zidan</h3>
+                <p>Web Developer UI  Designer</p>
             </div>
         </div>
     </section>
