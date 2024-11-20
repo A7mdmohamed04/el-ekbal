@@ -12,27 +12,34 @@
             padding: 0;
             box-sizing: border-box;
             font-family: Oswald;
+            overscroll-behavior: none;
         }
 
         :root {
             --primary-color: #003470;
-            --secondary-color: #3498db;
+            --secondary-color: #003470;
             --accent-color: #e74c3c;
             --light-color: #fff;
             --dark-color: #003470;
             font-family: 'Oswald', sans-serif;
         }
 
+        html, body {
+            overflow: hidden;
+            height: 100%;
+            position: fixed;
+            width: 100%;
+        }
+
         body {
             font-family: 'Oswald', sans-serif;
             line-height: 1.6;
-            overflow-x: hidden;
-            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            padding-top: 80px;
+            background: url('https://i.ibb.co/17sFJMQ/0000.png') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
         }
 
         .particles {
@@ -60,61 +67,70 @@
         }
 
         .login-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
+            background: rgba(255, 255, 255, 1);
+            backdrop-filter: blur(3px);
+            padding: 1.2rem;
             border-radius: 20px;
             box-shadow: 0 0 20px rgba(0,0,0,0.2);
             width: 90%;
-            max-width: 400px;
+            max-width: 350px;
             z-index: 2;
-            transform: translateY(20px);
+            position: absolute;
+            top: calc(50% + 20px);
+            left: 50%;
+            transform: translate(-50%, -50%);
             opacity: 0;
             animation: slideUp 0.8s ease forwards;
         }
 
+        @media (max-width: 768px) {
+            .login-container {
+                top: 50%;
+            }
+        }
+
         @keyframes slideUp {
             to {
-                transform: translateY(0);
                 opacity: 1;
             }
         }
 
         .login-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
 
         .login-header img {
             width: 180px;
-            margin-bottom: 0.5rem;
+            margin-bottom: -30px;
         }
 
         .login-header h1 {
-            color: var(--light-color);
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 0.4rem;
         }
 
         .input-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             position: relative;
         }
 
         .input-group input {
             width: 100%;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-radius: 5px;
-            color: var(--light-color);
+            padding: 0.8rem;
+            background: rgba(0, 52, 112, 0.1);
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            color: var(--primary-color);
             font-size: 1rem;
             transition: all 0.3s ease;
         }
 
         .input-group input:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 52, 112, 0.2);
+            border-color: #2980b9;
         }
 
         .input-group i {
@@ -122,16 +138,16 @@
             right: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--light-color);
+            color: var(--primary-color);
             transition: all 0.3s ease;
         }
 
         .login-btn {
             width: 100%;
-            padding: 1rem;
+            padding: 0.8rem;
             background: var(--secondary-color);
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
             color: var(--light-color);
             font-size: 1.1rem;
             cursor: pointer;
@@ -166,13 +182,12 @@
         .navbar {
             padding: 1.6rem 5%;
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             z-index: 1000;
             transition: 0.3s;
             background: var(--primary-color);
             font-family: 'Oswald', sans-serif;
+            top: 0;
         }
 
         .nav-content {
@@ -200,6 +215,7 @@
             flex-direction: column;
             align-items: flex-start;
             order: 2;
+            font-family: 'Oswald', sans-serif;
         }
 
         .department-text {
@@ -208,6 +224,7 @@
             margin-top: -5px;
             margin-left: 0px;
             display: none;
+            font-family: 'Oswald', sans-serif;
         }
 
         .nav-links {
@@ -215,12 +232,14 @@
             gap: 2rem;
             margin-right: 3rem;
             order: 1;
+            font-family: 'Oswald', sans-serif;
         }
 
         .nav-links a {
             color: var(--light-color);
             text-decoration: none;
             font-weight: 500;
+            font-family: Oswald;
         }
 
         .menu-btn {
@@ -270,6 +289,7 @@
             text-decoration: none;
             padding: 0.5rem 5%;
             font-weight: 500;
+            font-family: 'Poppins', sans-serif;
         }
 
         .menu-btn.active .bar:nth-child(1) {
@@ -318,6 +338,7 @@
             .home-icon {
                 display: block;
                 order: 2;
+                transform: translateY(3px);
             }
 
             .logo {
@@ -351,7 +372,6 @@
     <nav class="navbar">
         <div class="nav-content">
             <div class="nav-links">
-                <a href="index.html">Home</a> <span style="color: #d3d3d3;">/</span>
                 <a href="monthly_marks.html">Monthly marks</a> <span style="color: #d3d3d3;">/</span>
                 <a href="timetable.html">Timetables</a> <span style="color: #d3d3d3;">/</span>
                 <a href="Groups.html">Groups</a> <span style="color: #d3d3d3;">/</span>
@@ -412,16 +432,13 @@
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                // Random size between 5-15px
                 const size = Math.random() * 10 + 5;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 
-                // Random position
                 particle.style.left = `${Math.random() * 100}%`;
                 particle.style.top = `${Math.random() * 100}%`;
                 
-                // Random animation duration
                 particle.style.animationDuration = `${Math.random() * 4 + 2}s`;
                 
                 particlesContainer.appendChild(particle);
@@ -434,9 +451,6 @@
             
             const teacherCode = document.getElementById('teacherCode').value;
             
-            // Add your authentication logic here
-            
-            // Example animation for button click
             const btn = e.target.querySelector('.login-btn');
             btn.style.transform = 'scale(0.95)';
             setTimeout(() => btn.style.transform = 'scale(1)', 200);
@@ -450,14 +464,14 @@
             });
             
             input.addEventListener('blur', function() {
-                this.parentElement.querySelector('i').style.color = '#fff';
+                this.parentElement.querySelector('i').style.color = '#003470';
             });
         });
 
         // Initialize particles on load
         window.addEventListener('load', createParticles);
 
-        // Menu button functionality
+        // Mobile menu
         const menuBtn = document.querySelector('.menu-btn');
         const mobileMenu = document.querySelector('.mobile-menu');
         
