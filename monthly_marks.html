@@ -58,11 +58,11 @@
             font-size: 2rem;
             font-weight: 700;
             text-decoration: none;
-            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
-            outline: none; /* Remove outline on click */
-            font-family: 'Oswald', sans-serif; /* Changed font family */
-            letter-spacing: 2px; /* Added letter spacing */
-            font-size: 0; /* Hide text in desktop view */
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 2px;
+            font-size: 0;
             font-family: 'Oswald', sans-serif;
         }
 
@@ -70,7 +70,7 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            order: 2; /* Move logo to middle */
+            order: 2;
             font-family: 'Oswald', sans-serif;
         }
 
@@ -78,7 +78,7 @@
             color: #808080;
             font-size: 0.8rem;
             margin-top: -5px;
-            margin-left: 0px; /* Added margin to move text right */
+            margin-left: 0px;
             display: none;
             font-family: 'Oswald', sans-serif;
         }
@@ -86,8 +86,8 @@
         .nav-links {
             display: flex;
             gap: 2rem;
-            margin-right: 3rem; /* Added margin to move links left */
-            order: 1; /* Move links to left */
+            margin-right: 3rem;
+            order: 1;
             font-family: 'Oswald', sans-serif;
         }
 
@@ -106,8 +106,8 @@
             background: none;
             border: none;
             padding: 0.5rem;
-            outline: none; /* Remove outline on click */
-            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .menu-btn .bar {
@@ -165,8 +165,8 @@
             color: var(--light-color);
             font-size: 1.5rem;
             text-decoration: none;
-            outline: none; /* Remove outline on click */
-            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .teacher-icon {
@@ -176,15 +176,15 @@
         }
 
         .right-icons {
-            order: 3; /* Move icons to right */
+            order: 3;
             display: flex;
             align-items: center;
-            gap: 2.5rem; /* Increased gap between icons */
+            gap: 2.5rem;
         }
 
         @media (max-width: 768px) {
             .navbar {
-                padding: 0.7rem 5%; /* Reduced padding for mobile */
+                padding: 0.7rem 5%;
             }
             
             .nav-links {
@@ -193,30 +193,30 @@
             
             .menu-btn {
                 display: block;
-                order: 3; /* Menu button on left */
-                transform: translateY(3.5px); /* Move menu button down by 3.5px */
+                order: 3;
+                transform: translateY(3.5px);
             }
 
             .home-icon {
                 display: block;
-                order: 2; /* Home button in middle */
+                order: 2;
             }
 
             .teacher-icon {
-                order: 1; /* Teacher button on right */
+                order: 1;
                 margin-left: 0;
-                transform: translateY(3px); /* Move teacher button down by 3px */
+                transform: translateY(3px);
             }
 
             .logo {
                 display: block;
-                font-size: 1.8rem; /* Slightly reduced font size for mobile */
-                letter-spacing: 6px; /* Increased letter spacing for mobile */
+                font-size: 1.8rem;
+                letter-spacing: 6px;
             }
 
             .department-text {
                 display: block;
-                letter-spacing: 4px; /* Added letter spacing for department text in mobile */
+                letter-spacing: 4px;
             }
 
             .logo-container {
@@ -229,8 +229,8 @@
 
             .right-icons {
                 order: unset;
-                gap: 1.2rem; /* Reduced gap between icons */
-                margin-right: 10px; /* Added right margin */
+                gap: 1.2rem;
+                margin-right: 10px;
             }
         }
 
@@ -271,7 +271,8 @@
             position: relative;
             width: 100%;
             max-width: 450px;
-            background: #fff no-repeat center center;
+            height: 460px; /* Fixed height */
+            background: #f5f5f5;
             background-size: cover;
             border-radius: 20px;
             box-shadow: 0 20px 40px var(--shadow-color);
@@ -290,6 +291,16 @@
             }
         }
 
+        @keyframes fadeOut {
+            from {opacity: 1;}
+            to {opacity: 0;}
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
         .circle-photo {
             width: 140px;
             height: 140px;
@@ -299,6 +310,7 @@
             padding: 8px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             box-shadow: 0 10px 20px var(--shadow-color);
+            transition: opacity 0.5s ease;
         }
 
         .circle-photo img {
@@ -315,6 +327,8 @@
         .placeholder {
             padding: 0 20px 30px;
             text-align: center;
+            height: 100%;
+            overflow: hidden;
         }
 
         .form-group {
@@ -378,16 +392,93 @@
             font-weight: bold;
             color: var(--primary-color);
             margin: 5px 0 15px;
+            transition: opacity 0.5s ease;
+        }
+
+        .student-info {
+            display: none;
+            padding: 20px;
+            background: white;
+            border-radius: 20px;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease;
+            overflow: hidden;
+        }
+
+        .student-name {
+            width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Changed to 2 columns */
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .info-row > div {
+            background: #cacacaab;
+            color: #003470;
+            padding: 6px;
+            border-radius: 25px;
+            text-align: center;
+            height: 35px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            opacity: 0;
+        }
+
+        /* Add this new style for second language div */
+        .info-row > div.second-language {
+            grid-column: span 2;
+            height: 35px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards 1s;
+        }
+
+        .back-btn, .download-btn {
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            width: 100px; /* Added fixed width */
+            background: #003470;
         }
 
         @media (max-width: 480px) {
             .content-wrapper {
                 max-width: 100%;
+                height: 450px; /* Reduced height for mobile */
             }
 
             .circle-photo {
-                width: 140px;
-                height: 140px;
+                width: 100px; /* Reduced size */
+                height: 100px; /* Reduced size */
                 margin-top: 15px;
             }
 
@@ -398,6 +489,22 @@
 
             .monthly-marks {
                 font-size: 20px;
+                margin: 5px 0 10px; /* Reduced margin */
+            }
+            
+            .info-row {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .info-row > div {
+                font-size: 11px;
+                padding: 4px;
+                height: 30px;
+            }
+
+            .form-group {
+                gap: 10px; /* Reduced gap */
             }
         }
     </style>
@@ -449,7 +556,7 @@
                 <div class="developers"></div>
                 <div class="heading"></div>
                 <?var url = getUrl();?>
-                <form method="post" action="<?= url ?>" class="form-group">
+                <form id="marksForm" class="form-group">
                     <select name='cl' required>
                         <option value="">Select Your Grade</option>
                         <option value="J4">Junior Four</option>
@@ -463,6 +570,14 @@
                     <input class="code" type="text" name="rl" placeholder="Enter Your Code" required>
                     <input class="view" type="submit" value="View" name="Submit">
                 </form>
+                <div class="student-info">
+                    <div class="student-name"></div>
+                    <div class="info-row"></div>
+                    <div class="button-group">
+                        <button class="back-btn">Back</button>
+                        <button class="download-btn">Download</button>
+                    </div>
+                </div>
                 <div class="developers"></div>
             </div>
         </div>
@@ -471,11 +586,104 @@
     <script>
         const menuBtn = document.querySelector('.menu-btn');
         const mobileMenu = document.querySelector('.mobile-menu');
+        const form = document.getElementById('marksForm');
+        const studentInfo = document.querySelector('.student-info');
+        const backBtn = document.querySelector('.back-btn');
+        const downloadBtn = document.querySelector('.download-btn');
+        const circlePhoto = document.querySelector('.circle-photo');
+        const monthlyMarks = document.querySelector('.monthly-marks');
         
         menuBtn.addEventListener('click', () => {
             menuBtn.classList.toggle('active');
             mobileMenu.classList.toggle('active');
         });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const grade = form.cl.value;
+            const code = form.rl.value;
+
+            if (grade === 'S1') {
+                try {
+                    const response = await fetch('s1.json');
+                    const data = await response.json();
+                    const student = data.find(s => s['رقم جاوس'] === code);
+
+                    if (student) {
+                        form.style.animation = 'fadeOut 0.5s ease forwards';
+                        circlePhoto.style.animation = 'fadeOut 0.5s ease forwards';
+                        monthlyMarks.style.animation = 'fadeOut 0.5s ease forwards';
+                        setTimeout(() => {
+                            form.style.display = 'none';
+                            circlePhoto.style.display = 'none';
+                            monthlyMarks.style.display = 'none';
+                            studentInfo.style.display = 'block';
+                            
+                            const studentName = document.querySelector('.student-name');
+                            studentName.textContent = student['اسم'];
+                            studentName.style.animation = 'fadeIn 0.5s ease forwards';
+                            
+                            const infoRow = document.querySelector('.info-row');
+                            infoRow.innerHTML = '';
+                            
+                            const subjects = Object.entries(student).filter(([key]) => 
+                                key !== 'رقم جاوس' && key !== 'اسم' && key !== 'اللغة التانية' && key !== 'الدين'
+                            );
+                            
+                            subjects.forEach(([subject, mark], index) => {
+                                const div = document.createElement('div');
+                                div.textContent = `${subject}: ${mark}`;
+                                div.style.animation = `fadeIn 0.5s ease forwards ${0.5 + (index * 0.1)}s`;
+                                infoRow.appendChild(div);
+                            });
+
+                            // Add second language with full width
+                            if (student['اللغة التانية']) {
+                                const secLangDiv = document.createElement('div');
+                                secLangDiv.textContent = `اللغة التانية: ${student['اللغة التانية']}`;
+                                secLangDiv.className = 'second-language';
+                                secLangDiv.style.animation = `fadeIn 0.5s ease forwards ${0.5 + (subjects.length * 0.1)}s`;
+                                infoRow.appendChild(secLangDiv);
+                            }
+                            if (student['الدين']) {
+                                const religionDiv = document.createElement('div');
+                                religionDiv.textContent = `الدين: ${student['الدين']}`;
+                                religionDiv.style.animation = `fadeIn 0.5s ease forwards ${0.5 + ((subjects.length + 1) * 0.1)}s`;
+                                infoRow.appendChild(religionDiv);
+                            }
+                        }, 500);
+                    } else {
+                        alert('Invalid code');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error fetching student data');
+                }
+            }
+        });
+
+        backBtn.addEventListener('click', () => {
+            studentInfo.style.animation = 'fadeOut 0.5s ease forwards';
+            setTimeout(() => {
+                studentInfo.style.display = 'none';
+                circlePhoto.style.display = 'block';
+                monthlyMarks.style.display = 'block';
+                circlePhoto.style.animation = 'fadeIn 0.5s ease forwards';
+                monthlyMarks.style.animation = 'fadeIn 0.5s ease forwards';
+                form.style.display = 'flex';
+                form.style.animation = 'fadeIn 0.5s ease forwards';
+            }, 500);
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            html2canvas(document.querySelector('.student-info')).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'student-info.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        });
     </script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </body>
 </html>
