@@ -32,8 +32,9 @@
         body {
             font-family: 'Oswald', sans-serif;
             line-height: 1.6;
-            overflow-x: hidden;
-            background: #f5f5f5;
+            overflow: hidden; /* Prevent scrolling */
+            background: url('https://i.ibb.co/wQ5BR0n/Bg.jpg') no-repeat center center fixed;
+            background-size: cover;
             padding-top: 80px; /* Add padding to account for fixed navbar */
         }
 
@@ -184,10 +185,10 @@
 
         /* Timetable Container */
         .timetable-container {
-            margin: 120px auto 30px;
-            padding: 2rem;
-            max-width: 600px;
-            height: 700px;
+            margin: 50px auto 20px; /* Adjusted margin to move up by 30px */
+            padding: 1.5rem; /* Adjusted padding */
+            max-width: 500px; /* Adjusted max-width */
+            height: 600px; /* Adjusted height */
             background: white;
             border-radius: 50px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -395,7 +396,10 @@
             }
 
             .timetable-container {
-                margin-top: 100px;
+                margin-top: 30px; /* Adjusted margin for mobile view to move up by 30px */
+                padding: 1rem; /* Adjusted padding for mobile view */
+                max-width: 90%; /* Adjusted max-width for mobile view */
+                height: auto; /* Adjusted height for mobile view */
             }
         }
     </style>
@@ -440,14 +444,13 @@
         <h2 class="timetable-title">Choose Your Grade:</h2>
         <select class="class-selector" id="gradeSelect" onchange="checkSelections()">
             <option value="" disabled selected>Choose a Grade</option>
-            <option value="j4">Junior-Four</option>
-            <option value="j5">Junior-Five</option>
-            <option value="j6">Junior-Six</option>
-            <option value="m1">Middle-One</option>
-            <option value="m2">Middle-Two</option>
-            <option value="m3">Middle-Three</option>
-            <option value="s1">Senior-One</option>
-            <option value="s2">Senior-Two</option>
+            <option value="j4">Junior 4</option>
+            <option value="j5">Junior 5</option>
+            <option value="j6">Junior 6</option>
+            <option value="m1">Middle 1</option>
+            <option value="m2">Middle 2</option>
+            <option value="s1">Senior 1</option>
+            <option value="s2">Senior 2</option>
         </select>
 
         <select class="class-selector" id="classSelect" onchange="checkSelections()">
@@ -465,13 +468,17 @@
             <img src="https://i.ibb.co/zNknjmB/1-B-page-0001.jpg" class="timetable-image" id="s1b-timetable" alt="Senior One Class B Timetable">
             <img src="https://i.ibb.co/gDWmR4w/1-C-page-0001.jpg" class="timetable-image" id="s1c-timetable" alt="Senior One Class C Timetable">
             <img src="https://i.ibb.co/M9PTV4f/1d-page-0001.jpg" class="timetable-image" id="s1d-timetable" alt="Senior One Class D Timetable">
-            <img src="" class="timetable-image" id="m1b-timetable" alt="Middle One Class B Timetable">
-            <img src="https://i.ibb.co/n8VLc5z/M1.png" class="timetable-image" id="m1c-timetable" alt="Middle One Class C Timetable">
-            <img src="https://i.ibb.co/n8VLc5z/M1.png" class="timetable-image" id="m1d-timetable" alt="Middle One Class D Timetable">
+            <img src="https://i.ibb.co/chK2vJh/1B.jpg" class="timetable-image" id="m1b-timetable" alt="Middle One Class B Timetable">
+            <img src="https://i.ibb.co/qmLs9Ht/1C.jpg" class="timetable-image" id="m1c-timetable" alt="Middle One Class C Timetable">
+            <img src="https://i.ibb.co/zJj00BY/1D.jpg" class="timetable-image" id="m1d-timetable" alt="Middle One Class D Timetable">
             <img src="https://i.ibb.co/WDY1CmT/2A-1.jpg" class="timetable-image" id="s2a-timetable" alt="Senior Two Class A Timetable">
             <img src="https://i.ibb.co/4pvJD1J/2B-1.jpg" class="timetable-image" id="s2b-timetable" alt="Senior Two Class B Timetable">
             <img src="https://i.ibb.co/gWpGPps/2C-1.jpg" class="timetable-image" id="s2c-timetable" alt="Senior Two Class C Timetable">
             <img src="https://i.ibb.co/h90XR7Y/2D-1.jpg" class="timetable-image" id="s2d-timetable" alt="Senior Two Class D Timetable">
+            <img src="https://i.ibb.co/kXFtyTZ/2A.jpg" class="timetable-image" id="m2a-timetable" alt="Middle Two Class A Timetable">
+            <img src="https://i.ibb.co/DwnHM6J/2B.jpg" class="timetable-image" id="m2b-timetable" alt="Middle Two Class B Timetable">
+            <img src="https://i.ibb.co/zNXPSkW/2C.jpg" class="timetable-image" id="m2c-timetable" alt="Middle Two Class C Timetable">
+            <img src="https://i.ibb.co/GRxsTXH/2D.jpg" class="timetable-image" id="m2d-timetable" alt="Middle Two Class D Timetable">
         </div>
         <div class="image-controls">
             <button class="control-btn" onclick="downloadImage()" title="Download">
