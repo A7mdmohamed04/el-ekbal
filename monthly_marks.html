@@ -212,6 +212,7 @@
                 display: block;
                 font-size: 1.8rem;
                 letter-spacing: 6px;
+                transform: translateY(15px); /* Changed from 5px to 15px */
             }
 
             .department-text {
@@ -473,12 +474,12 @@
         @media (max-width: 480px) {
             .content-wrapper {
                 max-width: 100%;
-                height: 450px; /* Reduced height for mobile */
+                height: 450px; /* Reduced height */
             }
 
             .circle-photo {
-                width: 100px; /* Reduced size */
-                height: 100px; /* Reduced size */
+                width: 150px; /* Increased size */
+                height: 150px; /* Increased size */
                 margin-top: 15px;
             }
 
@@ -488,8 +489,8 @@
             }
 
             .monthly-marks {
-                font-size: 20px;
-                margin: 5px 0 10px; /* Reduced margin */
+                font-size: 32px; /* Increased font size */
+                margin: 5px 0 35px; /* Increased bottom margin */
             }
             
             .info-row {
@@ -504,7 +505,8 @@
             }
 
             .form-group {
-                gap: 10px; /* Reduced gap */
+                gap: 10px;
+                margin-top: -20px; /* Changed from 40px to -20px to move up */
             }
         }
     </style>
@@ -592,6 +594,7 @@
         const downloadBtn = document.querySelector('.download-btn');
         const circlePhoto = document.querySelector('.circle-photo');
         const monthlyMarks = document.querySelector('.monthly-marks');
+        const buttonGroup = document.querySelector('.button-group');
         
         menuBtn.addEventListener('click', () => {
             menuBtn.classList.toggle('active');
@@ -676,11 +679,34 @@
         });
 
         downloadBtn.addEventListener('click', () => {
-            html2canvas(document.querySelector('.student-info')).then(canvas => {
+            // Create a temporary container for capturing
+            const tempContainer = document.createElement('div');
+            tempContainer.style.background = 'white';
+            tempContainer.style.padding = '20px';
+            tempContainer.style.width = '450px';
+            tempContainer.style.position = 'fixed';
+            tempContainer.style.left = '-9999px';
+            
+            // Clone the student info content
+            const studentInfoClone = document.querySelector('.student-info').cloneNode(true);
+            
+            // Remove the button group from the clone
+            const buttonGroupClone = studentInfoClone.querySelector('.button-group');
+            if (buttonGroupClone) {
+                buttonGroupClone.remove();
+            }
+            
+            tempContainer.appendChild(studentInfoClone);
+            document.body.appendChild(tempContainer);
+            
+            html2canvas(tempContainer).then(canvas => {
                 const link = document.createElement('a');
-                link.download = 'student-info.png';
+                link.download = 'student-marks.png';
                 link.href = canvas.toDataURL();
                 link.click();
+                
+                // Clean up
+                document.body.removeChild(tempContainer);
             });
         });
     </script>
