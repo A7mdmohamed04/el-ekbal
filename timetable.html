@@ -35,7 +35,7 @@
             overflow: hidden; /* Prevent scrolling */
             background: url('https://i.ibb.co/wQ5BR0n/Bg.jpg') no-repeat center center fixed;
             background-size: cover;
-            padding-top: 80px; /* Add padding to account for fixed navbar */
+            padding-top: 60px; /* Decreased padding from 75px to 60px */
         }
 
         /* Navbar Styles */
@@ -185,10 +185,10 @@
 
         /* Timetable Container */
         .timetable-container {
-            margin: 50px auto 20px; /* Adjusted margin to move up by 30px */
-            padding: 1.5rem; /* Adjusted padding */
-            max-width: 500px; /* Adjusted max-width */
-            height: 600px; /* Adjusted height */
+            margin: 60px auto 20px; /* Changed to 60px top margin */
+            padding: 1.5rem;
+            max-width: 450px; /* Reduced from 500px */
+            height: 450px; /* Reduced from 500px */
             background: white;
             border-radius: 50px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -230,9 +230,9 @@
 
         .placeholder-image {
             margin-top: 2rem;
-            padding: 2rem;
+            padding: 1.5rem;
             width: 100%;
-            height: 370px;
+            height: 250px; /* Reduced from 300px */
             background-color: #e0e0e0;
             border-radius: 50px;
             font-size: 1.2rem;
@@ -246,20 +246,19 @@
         }
 
         .timetable-image {
-            max-width: 100%;
-            height: 100%;
+            max-width: 90%; /* Reduced from 100% */
+            height: 90%; /* Reduced from 100% */
             object-fit: contain;
             border-radius: 25px;
             display: none;
             opacity: 0;
-            transform: scale(0.8);
+            transform: scale(0.8) translateY(-27px); /* Changed from -22px to -27px */
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         .timetable-image.show {
             opacity: 1;
-            transform: scale(1);
-            border: 3px solid var(--primary-color);
+            transform: scale(1) translateY(-27px); /* Changed from -22px to -27px */
         }
 
         #default-text {
@@ -272,9 +271,9 @@
         }
 
         .image-controls {
-            margin-top: 20px;
+            margin-top: -52px;
             display: none;
-            gap: 10px;
+            gap: 8px;
             opacity: 0;
             justify-content: center;
             transform: translateY(20px);
@@ -288,21 +287,21 @@
         }
 
         .control-btn {
-            padding: 15px 30px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 25px;
+            border-radius: 20px;
             background: var(--primary-color);
             color: white;
             cursor: pointer;
             transition: transform 0.3s ease, background-color 0.3s ease;
-            font-size: 1rem;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .control-btn i {
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         .control-btn:hover {
@@ -396,10 +395,10 @@
             }
 
             .timetable-container {
-                margin-top: 30px; /* Adjusted margin for mobile view to move up by 30px */
-                padding: 1rem; /* Adjusted padding for mobile view */
-                max-width: 90%; /* Adjusted max-width for mobile view */
-                height: auto; /* Adjusted height for mobile view */
+                margin-top: 60px; /* Changed to match desktop */
+                padding: 1rem;
+                max-width: 90%;
+                height: auto;
             }
         }
     </style>
@@ -463,6 +462,17 @@
 
         <div class="placeholder-image">
             <div id="default-text">No Grade is selected</div>
+            <img src="https://i.ibb.co/z4cjF8w/TABLE-JUNIOR-1.jpg" class="timetable-image" id="j4a-timetable" alt="Junior Four Class A Timetable">
+            <img src="https://i.ibb.co/g3Y5Rfc/TABLE-JUNIOR-2.jpg" class="timetable-image" id="j4b-timetable" alt="Junior Four Class B Timetable">
+            <img src="https://i.ibb.co/dGnYm0w/TABLE-JUNIOR-3.jpg" class="timetable-image" id="j4c-timetable" alt="Junior Four Class C Timetable">
+            <img src="https://i.ibb.co/vPJRvq1/TABLE-JUNIOR-4.jpg" class="timetable-image" id="j4d-timetable" alt="Junior Four Class D Timetable">
+            <img src="https://i.ibb.co/sHYz7rR/TABLE-JUNIOR-5.jpg" class="timetable-image" id="j5a-timetable" alt="Junior Five Class A Timetable">
+            <img src="https://i.ibb.co/7G9wHmr/TABLE-JUNIOR-6.jpg" class="timetable-image" id="j5b-timetable" alt="Junior Five Class B Timetable">
+            <img src="https://i.ibb.co/NYzk5VF/TABLE-JUNIOR-7.jpg" class="timetable-image" id="j5c-timetable" alt="Junior Five Class C Timetable">
+            <img src="https://i.ibb.co/2YQjr0w/TABLE-JUNIOR-8.jpg" class="timetable-image" id="j5d-timetable" alt="Junior Five Class D Timetable">
+            <img src="https://i.ibb.co/ZYVHqQG/TABLE-JUNIOR-10.jpg" class="timetable-image" id="j6a-timetable" alt="Junior Six Class A Timetable">
+            <img src="https://i.ibb.co/MhrQw16/TABLE-JUNIOR-11.jpg" class="timetable-image" id="j6b-timetable" alt="Junior Six Class B Timetable">
+            <img src="https://i.ibb.co/7GCnnq3/TABLE-JUNIOR-12.jpg" class="timetable-image" id="j6c-timetable" alt="Junior Six Class C Timetable">
             <img src="https://i.ibb.co/n8VLc5z/M1.png" class="timetable-image" id="m1a-timetable" alt="Middle One Class A Timetable">
             <img src="https://i.ibb.co/zV1zTSW/1-A-page-0001.jpg" class="timetable-image" id="s1a-timetable" alt="Senior One Class A Timetable">
             <img src="https://i.ibb.co/zNknjmB/1-B-page-0001.jpg" class="timetable-image" id="s1b-timetable" alt="Senior One Class B Timetable">
@@ -519,6 +529,14 @@
             imageControls.classList.remove('show');
             
             if (gradeValue && classValue) {
+                // Special handling for Junior 6
+                if (gradeValue === 'j6' && classValue === 'D') {
+                    defaultText.style.display = 'block';
+                    defaultText.classList.remove('hide');
+                    defaultText.textContent = 'Class D is not available for Junior 6';
+                    return;
+                }
+                
                 const imageId = `${gradeValue.toLowerCase()}${classValue.toLowerCase()}-timetable`;
                 const selectedImage = document.getElementById(imageId);
                 
