@@ -80,6 +80,12 @@
             justify-content: center;
         }
 
+        @media (max-width: 768px) {
+            .hero-text {
+                top: 45%; /* Moved down in mobile view */
+            }
+        }
+
         .hero-text h1 {
             font-size: 3rem;
             margin-bottom: 0.7rem;
@@ -117,8 +123,9 @@
 
         @media (max-width: 768px) {
             .logo-text {
-                font-size: 180px; /* Increased from 140px to 200px for mobile */
-                margin-bottom: 5px;
+                font-size: 180px;
+                margin-bottom: 25px;
+                margin-top: -100px; /* Added margin to move down in mobile */
             }
         }
 
