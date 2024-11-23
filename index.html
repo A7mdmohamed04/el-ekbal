@@ -68,11 +68,16 @@
         .hero-text {
             text-align: center;
             position: absolute;
-            top: calc(35% - 20px);
+            top: 30%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 2;
             color: white;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .hero-text h1 {
@@ -81,7 +86,6 @@
             letter-spacing: 3px;
             white-space: nowrap;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            margin-top: 150px;
         }
 
         @media (max-width: 768px) {
@@ -105,28 +109,33 @@
             font-family: "Times New Roman", serif;
             font-size: 180px;
             color: black;
-            margin-bottom: 2rem;
+            margin-bottom: 0.2rem;
             text-shadow: -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white, 2px 2px 0 white;
             transition: transform 0.3s ease;
-            display: block;
-            width: 250px;
-            height: auto;
-            line-height: 1;
-            position: absolute;
-            left: calc(40% + 10px);
-            top: 25%;
-            transform: translate(-50%, -50%);
+            line-height: 0.8;
         }
 
         @media (max-width: 768px) {
             .logo-text {
-                left: 40%;
-                font-size: 140px;
+                font-size: 180px; /* Increased from 140px to 200px for mobile */
+                margin-bottom: 5px;
             }
         }
 
         .logo-text:hover {
-            transform: translate(-50%, -50%) scale(1.05);
+            transform: scale(1.05);
+        }
+
+        .logo-image {
+            width: 250px;
+            height: auto;
+            margin-bottom: 0.5rem;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
+            transition: transform 0.3s ease;
+        }
+
+        .logo-image:hover {
+            transform: scale(1.05);
         }
 
         .navbar {
@@ -303,7 +312,7 @@
             border-radius: 10px;
         }
 
-        /* Home Image Wrapper */
+        /* Home Image Styles */
         .home-image-wrapper {
             width: 65%;
             padding-top: 50%;
@@ -324,23 +333,15 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        @media (max-width: 768px) {
-            .home-image-wrapper {
-                width: 100%;
-                margin-bottom: 20px;
-                padding-top: 100%;
-            }
-        }
-
-        /* Headmaster Image Wrapper */
+        /* Headmaster Image Styles */
         .headmaster-image-wrapper {
             width: 65%;
-            padding-top: -60%;
+            padding-top: 105%;
             position: relative;
             overflow: hidden;
             background-color: #f0f0f0;
-            border-radius: 10px;
-            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.15);
         }
 
         .headmaster-image-wrapper img {
@@ -350,16 +351,14 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.18);
+        }
+
+        .desktop-only-videos {
+            display: block;
         }
 
         @media (max-width: 768px) {
-            .headmaster-image-wrapper {
-                width: 100%;
-                margin-bottom: 20px;
-                padding-top: 167%;
-            }
-
             .content-wrapper {
                 flex-direction: column;
                 gap: 50px;
@@ -369,8 +368,20 @@
                 width: 100%;
                 margin-bottom: 20px;
             }
-            
-            .video-section .video-container:nth-child(n+4) {
+
+            .home-image-wrapper {
+                width: 100%;
+                padding-top: 100%;
+                margin-bottom: 30px;
+            }
+
+            .headmaster-image-wrapper {
+                width: 100%;
+                padding-top: 170%;
+                margin-bottom: 20px;
+            }
+
+            .desktop-only-videos {
                 display: none;
             }
         }
@@ -652,7 +663,7 @@
     </style>
 </head>
 <body>
-    <img src="https://i.ibb.co/17sFJMQ/0000.png" alt="Hero Image" class="hero-image" loading="lazy">
+    <img src="https://i.ibb.co/17sFJMQ/0000.png" alt="Hero Image" class="hero-image">
     <div class="hero-text">
         <span class="logo-text">ELS</span>
         <h1>Ekbal Language School</h1>
@@ -688,43 +699,40 @@
 
     <div class="content-wrapper">
         <div class="home-image-wrapper">
-            <img src="https://i.ibb.co/nBghZ1F/home.png" alt="Home Image" loading="lazy">
+            <img src="https://i.ibb.co/nBghZ1F/home.png" alt="Home Image">
         </div>
         <div class="video-section">
             <div class="video-container">
-                <iframe width="520" height="400" src="https://www.youtube.com/embed/ZlXmwIGkrJk?si=jNfLhF1573Y-KHbT" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading=></iframe>
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/QqAThln-Eeo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
             <div class="video-container">
-                <iframe width="520" height="400" src="https://www.youtube.com/embed/NGWM3YgsMXs?si=8V9Mk6Giw1_pmlod" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading=></iframe>
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/zEudWoX8DCo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
             <div class="video-container">
-                <iframe width="520" height="400" src="https://www.youtube.com/embed/Ntb72VeFQj4?si=5KejHBpcIUDwtEnd" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading=></iframe>
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/87-FfTO6c24" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
         </div>
     </div>
 
     <div class="content-wrapper">
         <div class="headmaster-image-wrapper">
-            <img src="https://i.ibb.co/r57Tcn0/headmaster.jpg" alt="Headmaster Image" loading="lazy">
+            <img src="https://i.ibb.co/r57Tcn0/headmaster.jpg" alt="Headmaster Image">
         </div>
         <div class="video-section">
             <div class="video-container">
-                <iframe width="520" height="400" src="https://www.youtube.com/embed/ZlXmwIGkrJk?si=jNfLhF1573Y-KHbT" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading=></iframe>
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/gmE0BCONtus" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
             <div class="video-container">
-                <iframe width="520" height="400" src="https://www.youtube.com/embed/NGWM3YgsMXs?si=8V9Mk6Giw1_pmlod" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading=></iframe>
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/ShKr-ZyjVek" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
             <div class="video-container">
-                <iframe width="520" height="400" src="https://www.youtube.com/embed/Ntb72VeFQj4?si=5KejHBpcIUDwtEnd" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading=></iframe>
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/xyYe8WOt5nI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
-            <div class="video-container">
-                <iframe width="520" height="400" src="https://www.youtube.com/embed/ZlXmwIGkrJk?si=jNfLhF1573Y-KHbT" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading=></iframe>
+            <div class="video-container desktop-only-videos">
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/xyYe8WOt5nI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
-            <div class="video-container">
-                <iframe width="520" height="400" src="https://www.youtube.com/embed/NGWM3YgsMXs?si=8V9Mk6Giw1_pmlod" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading=></iframe>
-            </div>
-            <div class="video-container">
-                <iframe width="520" height="400" src="https://www.youtube.com/embed/Ntb72VeFQj4?si=5KejHBpcIUDwtEnd" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <div class="video-container desktop-only-videos">
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/1XrZM1mlHAs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -734,22 +742,22 @@
         <h2>All thanks To:</h2>
         <div class="faculty-grid">
             <div class="faculty-card" data-info="">
-                <img src="https://i.ibb.co/S52fxkG/mr-magdy.png" alt="Faculty Member" class="faculty-img" loading="lazy">
+                <img src="https://i.ibb.co/S52fxkG/mr-magdy.png" alt="Faculty Member" class="faculty-img">
                 <h3>Mr. Magdy El Sakhawy</h3>
                 <p>School Principal</p>
             </div>
             <div class="faculty-card" data-info="">
-                <img src="https://i.ibb.co/94zPjWH/Dr-Ahmed.png" alt="Faculty Member" class="faculty-img" loading="lazy">
+                <img src="https://i.ibb.co/94zPjWH/Dr-Ahmed.png" alt="Faculty Member" class="faculty-img">
                 <h3>Dr. Ahmed Abdelfatah</h3>
                 <p>Head master</p>
             </div>
             <div class="faculty-card" data-info="">
-                <img src="https://i.ibb.co/mq1XmBz/Mr-Ahmed.png" alt="Faculty Member" class="faculty-img" loading="lazy">
+                <img src="https://i.ibb.co/mq1XmBz/Mr-Ahmed.png" alt="Faculty Member" class="faculty-img">
                 <h3>Mr. Ahmed Hassanien</h3>
                 <p>Supervisor</p>
             </div>
             <div class="faculty-card" data-info="">
-                <img src="https://i.ibb.co/Vj2f1bT/Mr-hassan.png" alt="Faculty Member" class="faculty-img" loading="lazy">
+                <img src="https://i.ibb.co/Vj2f1bT/Mr-hassan.png" alt="Faculty Member" class="faculty-img">
                 <h3>Mr. Hassan Magdy Morsy</h3>
                 <p>Supervisor</p>
             </div>
@@ -761,12 +769,12 @@
         <h2>Developers</h2>
         <div class="faculty-grid">
             <div class="faculty-card" data-info="">
-                <img src="https://i.ibb.co/5GNjwJw/p2.png" alt="Developer" class="faculty-img" style="width: 200px; height: 200px; object-fit: cover;" loading="lazy">
+                <img src="https://i.ibb.co/5GNjwJw/p2.png" alt="Developer" class="faculty-img" style="width: 200px; height: 200px; object-fit: cover;">
                 <h3>Ahmed Kabary</h3>
                 <p>Programming and Networking Dev</p>
             </div>
             <div class="faculty-card" data-info="">
-                <img src="https://i.ibb.co/Xx4BWB3/Zidan.png" alt="Developer" class="faculty-img" style="width: 200px; height: 200px; object-fit: cover;" loading="lazy">
+                <img src="https://i.ibb.co/Xx4BWB3/Zidan.png" alt="Developer" class="faculty-img" style="width: 200px; height: 200px; object-fit: cover;">
                 <h3>Youssef Zidan</h3>
                 <p>Web Developer UI  Designer</p>
             </div>
@@ -793,7 +801,6 @@
         </div>
         <p>&copy; 2024 EL Ekbal School. All rights reserved.</p>
     </footer>
-
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -828,7 +835,34 @@
             });
         });
 
+        const closeFacultyInfo = () => {
+            facultyInfo.style.transform = 'translate(-50%, -50%) scale(0.8)';
+            facultyInfo.style.opacity = '0';
+            overlay.classList.remove('active');
+            
+            setTimeout(() => {
+                facultyInfo.classList.remove('active');
+                facultyInfo.style.transform = '';
+                facultyInfo.style.opacity = '';
+            }, 300);
+        };
+
         closeBtn.addEventListener('click', closeFacultyInfo);
+        overlay.addEventListener('click', closeFacultyInfo);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && facultyInfo.classList.contains('active')) {
+                closeFacultyInfo();
+            }
+        });
+
+        const menuBtn = document.querySelector('.menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
     </script>
 </body>
-</html> 
+</html>
