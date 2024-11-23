@@ -17,11 +17,11 @@
         }
 
         :root {
-            --primary-color: #003470;
-            --secondary-color: #003470;
-            --accent-color: #003470;
+            --primary-color: #121213;
+            --secondary-color: #121213;
+            --accent-color: #121213;
             --light-color: #fff;
-            --dark-color: #003470;
+            --dark-color: #121213;
             --background-color: #fff;
             --text-color: #0c0c0c;
             font-family: 'Oswald', sans-serif;
@@ -59,6 +59,12 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
+        @media (max-width: 768px) {
+            .hero-image {
+                height: calc(100vh - 200px);
+            }
+        }
+
         .hero-text {
             text-align: center;
             position: absolute;
@@ -75,6 +81,7 @@
             letter-spacing: 3px;
             white-space: nowrap;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-top: 150px;
         }
 
         @media (max-width: 768px) {
@@ -94,16 +101,32 @@
             white-space: nowrap;
         }
 
-        .logo-image {
+        .logo-text {
+            font-family: "Times New Roman", serif;
+            font-size: 180px;
+            color: black;
+            margin-bottom: 2rem;
+            text-shadow: -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white, 2px 2px 0 white;
+            transition: transform 0.3s ease;
+            display: block;
             width: 250px;
             height: auto;
-            margin-bottom: 0.5rem;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
-            transition: transform 0.3s ease;
+            line-height: 1;
+            position: absolute;
+            left: calc(40% + 10px);
+            top: 25%;
+            transform: translate(-50%, -50%);
         }
 
-        .logo-image:hover {
-            transform: scale(1.05);
+        @media (max-width: 768px) {
+            .logo-text {
+                left: 40%;
+                font-size: 140px;
+            }
+        }
+
+        .logo-text:hover {
+            transform: translate(-50%, -50%) scale(1.05);
         }
 
         .navbar {
@@ -255,7 +278,7 @@
             display: flex;
             justify-content: space-between;
             margin: 45px 5%;
-            gap: 40px; /* Increased space between square wrapper and videos */
+            gap: 40px;
         }
 
         .video-section {
@@ -264,7 +287,7 @@
 
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             margin-bottom: 20px;
@@ -280,7 +303,8 @@
             border-radius: 10px;
         }
 
-        .square-wrapper {
+        /* Home Image Wrapper */
+        .home-image-wrapper {
             width: 65%;
             padding-top: 50%;
             position: relative;
@@ -290,7 +314,7 @@
             box-shadow: 0 20px 30px rgba(0,0,0,0.1);
         }
 
-        .square-wrapper img {
+        .home-image-wrapper img {
             position: absolute;
             top: 0;
             left: 0;
@@ -301,18 +325,53 @@
         }
 
         @media (max-width: 768px) {
-            .content-wrapper {
-                flex-direction: column;
-                gap: 50px; /* Adjust gap for mobile */
+            .home-image-wrapper {
+                width: 100%;
+                margin-bottom: 20px;
+                padding-top: 100%;
+            }
+        }
+
+        /* Headmaster Image Wrapper */
+        .headmaster-image-wrapper {
+            width: 65%;
+            padding-top: -60%;
+            position: relative;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+
+        .headmaster-image-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .headmaster-image-wrapper {
+                width: 100%;
+                margin-bottom: 20px;
+                padding-top: 167%;
             }
 
-            .video-section, .square-wrapper {
+            .content-wrapper {
+                flex-direction: column;
+                gap: 50px;
+            }
+
+            .video-section {
                 width: 100%;
                 margin-bottom: 20px;
             }
-
-            .square-wrapper {
-                padding-top: 100%;
+            
+            .video-section .video-container:nth-child(n+4) {
+                display: none;
             }
         }
 
@@ -479,8 +538,8 @@
             padding: 5rem 5%;
             background: var(--background-color);
             text-align: center;
-            margin-bottom: 25px; /* Reduced from 60px to 25px */
-            margin-top: -60px; /* Changed from -30px to -60px to move up by 30px more */
+            margin-bottom: 25px;
+            margin-top: -60px;
         }
 
         .developers h2 {
@@ -593,9 +652,9 @@
     </style>
 </head>
 <body>
-    <img src="https://i.ibb.co/17sFJMQ/0000.png" alt="Hero Image" class="hero-image">
+    <img src="https://i.ibb.co/17sFJMQ/0000.png" alt="Hero Image" class="hero-image" loading="lazy">
     <div class="hero-text">
-        <img src="https://i.ibb.co/287m7jB/cropped-00.webp" alt="School Logo" class="logo-image">
+        <span class="logo-text">ELS</span>
         <h1>Ekbal Language School</h1>
         <p>Boys Department</p>
     </div>
@@ -628,32 +687,41 @@
     </nav>
 
     <div class="content-wrapper">
-        <div class="square-wrapper">
-            <img src="https://i.ibb.co/nBghZ1F/home.png" alt="Home Image">
+        <div class="home-image-wrapper">
+            <img src="https://i.ibb.co/nBghZ1F/home.png" alt="Home Image" loading="lazy">
         </div>
         <div class="video-section">
             <div class="video-container">
-                <iframe width="520" height="400" src="https://www.youtube.com/embed/ZlXmwIGkrJk?si=jNfLhF1573Y-KHbT" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/ZlXmwIGkrJk?si=jNfLhF1573Y-KHbT" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading=></iframe>
             </div>
             <div class="video-container">
-                <iframe width="520" height="400" src="https://www.youtube.com/embed/NGWM3YgsMXs?si=8V9Mk6Giw1_pmlod" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/NGWM3YgsMXs?si=8V9Mk6Giw1_pmlod" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading=></iframe>
             </div>
             <div class="video-container">
-                <iframe width="520" height="400" src="https://www.youtube.com/embed/Ntb72VeFQj4?si=5KejHBpcIUDwtEnd" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/Ntb72VeFQj4?si=5KejHBpcIUDwtEnd" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading=></iframe>
             </div>
         </div>
     </div>
 
     <div class="content-wrapper">
-        <div class="square-wrapper">
-            <img src="https://i.ibb.co/r57Tcn0/headmaster.jpg" alt="Headmaster Image">
+        <div class="headmaster-image-wrapper">
+            <img src="https://i.ibb.co/r57Tcn0/headmaster.jpg" alt="Headmaster Image" loading="lazy">
         </div>
         <div class="video-section">
             <div class="video-container">
-                <iframe width="520" height="400" src="https://www.youtube.com/embed/ZlXmwIGkrJk?si=jNfLhF1573Y-KHbT" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/ZlXmwIGkrJk?si=jNfLhF1573Y-KHbT" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading=></iframe>
             </div>
             <div class="video-container">
-                <iframe width="520" height="400" src="https://www.youtube.com/embed/NGWM3YgsMXs?si=8V9Mk6Giw1_pmlod" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/NGWM3YgsMXs?si=8V9Mk6Giw1_pmlod" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading=></iframe>
+            </div>
+            <div class="video-container">
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/Ntb72VeFQj4?si=5KejHBpcIUDwtEnd" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading=></iframe>
+            </div>
+            <div class="video-container">
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/ZlXmwIGkrJk?si=jNfLhF1573Y-KHbT" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading=></iframe>
+            </div>
+            <div class="video-container">
+                <iframe width="520" height="400" src="https://www.youtube.com/embed/NGWM3YgsMXs?si=8V9Mk6Giw1_pmlod" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading=></iframe>
             </div>
             <div class="video-container">
                 <iframe width="520" height="400" src="https://www.youtube.com/embed/Ntb72VeFQj4?si=5KejHBpcIUDwtEnd" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -666,22 +734,22 @@
         <h2>All thanks To:</h2>
         <div class="faculty-grid">
             <div class="faculty-card" data-info="">
-                <img src="https://i.ibb.co/S52fxkG/mr-magdy.png" alt="Faculty Member" class="faculty-img">
+                <img src="https://i.ibb.co/S52fxkG/mr-magdy.png" alt="Faculty Member" class="faculty-img" loading="lazy">
                 <h3>Mr. Magdy El Sakhawy</h3>
                 <p>School Principal</p>
             </div>
             <div class="faculty-card" data-info="">
-                <img src="https://i.ibb.co/94zPjWH/Dr-Ahmed.png" alt="Faculty Member" class="faculty-img">
+                <img src="https://i.ibb.co/94zPjWH/Dr-Ahmed.png" alt="Faculty Member" class="faculty-img" loading="lazy">
                 <h3>Dr. Ahmed Abdelfatah</h3>
                 <p>Head master</p>
             </div>
             <div class="faculty-card" data-info="">
-                <img src="https://i.ibb.co/mq1XmBz/Mr-Ahmed.png" alt="Faculty Member" class="faculty-img">
+                <img src="https://i.ibb.co/mq1XmBz/Mr-Ahmed.png" alt="Faculty Member" class="faculty-img" loading="lazy">
                 <h3>Mr. Ahmed Hassanien</h3>
                 <p>Supervisor</p>
             </div>
             <div class="faculty-card" data-info="">
-                <img src="https://i.ibb.co/Vj2f1bT/Mr-hassan.png" alt="Faculty Member" class="faculty-img">
+                <img src="https://i.ibb.co/Vj2f1bT/Mr-hassan.png" alt="Faculty Member" class="faculty-img" loading="lazy">
                 <h3>Mr. Hassan Magdy Morsy</h3>
                 <p>Supervisor</p>
             </div>
@@ -692,13 +760,13 @@
     <section id="developers" class="developers">
         <h2>Developers</h2>
         <div class="faculty-grid">
-            <div class="faculty-card" data-info="Youssef Zidan is our talented visionary developer driving innovation within our educational platform. With a passion for crafting seamless digital experiences, he specializes in platform design, enhancing user engagement, optimizing functionality, and delivering cutting-edge features that elevate our technology to new heights.">
-                <img src="https://i.ibb.co/5GNjwJw/p2.png" alt="Developer" class="faculty-img" style="width: 200px; height: 200px; object-fit: cover;">
+            <div class="faculty-card" data-info="">
+                <img src="https://i.ibb.co/5GNjwJw/p2.png" alt="Developer" class="faculty-img" style="width: 200px; height: 200px; object-fit: cover;" loading="lazy">
                 <h3>Ahmed Kabary</h3>
                 <p>Programming and Networking Dev</p>
             </div>
             <div class="faculty-card" data-info="">
-                <img src="https://i.ibb.co/0MsgcDV/p1.png" alt="Developer" class="faculty-img" style="width: 200px; height: 200px; object-fit: cover;">
+                <img src="https://i.ibb.co/Xx4BWB3/Zidan.png" alt="Developer" class="faculty-img" style="width: 200px; height: 200px; object-fit: cover;" loading="lazy">
                 <h3>Youssef Zidan</h3>
                 <p>Web Developer UI  Designer</p>
             </div>
@@ -760,34 +828,7 @@
             });
         });
 
-        const closeFacultyInfo = () => {
-            facultyInfo.style.transform = 'translate(-50%, -50%) scale(0.8)';
-            facultyInfo.style.opacity = '0';
-            overlay.classList.remove('active');
-            
-            setTimeout(() => {
-                facultyInfo.classList.remove('active');
-                facultyInfo.style.transform = '';
-                facultyInfo.style.opacity = '';
-            }, 300);
-        };
-
         closeBtn.addEventListener('click', closeFacultyInfo);
-        overlay.addEventListener('click', closeFacultyInfo);
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && facultyInfo.classList.contains('active')) {
-                closeFacultyInfo();
-            }
-        });
-
-        const menuBtn = document.querySelector('.menu-btn');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        
-        menuBtn.addEventListener('click', () => {
-            menuBtn.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-        });
     </script>
 </body>
-</html>
+</html> 
