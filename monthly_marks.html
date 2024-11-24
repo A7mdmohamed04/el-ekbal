@@ -427,7 +427,7 @@
 
         .info-row > div {
             background: #cacacaab;
-            color: #003470;
+            color: black; /* Changed color to black */
             padding: 6px;
             border-radius: 25px;
             text-align: center;
@@ -606,64 +606,82 @@
             const grade = form.cl.value;
             const code = form.rl.value;
 
-            if (grade === 'S1') {
-                try {
-                    const response = await fetch('s1.json');
-                    const data = await response.json();
-                    const student = data.find(s => s['رقم جاوس'] === code);
-
-                    if (student) {
-                        form.style.animation = 'fadeOut 0.5s ease forwards';
-                        circlePhoto.style.animation = 'fadeOut 0.5s ease forwards';
-                        monthlyMarks.style.animation = 'fadeOut 0.5s ease forwards';
-                        setTimeout(() => {
-                            form.style.display = 'none';
-                            circlePhoto.style.display = 'none';
-                            monthlyMarks.style.display = 'none';
-                            studentInfo.style.display = 'block';
-                            
-                            const studentName = document.querySelector('.student-name');
-                            studentName.textContent = student['اسم'];
-                            studentName.style.animation = 'fadeIn 0.5s ease forwards';
-                            
-                            const infoRow = document.querySelector('.info-row');
-                            infoRow.innerHTML = '';
-                            
-                            const subjects = Object.entries(student).filter(([key]) => 
-                                key !== 'رقم جاوس' && key !== 'اسم' && key !== 'اللغة التانية' && key !== 'الدين'
-                            );
-                            
-                            subjects.forEach(([subject, mark], index) => {
-                                const div = document.createElement('div');
-                                div.textContent = `${subject}: ${mark}`;
-                                div.style.animation = `fadeIn 0.5s ease forwards ${0.5 + (index * 0.1)}s`;
-                                infoRow.appendChild(div);
-                            });
-
-                            // Add second language with full width
-                            if (student['اللغة التانية']) {
-                                const secLangDiv = document.createElement('div');
-                                secLangDiv.textContent = `اللغة التانية: ${student['اللغة التانية']}`;
-                                secLangDiv.className = 'second-language';
-                                secLangDiv.style.animation = `fadeIn 0.5s ease forwards ${0.5 + (subjects.length * 0.1)}s`;
-                                infoRow.appendChild(secLangDiv);
-                            }
-                            if (student['الدين']) {
-                                const religionDiv = document.createElement('div');
-                                religionDiv.textContent = `الدين: ${student['الدين']}`;
-                                religionDiv.style.animation = `fadeIn 0.5s ease forwards ${0.5 + ((subjects.length + 1) * 0.1)}s`;
-                                infoRow.appendChild(religionDiv);
-                            }
-                        }, 500);
-                    } else {
-                        alert('Invalid code');
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('Error fetching student data');
-                }
+            if (grade === 'J4') {
+                await fetchStudentData('j4.json', code, 'كود الطالب', 'اسم الطالب', true);
+            } else if (grade === 'J5') {
+                await fetchStudentData('j5.json', code, 'كود الطالب', 'اسم الطالب', true);
+            } else if (grade === 'J6') {
+                await fetchStudentData('j6.json', code, 'كود الطالب', 'اسم الطالب', true, true);
+            } else if (grade === 'S1') {
+                await fetchStudentData('s1.json', code);
             }
         });
+
+        async function fetchStudentData(jsonFile, code, codeKey = 'رقم جاوس', nameKey = 'اسم', isColorBased = false, isJunior6 = false) {
+            try {
+                const response = await fetch(jsonFile);
+                const data = await response.json();
+                const student = data.find(s => s[codeKey] === code);
+
+                if (student) {
+                    form.style.animation = 'fadeOut 0.5s ease forwards';
+                    circlePhoto.style.animation = 'fadeOut 0.5s ease forwards';
+                    monthlyMarks.style.animation = 'fadeOut 0.5s ease forwards';
+                                       setTimeout(() => {
+                        form.style.display = 'none';
+                        circlePhoto.style.display = 'none';
+                        monthlyMarks.style.display = 'none';
+                        studentInfo.style.display = 'block';
+                        
+                        const studentName = document.querySelector('.student-name');
+                                               studentName.textContent = student[nameKey];
+                        studentName.style.animation = 'fadeIn 0.5s ease forwards';
+                        
+                        const infoRow = document.querySelector('.info-row');
+                        infoRow.innerHTML = '';
+                        
+                        const subjects = Object.entries(student).filter(([key]) => 
+                            key !== codeKey && key !== nameKey && key !== 'اللغة التانية' && key !== 'الدين'
+                        );
+                        
+                        subjects.forEach(([subject, mark], index) => {
+                            const div = document.createElement('div');
+                            if (isJunior6) {
+                                div.style.backgroundColor = mark;
+                                div.textContent = subject;
+                            } else if (isColorBased) {
+                                div.style.backgroundColor = mark;
+                                div.textContent = subject;
+                            } else {
+                                div.textContent = `${subject}: ${mark}`;
+                            }
+                            div.style.animation = `fadeIn 0.5s ease forwards ${0.5 + (index * 0.1)}s`;
+                            infoRow.appendChild(div);
+                        });
+
+                        // Add second language with full width
+                        if (student['اللغة التانية']) {
+                            const secLangDiv = document.createElement('div');
+                            secLangDiv.textContent = `اللغة التانية: ${student['اللغة التانية']}`;
+                            secLangDiv.className = 'second-language';
+                            secLangDiv.style.animation = `fadeIn 0.5s ease forwards ${0.5 + (subjects.length * 0.1)}s`;
+                            infoRow.appendChild(secLangDiv);
+                        }
+                        if (student['الدين']) {
+                            const religionDiv = document.createElement('div');
+                            religionDiv.textContent = `الدين: ${student['الدين']}`;
+                            religionDiv.style.animation = `fadeIn 0.5s ease forwards ${0.5 + ((subjects.length + 1) * 0.1)}s`;
+                            infoRow.appendChild(religionDiv);
+                        }
+                    }, 500);
+                } else {
+                    alert('Invalid code');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error fetching student data');
+            }
+        }
 
         backBtn.addEventListener('click', () => {
             studentInfo.style.animation = 'fadeOut 0.5s ease forwards';
