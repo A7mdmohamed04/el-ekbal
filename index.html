@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="scroll.css">
+    <link rel="stylesheet" href="mode.css">
     <style>
         * {
             margin: 0;
@@ -436,7 +437,7 @@
             position: relative;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: #b8b8b87c;
+            background: var(--top-color);
             border-radius: 15px;
             padding: 2rem;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
@@ -589,7 +590,7 @@
         }
 
         .developers .faculty-card {
-            background: #b8b8b87c;
+            background: var(--top-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -666,6 +667,29 @@
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
+        }
+
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--dark-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
     </style>
 </head>
@@ -802,13 +826,21 @@
         <h3>EL Ekbal School</h3>
         <p>Excellence in Education Since 1991</p>
         <div class="social-links">
-            <a href="https://www.facebook.com/profile.php?id=100076283048063&mibextid=ZbWKwL"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fas fa-phone"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100076926590348&mibextid=ZbWKwL"><i class="fab fa-facebook"></i></a>
+            <a href="+20 12 27977172"><i class="fas fa-phone"></i></a>
             <a href="#"><i class="fab fa-whatsapp"></i></a>
             <a href="#"><i class="fab fa-telegram"></i></a>
         </div>
         <p>&copy; 2024 EL Ekbal School. All rights reserved.</p>
     </footer>
+
+
+    <!-- Dark mode toggle button -->
+    <button id="theme-toggle" class="dark-mode-toggle">
+        <i class="fas fa-moon"></i>
+        <script src="mode.js"></script>
+    </button>
+
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
