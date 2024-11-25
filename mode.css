@@ -1,0 +1,28 @@
+
+body {
+    --primary-color: #0c0c0c;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --light-color: #fff;
+    --dark-color: #0c0c0c;
+    --background-color: #fff;
+    --top-color: #f6f6f6;
+    --text-color: #0c0c0c;
+    font-family: 'Oswald', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    --primary-color: #1a1a1a;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --light-color: #fff;
+    --dark-color: #0c0c0c;
+    --background-color: #121212;
+    --top-color: #1e1e1e;
+    --text-color: #f0f0f0;
+}
