@@ -266,6 +266,10 @@
             .content-wrapper {
                 margin-top: 40px;
             }
+            
+            .head-control {
+                margin: 5px 0 !important; /* Decreased margin for desktop */
+            }
         }
 
         .content-wrapper {
@@ -471,6 +475,16 @@
             background: #003470;
         }
 
+        .head-control {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: 500;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards 0.8s;
+        }
+
         @media (max-width: 480px) {
             .content-wrapper {
                 max-width: 100%;
@@ -575,6 +589,7 @@
                 <div class="student-info">
                     <div class="student-name"></div>
                     <div class="info-row"></div>
+                    <div class="head-control"></div>
                     <div class="button-group">
                         <button class="back-btn">Back</button>
                         <button class="download-btn">Download</button>
@@ -595,6 +610,7 @@
         const circlePhoto = document.querySelector('.circle-photo');
         const monthlyMarks = document.querySelector('.monthly-marks');
         const buttonGroup = document.querySelector('.button-group');
+        const headControl = document.querySelector('.head-control');
         
         menuBtn.addEventListener('click', () => {
             menuBtn.classList.toggle('active');
@@ -612,12 +628,30 @@
                 await fetchStudentData('j5.json', code, 'كود الطالب', 'اسم الطالب', true);
             } else if (grade === 'J6') {
                 await fetchStudentData('j6.json', code, 'كود الطالب', 'اسم الطالب', true, true);
+            } else if (grade === 'M1') {
+                await fetchStudentData('m1.json', code, 'كود الطالب', 'اسم', false);
+                headControl.textContent = 'Head of the control: Mr. Hassan Magdy Morsy';
+                headControl.style.opacity = '0';
+                headControl.style.animation = 'fadeIn 0.5s ease forwards 0.8s';
+            } else if (grade === 'M2') {
+                await fetchStudentData('m2.json', code, 'رقم جاوس', 'اسم', false);
+                headControl.textContent = 'Head of the control: Mr. Hassan Magdy Morsy';
+                headControl.style.opacity = '0';
+                headControl.style.animation = 'fadeIn 0.5s ease forwards 0.8s';
+            } else if (grade === 'S2') {
+                await fetchStudentData('s2.json', code, 'كود الطالب', 'اسم الطالب', true);
+                headControl.textContent = 'Head of the control: Ms. Nhaad El Masry';
+                headControl.style.opacity = '0';
+                headControl.style.animation = 'fadeIn 0.5s ease forwards 0.8s';
             } else if (grade === 'S1') {
-                await fetchStudentData('s1.json', code);
+                await fetchStudentData('s1.json', code, 'رقم جاوس', 'اسم', true);
+                headControl.textContent = 'Head of the control: Ms. Nhaad El Masry';
+                headControl.style.opacity = '0';
+                headControl.style.animation = 'fadeIn 0.5s ease forwards 0.8s';
             }
         });
 
-        async function fetchStudentData(jsonFile, code, codeKey = 'رقم جاوس', nameKey = 'اسم', isColorBased = false, isJunior6 = false) {
+        async function fetchStudentData(jsonFile, code, codeKey = 'كود الطالب', nameKey = 'اسم الطالب', isColorBased = false, isJunior6 = false) {
             try {
                 const response = await fetch(jsonFile);
                 const data = await response.json();
@@ -627,14 +661,15 @@
                     form.style.animation = 'fadeOut 0.5s ease forwards';
                     circlePhoto.style.animation = 'fadeOut 0.5s ease forwards';
                     monthlyMarks.style.animation = 'fadeOut 0.5s ease forwards';
-                                       setTimeout(() => {
+                    
+                    setTimeout(() => {
                         form.style.display = 'none';
                         circlePhoto.style.display = 'none';
                         monthlyMarks.style.display = 'none';
                         studentInfo.style.display = 'block';
                         
                         const studentName = document.querySelector('.student-name');
-                                               studentName.textContent = student[nameKey];
+                        studentName.textContent = student[nameKey];
                         studentName.style.animation = 'fadeIn 0.5s ease forwards';
                         
                         const infoRow = document.querySelector('.info-row');
@@ -646,14 +681,12 @@
                         
                         subjects.forEach(([subject, mark], index) => {
                             const div = document.createElement('div');
-                            if (isJunior6) {
-                                div.style.backgroundColor = mark;
-                                div.textContent = subject;
-                            } else if (isColorBased) {
+                            if (isJunior6 || isColorBased) {
                                 div.style.backgroundColor = mark;
                                 div.textContent = subject;
                             } else {
                                 div.textContent = `${subject}: ${mark}`;
+                                div.style.backgroundColor = '#cacacaab';
                             }
                             div.style.animation = `fadeIn 0.5s ease forwards ${0.5 + (index * 0.1)}s`;
                             infoRow.appendChild(div);
@@ -693,6 +726,7 @@
                 monthlyMarks.style.animation = 'fadeIn 0.5s ease forwards';
                 form.style.display = 'flex';
                 form.style.animation = 'fadeIn 0.5s ease forwards';
+                headControl.textContent = '';
             }, 500);
         });
 
