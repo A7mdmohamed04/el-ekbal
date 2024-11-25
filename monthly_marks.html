@@ -270,6 +270,15 @@
             .head-control {
                 margin: 5px 0 !important; /* Decreased margin for desktop */
             }
+
+            .button-group {
+                margin-top: 0px; /* Decreased margin for desktop */
+            }
+
+            /* Adjust back and download buttons for Senior 1 and Senior 2 */
+            .content-wrapper.senior .button-group {
+                margin-top: 5px; /* Move up by 10px */
+            }
         }
 
         .content-wrapper {
@@ -643,11 +652,13 @@
                 headControl.textContent = 'Head of the control: Ms. Nhaad El Masry';
                 headControl.style.opacity = '0';
                 headControl.style.animation = 'fadeIn 0.5s ease forwards 0.8s';
+                document.querySelector('.content-wrapper').classList.add('senior');
             } else if (grade === 'S1') {
                 await fetchStudentData('s1.json', code, 'رقم جاوس', 'اسم', true);
                 headControl.textContent = 'Head of the control: Ms. Nhaad El Masry';
                 headControl.style.opacity = '0';
                 headControl.style.animation = 'fadeIn 0.5s ease forwards 0.8s';
+                document.querySelector('.content-wrapper').classList.add('senior');
             }
         });
 
@@ -727,6 +738,7 @@
                 form.style.display = 'flex';
                 form.style.animation = 'fadeIn 0.5s ease forwards';
                 headControl.textContent = '';
+                document.querySelector('.content-wrapper').classList.remove('senior');
             }, 500);
         });
 
