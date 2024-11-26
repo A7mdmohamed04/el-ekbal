@@ -17,7 +17,7 @@
             --light-color: #fff;
             --dark-color: #0c0c0c;
             --background-color: #f4f4f4;
-            --top-color:  #b8b8b87c;
+            --top-color: #ffffff;
             --text-color: #333;
             font-family: 'Poppins', sans-serif;
             font-size: 16px;
@@ -34,7 +34,7 @@
             --text-color: #f0f0f0;
         }
         body {
-            background: #dddddd;
+            background: #f0f0f0;
             background-size: cover;
             color: var(--text-color);
             margin: 0;
@@ -208,7 +208,7 @@
         }
 
         .activity {
-            background-color: #b8b8b87c;
+            background-color: var(--top-color);
             border-radius: 15px;
             padding: 30px;
             margin-bottom: 30px;
@@ -232,66 +232,6 @@
             display: block;
             margin: 25px auto;
             transition: transform 0.3s ease;
-        }
-
-        /* Slideshow styles */
-        .slideshow-container {
-            position: relative;
-            max-width: 80%;
-            margin: 25px auto;
-            overflow: hidden;
-            min-height: 400px;
-        }
-
-        .slide {
-            display: none;
-            position: absolute;
-            width: 100%;
-            transition: opacity 0.5s ease-in-out;
-            opacity: 0;
-        }
-
-        .slide.active {
-            display: block;
-            position: relative;
-            opacity: 1;
-        }
-
-        .slide img {
-            width: 100%;
-            border-radius: 10px;
-            height: 400px;
-            object-fit: cover;
-        }
-
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: auto;
-            padding: 16px;
-            color: white;
-            font-weight: bold;
-            font-size: 24px;
-            transition: 0.6s ease;
-            user-select: none;
-            text-shadow: 0 0 10px rgba(0,0,0,0.5);
-            z-index: 2;
-            background: none;
-            border: none;
-        }
-
-        .prev {
-            left: 10px;
-        }
-
-        .next {
-            right: 10px;
-        }
-
-        .prev:hover, .next:hover {
-            color: var(--secondary-color);
         }
 
         /* Dark mode toggle */
@@ -376,10 +316,6 @@
             .activity {
                 padding: 20px;
             }
-
-            .prev, .next {
-                display: none;
-            }
         }
     </style>
 </head>
@@ -423,39 +359,39 @@
 
     
     <div class="activity">
+        <h2>Khan Khadija</h2>
+        <img src="https://i.ibb.co/j8rNn3T/Whats-App-Image-2024-11-25-at-3-38-45-AM-1.jpg" alt="Science Experiment Image">
+        <p>Students engage in hands-on science experiments to explore scientific concepts and develop critical thinking skills.</p>
+    </div>
+
+    <div class="activity">
+        <h2>Dream Park & Wandy Mall</h2>
+        <img src="https://i.ibb.co/YkHx2Gt/Whats-App-Image-2024-11-25-at-3-38-45-AM.jpg" alt="Outdoor Learning Image">
+        <p>Students participate in outdoor activities to connect with nature and learn about environmental science in a practical setting.</p>
+    </div>
+
+    <div class="activity">
+        <h2>Cairo trip</h2>
+        <img src="https://i.ibb.co/H26ny6V/Whats-App-Image-2024-11-25-at-3-38-46-AM-1.jpg" alt="Group Project Image">
+        <p>Students collaborate on group projects to enhance teamwork skills and apply their knowledge to real-world scenarios.</p>
+    </div>
+
+    <div class="activity">
+        <h2>Quran Competition</h2>
+        <img src="https://i.ibb.co/ZBDRCmp/Whats-App-Image-2024-11-25-at-3-38-46-AM.jpg" alt="Presentation Skills Image">
+        <p>Students develop and practice their presentation skills, building confidence in public speaking and effective communication.</p>
+    </div>
+
+    <div class="activity">
         <h2>Art Activity</h2>
         <img src="https://i.ibb.co/nLCHmdD/Whats-App-Image-2024-11-23-at-7-44-13-AM.jpg" alt="New Activity Image">
-        <p></p>
+        <p>Description of the new activity goes here. This activity promotes student engagement and learning through hands-on experiences.</p>
     </div>
 
     <div class="activity">
         <h2>Technology Activity</h2>
         <img src="https://i.ibb.co/p3dcD8g/Whats-App-Image-2024-11-24-at-6-44-12-AM.jpg" alt="Technology Activity Image">
-        <p></p>
-    </div>
-
-    <div class="activity">
-        <h2>Literature Trip</h2>
-        <img src="https://i.ibb.co/dbmZjx7/li.jpg" alt="Science Activity Image">
-        <p></p>
-    </div>
-
-    <div class="activity">
-        <h2>Music Activity</h2>
-        <img src="https://i.ibb.co/cCCwfjP/music.jpg" alt="Music Activity Image">
-        <p></p>
-    </div>
-
-    <div class="activity">
-        <h2>Cairo Trip</h2>
-        <img src="https://i.ibb.co/KLzf9Gp/cairo.jpg" alt="Literature Activity Image">
-        <p></p>
-    </div>
-
-    <div class="activity">
-        <h2>Scientific Activity</h2>
-        <img src="https://i.ibb.co/VpbkgwB/scintific.jpg" alt="Scientific Activity Image">
-        <p></p>
+        <p>Description of the technology activity goes here. This activity helps students develop their technical skills and understanding of modern technology.</p>
     </div>
 
     <!-- Dark mode toggle button -->

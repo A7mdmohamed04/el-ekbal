@@ -5,617 +5,272 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="scroll.css">
-    <title>About - Ekbal School</title>
+    <link rel="stylesheet" href="mode.css">
+    <title>About Ekbal Schools</title>
     <style>
-        /* Reset CSS */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Oswald;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        /* Custom Fonts */
-      
-        :root {
-            --primary-color: #121213;
-            --secondary-color: #121213;
-            --accent-color: #121213;
-            --light-color: #fff;
-            --dark-color: #121213;
-            --gradient: #121213;
-            font-family: 'Oswald', sans-serif;
-        }
-
         body {
-            font-family: 'Oswald', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-color: #f5f6fa;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
             padding: 0;
         }
 
         .navbar {
-            padding: 1.6rem 5%;
+            padding: 1rem 5%;
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             z-index: 1000;
             transition: 0.3s;
             background: var(--primary-color);
-            font-family: 'Oswald', sans-serif;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative;
-            font-family: 'Oswald', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .logo {
-            color: var(--light-color);
+            color: var(--text-color);
             font-size: 2rem;
             font-weight: 700;
             text-decoration: none;
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
             font-family: 'Oswald', sans-serif;
             letter-spacing: 2px;
-            font-size: 0;
+            transition: transform 0.3s ease;
         }
 
-        .logo-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            order: 2;
-            font-family: 'Oswald', sans-serif;
-        }
-
-        .department-text {
-            color: #808080;
-            font-size: 0.8rem;
-            margin-top: -5px;
-            margin-left: 0px;
-            display: none;
-            font-family: 'Oswald', sans-serif;
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
-            margin-right: 3rem;
-            order: 1;
-            font-family: 'Oswald', sans-serif;
         }
 
         .nav-links a {
-            color: var(--light-color);
+            color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
-            font-family: Oswald;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
         }
 
-        .menu-btn {
-            display: none;
-            color: var(--light-color);
-            font-size: 1.5rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0.5rem;
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-2px);
         }
 
-        .menu-btn .bar {
-            display: block;
-            width: 25px;
-            height: 3px;
-            margin: 5px auto;
-            background-color: var(--light-color);
-            transition: 0.3s;
-        }
-
-        .mobile-menu {
+        .nav-links a::after {
+            content: '';
             position: absolute;
-            top: 100%;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
             left: 0;
-            width: 100%;
-            background: var(--primary-color);
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .mobile-menu.active {
-            max-height: 300px;
-            padding: 1rem 0;
-        }
-
-        .mobile-menu a {
-            display: block;
-            color: var(--light-color);
-            text-decoration: none;
-            padding: 0.5rem 5%;
-            font-weight: 500;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .menu-btn.active .bar:nth-child(1) {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
-
-        .menu-btn.active .bar:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-btn.active .bar:nth-child(3) {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-
-        .home-icon, .teacher-icon {
-            display: none;
-            color: var(--light-color);
-            font-size: 1.5rem;
-            text-decoration: none;
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .teacher-icon {
-            display: block;
-            margin-left: auto;
-            padding-right: 0;
-        }
-
-        .right-icons {
-            order: 3;
-            display: flex;
-            align-items: center;
-            gap: 2.5rem;
-        }
-
-        /* About page specific styles */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 120px 20px 60px;
-        }
-
-        .about-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            background: var(--light-color);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .about-content h1 {
-            font-size: 3.5rem;
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .about-content p {
-            font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        .about-image {
-            width: 100%;
-            height: 700px;
-            object-fit: cover;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            background-color: var(--secondary-color);
+            transform: scaleX(0);
             transition: transform 0.3s ease;
         }
 
-        .about-image:hover {
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .menu-btn, .mobile-menu {
+            display: none;
+        }
+
+        .content {
+            max-width: 1000px;
+            margin: 120px auto 50px;
+            padding: 40px;
+            background-color: var(--top-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3.5rem;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 1rem auto 0;
+        }
+
+        p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        .school-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin: 2rem auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .school-image:hover {
             transform: scale(1.02);
         }
 
-        /* Faculty Section */
-        .faculty {
-            padding: 6rem 5%;
-            background: linear-gradient(135deg, #f5f6fa 0%, #dfe4ea 100%);
-            text-align: center;
-        }
-
-        .faculty h2 {
-            font-size: 3.5rem;
-            color: var(--primary-color);
-            margin-bottom: 3rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            position: relative;
-            display: inline-block;
-            margin-bottom: 70px;
-        }
-
-        .faculty h2::after {
-            content: '';
-            display: block;
-            width: 70%;
-            height: 4px;
-            background: var(--gradient);
-            position: absolute;
-            bottom: -15px;
-            left: 15%;
-            border-radius: 2px;
-        }
-
-        .faculty-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2.5rem;
-            padding: 0 50px;
-        }
-
-        .faculty-card {
-            text-align: center;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            background: #b8b8b87c;
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .faculty-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-
-        .faculty-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin-bottom: 2rem;
-            object-fit: cover;
-            transition: all 0.4s ease;
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-        }
-        
-        .faculty-card:hover .faculty-img {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .faculty-card h3 {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 0.8rem;
-            font-weight: 600;
-        }
-
-        .faculty-card p {
-            color: var(--secondary-color);
-            font-weight: 500;
-            font-size: 1.1rem;
-        }
-
-        /* Developers Section */
-        .developers {
-            padding: 6rem 5%;
-            background: linear-gradient(135deg, #fff 0%, #f0f8ff 100%);
-            text-align: center;
-            margin-bottom: 0;
-        }
-
-        .developers h2 {
-            font-size: 3.5rem;
-            color: var(--primary-color);
-            margin-bottom: 4rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .developers h2::after {
-            content: '';
-            display: block;
-            width: 70%;
-            height: 4px;
-            background: var(--gradient);
-            position: absolute;
-            bottom: -15px;
-            left: 15%;
-            border-radius: 2px;
-        }
-
-        .developers .faculty-grid {
-            display: flex;
-            justify-content: center;
-            gap: 5rem;
-            padding: 0 100px;
-        }
-
-        .developers .faculty-card {
-            background: #b8b8b87c;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            width: 300px;
-        }
-
-        .developers .faculty-card:hover {
-            transform: translateY(-20px) rotate(3deg);
-        }
-
-        .developers .faculty-img {
-            width: 220px;
-            height: 220px;
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: var(--text-color);
             border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
-        /* Footer */
-        .footer {
-            background: var(--gradient);
-            color: var(--light-color);
-            padding: 4rem 5%;
-            text-align: center;
-        }
-
-        .footer h3 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .social-links {
-            margin: 2rem 0;
-        }
-
-        .social-links a {
-            color: var(--light-color);
-            margin: 0 15px;
-            font-size: 1.8rem;
-            transition: 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--accent-color);
-            transform: translateY(-5px);
+        .dark-mode-toggle:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1);
         }
 
         @media (max-width: 768px) {
-            .navbar {
-                padding: 0.7rem 5%;
-            }
-            
             .nav-links {
                 display: none;
             }
-            
+
             .menu-btn {
                 display: block;
-                order: 3;
-                transform: translateY(3.5px);
+                background: none;
+                border: none;
+                color: var(--text-color);
+                font-size: 1.5rem;
+                cursor: pointer;
+                transition: transform 0.3s ease;
             }
 
-            .home-icon {
+            .menu-btn:hover {
+                transform: scale(1.1);
+            }
+
+            .mobile-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-color);
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .mobile-menu.active {
                 display: block;
-                order: 2;
             }
 
-            .teacher-icon {
-                order: 1;
-                margin-left: 0;
-                transform: translateY(3px);
-            }
-
-            .logo {
+            .mobile-menu a {
                 display: block;
-                font-size: 1.8rem;
-                letter-spacing: 6px;
+                color: var(--text-color);
+                text-decoration: none;
+                padding: 0.8rem 5%;
+                font-weight: 500;
+                transition: background-color 0.3s ease;
             }
 
-            .department-text {
-                display: block;
-                letter-spacing: 4px;
+            .mobile-menu a:hover {
+                background-color: rgba(255,255,255,0.1);
             }
 
-            .logo-container {
-                order: unset;
+            h1 {
+                font-size: 2.8rem;
             }
 
-            .nav-links {
-                order: unset;
+            p {
+                font-size: 1rem;
             }
 
-            .right-icons {
-                order: unset;
-                gap: 1.2rem;
-                margin-right: 10px;
+            .content {
+                padding: 20px;
             }
-
-            .faculty-grid {
-                grid-template-columns: 1fr;
-                padding: 0 20px;
-            }
-            
-            .about-section {
-                grid-template-columns: 1fr;
-                padding: 30px;
-            }
-
-            .about-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .developers .faculty-grid {
-                flex-direction: column;
-                align-items: center;
-                padding: 0 20px;
-            }
-
-            .faculty h2,
-            .developers h2 {
-                font-size: 2.5rem;
-            }
-        }
-
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .faculty-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @keyframes popIn {
-            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-        }
-
-        @keyframes slideDown {
-            0% { transform: translateY(-20px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-content">
+            <a href="index.html" class="logo">EL EKBAL</a>
             <div class="nav-links">
-                <a href="index.html">Home</a> <span style="color: #d3d3d3;">/</span>
-                <a href="monthly_marks.html">Monthly marks</a> <span style="color: #d3d3d3;">/</span>
-                <a href="timetable.html">Timetables</a> <span style="color: #d3d3d3;">/</span>
-                <a href="Groups.html">Groups</a> <span style="color: #d3d3d3;">/</span>
-                <a href="awards.html">Awards</a> <span style="color: #d3d3d3;">/</span>
+                <a href="index.html">Home</a>
+                <a href="monthly_marks.html">Monthly marks</a>
+                <a href="timetable.html">Timetables</a>
+                <a href="awards.html">Awards</a>
                 <a href="activities.html">Activities</a>
+                <a href="about.html">About</a>
             </div>
-            <div class="logo-container">
-                <a href="index.html" class="logo">EL EKBAL</a>
-                <span class="department-text">BOYS DEPARTMENT</span>
-            </div>
-            <div class="right-icons">
-                <a href="index.html" class="home-icon">
-                    <i class="fas fa-home"></i>
-                </a>
-                <a href="teachers.html" class="teacher-icon fas fa-chalkboard-teacher"></a>
-                <button class="menu-btn">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </button>
-            </div>
+            <button class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
         <div class="mobile-menu">
+            <a href="index.html">Home</a>
             <a href="monthly_marks.html">Monthly marks</a>
             <a href="timetable.html">Timetables</a>
-            <a href="Groups.html">Groups</a>
             <a href="awards.html">Awards</a>
             <a href="activities.html">Activities</a>
+            <a href="about.html">About</a>
         </div>
     </nav>
-
-    <div class="container">
-        <div class="about-section">
-            <div class="about-content">
-                <h1>About Ekbal Schools</h1>
-                <p>El Ekbal schools represent a giant educational institution. It engraved Its name  with letters of light among the greats and firsts at the level of Alexandria schools. It was founded by the venerable judge, Counselor Nabih Zahran, the son of origins and nobility.It has  become a pioneering icon in the distinguished education of the poor and the children of the middle class. The schools of El-Ekbal College in Alexandria are a model that embodies the story of The success of Counselor Zahran, a distinguished work team, and a success battalion working in silence.El Ebal College schools in Alexandria embody the ideal model that deserves to be studied and replicated by a distinguished work team of teachers, administrators, and parents, sponsored by a great leader who has carved a big name in national schools, namely Counselor Nabih Zahran. El-Ebal College schools are a star that shines in the sky of our dear Egypt.
-                    El-Ebal College schools in Alexandria are located on El-Ebal Street, next to Victoria College. There is another branch on the roundabout that contains a complex of schools (Arabic and languages), as well as another school for girls called (Zahraa El-Ebal). El-Ebal has become an educational citadel, a beacon of knowledge among the national schools of our beloved Egypt.</p>
-            </div>
-            <img src="https://i.ibb.co/xjNdcSW/about1.jpg" alt="ELS School Building" class="about-image">
-        </div>
+    <div class="content">
+        <h1>About Ekbal Schools</h1>
+        <img src="https://i.ibb.co/MNSv7Pp/00130.png" alt="Ekbal School" class="school-image">
+        <p>El Ekbal schools represent a giant educational institution. It has engraved its name with letters of light among the greats and firsts at the level of Alexandria schools. Founded by the venerable judge, Counselor Nabih Zahran, it has become a pioneering icon in the distinguished education of the poor and the children of the middle class.</p>
+        <p>El Ekbal College schools in Alexandria embody the ideal model that deserves to be studied and replicated. With a distinguished work team of teachers, administrators, and parents, sponsored by a great leader, Counselor Nabih Zahran, El Ekbal has carved a big name in national schools.</p>
+        <p>Located on El Ekbal Street, next to Victoria College, with another branch on the roundabout containing a complex of schools (Arabic and languages), as well as another school for girls called (Zahraa El Ekbal), El Ekbal has truly become an educational citadel, a beacon of knowledge among the national schools of our beloved Egypt.</p>
     </div>
-
-    <!-- Faculty Section -->
-    <section id="faculty" class="faculty">
-        <h2>All thanks To :</h2>
-        <div class="faculty-grid">
-            <div class="faculty-card">
-                <img src="https://i.ibb.co/S52fxkG/mr-magdy.png" alt="Faculty Member" class="faculty-img">
-                <h3>Mr. Magdy El Sakhawy</h3>
-                <p>School Principal</p>
-            </div>
-            <div class="faculty-card">
-                <img src="https://i.ibb.co/94zPjWH/Dr-Ahmed.png" alt="Faculty Member" class="faculty-img">
-                <h3>Dr. Ahmed Abdelfatah</h3>
-                <p>Head master</p>
-            </div>
-            <div class="faculty-card">
-                <img src="https://i.ibb.co/mq1XmBz/Mr-Ahmed.png" alt="Faculty Member" class="faculty-img">
-                <h3>Mr. Ahmed Hassanien</h3>
-                <p>Supervisor</p>
-            </div>
-            <div class="faculty-card">
-                <img src="https://i.ibb.co/Vj2f1bT/Mr-hassan.png" alt="Faculty Member" class="faculty-img">
-                <h3>Mr. Hassan Magdy Morsy</h3>
-                <p>Supervisor</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Developers Section -->
-    <section id="developers" class="developers">
-        <h2>Developers</h2>
-        <div class="faculty-grid">
-            <div class="faculty-card">
-                <img src="https://i.ibb.co/5GNjwJw/p2.png" alt="Developer" class="faculty-img">
-                <h3>Ahmed Kabary</h3>
-                <p>Programming and Networking Dev</p>
-            </div>
-            <div class="faculty-card">
-                <img src="https://i.ibb.co/0MsgcDV/p1.png" alt="Developer" class="faculty-img">
-                <h3>Youssef Zidan</h3>
-                <p>Web Developer UI  Designer</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <h3>EL Ekbal School</h3>
-        <p>Excellence in Education Since 1991</p>
-        <div class="social-links">
-            <a href="https://www.facebook.com/profile.php?id=100076283048063&mibextid=ZbWKwL"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fas fa-phone"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fab fa-telegram"></i></a>
-        </div>
-        <p>&copy; 2024 EL Ekbal School. All rights reserved.</p>
-    </footer>
-
-    <script>
-        // Menu button functionality
-        const menuBtn = document.querySelector('.menu-btn');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        
-        menuBtn.addEventListener('click', () => {
-            menuBtn.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    <button id="theme-toggle" class="dark-mode-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+    <script src="mode.js"></script>
 </body>
 </html>
