@@ -243,6 +243,7 @@
             background: url('https://i.ibb.co/17sFJMQ/0000.png') no-repeat center center fixed;
             background-size: cover;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            backdrop-filter: blur(3px);
         }
 
         :root {
@@ -648,7 +649,7 @@
                 headControl.style.opacity = '0';
                 headControl.style.animation = 'fadeIn 0.5s ease forwards 0.8s';
             } else if (grade === 'S2') {
-                await fetchStudentData('s2.json', code, 'كود الطالب', 'اسم الطالب', true);
+                await fetchStudentData('s1.json', code, 'رقم جاوس', 'اسم', true);
                 headControl.textContent = 'Head of the control: Ms. Nhaad El Masry';
                 headControl.style.opacity = '0';
                 headControl.style.animation = 'fadeIn 0.5s ease forwards 0.8s';
@@ -694,7 +695,7 @@
                             const div = document.createElement('div');
                             if (isJunior6 || isColorBased) {
                                 div.style.backgroundColor = mark;
-                                div.textContent = subject;
+                                div.textContent = `${subject}: ${mark}`;
                             } else {
                                 div.textContent = `${subject}: ${mark}`;
                                 div.style.backgroundColor = '#cacacaab';
