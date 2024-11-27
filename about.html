@@ -147,7 +147,7 @@
 
         .mobile-menu a {
             display: block;
-            color: var(--light-color);
+            color: var (--light-color);
             text-decoration: none;
             padding: 0.5rem 5%;
             font-weight: 500;
@@ -247,28 +247,6 @@
 
         .school-image:hover {
             transform: scale(1.02);
-        }
-
-        .dark-mode-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--primary-color);
-            color: var(--text-color);
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .dark-mode-toggle:hover {
-            background: var(--secondary-color);
-            transform: scale(1.1);
         }
 
         @media (max-width: 768px) {
@@ -380,10 +358,6 @@
         <p>El Ekbal College schools in Alexandria embody the ideal model that deserves to be studied and replicated. With a distinguished work team of teachers, administrators, and parents, sponsored by a great leader, Counselor Nabih Zahran, El Ekbal has carved a big name in national schools.</p>
         <p>Located on El Ekbal Street, next to Victoria College, with another branch on the roundabout containing a complex of schools (Arabic and languages), as well as another school for girls called (Zahraa El Ekbal), El Ekbal has truly become an educational citadel, a beacon of knowledge among the national schools of our beloved Egypt.</p>
     </div>
-
-    <button id="theme-toggle" class="dark-mode-toggle">
-        <i class="fas fa-moon"></i>
-    </button>
 
     <script>
         const menuBtn = document.querySelector('.menu-btn');
