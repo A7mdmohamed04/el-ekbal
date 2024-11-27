@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
     <base target="_top">
-    <link rel="stylesheet" href="mode.css">
-    <link rel="stylesheet" href="scroll.css">
     <title>Monthly Marks - ELS</title>
     <style>
         /* Reset CSS */
@@ -21,35 +19,15 @@
         }
 
         /* Custom Fonts */
-        body {
-            --primary-color: #0c0c0c;
-            --secondary-color: #3498db;
+      
+        :root {
+            --primary-color: #003470;
+            --secondary-color: #003470;
             --accent-color: #e74c3c;
             --light-color: #fff;
-            --dark-color: #0c0c0c;
-            --background-color: #fff;
-            --top-color: #f6f6f6;
-            --text-color: #0c0c0c;
-            --gradient-color: linear-gradient(135deg, #003470, var(--secondary-color));
+            --dark-color: #003470;
             font-family: 'Oswald', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            transition: background-color 0.3s, color 0.3s;
         }
-
-        body.dark-mode {   
-            --primary-color: #1a1a1a;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-color: #fff;
-            --dark-color: #0c0c0c;
-            --background-color: #121212;
-            --top-color: #1e1e1e;
-            --text-color: #f0f0f0;
-        }
-        
 
         body {
             font-family: 'Oswald', sans-serif;
@@ -63,7 +41,7 @@
             width: 100%;
             z-index: 1000;
             transition: 0.3s;
-            background: var(--primary-color);
+            background: #003470;
             font-family: 'Oswald', sans-serif;
         }
 
@@ -97,7 +75,7 @@
         }
 
         .department-text {
-            color: var(--text-color);
+            color: #808080;
             font-size: 0.8rem;
             margin-top: -5px;
             margin-left: 0px;
@@ -146,7 +124,7 @@
             top: 100%;
             left: 0;
             width: 100%;
-            background: var(--primary-color);
+            background: #003470;
             padding: 0;
             max-height: 0;
             overflow: hidden;
@@ -268,7 +246,12 @@
             backdrop-filter: blur(3px);
         }
 
-        
+        :root {
+            --primary-color: #003470;
+            --secondary-color: #0084ff;
+            --accent-color: #fff;
+            --shadow-color: rgba(0, 123, 255, 0.3);
+        }
 
         .main-wrapper {
             display: flex;
@@ -304,10 +287,10 @@
             width: 100%;
             max-width: 450px;
             height: 460px; /* Fixed height */
-            background: var(--background-color);
+            background: #f5f5f5;
             background-size: cover;
             border-radius: 20px;
-            box-shadow: 0 20px 40px var(--secondary-color);
+            box-shadow: 0 20px 40px var(--shadow-color);
             overflow: hidden;
             animation: slideUp 0.8s ease;
         }
@@ -340,8 +323,8 @@
             margin: 20px auto 10px;
             border-radius: 50%;
             padding: 8px;
-            background: var(--gradient-color);
-            box-shadow: 0 10px 20px var(--secondary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 10px 20px var(--shadow-color);
             transition: opacity 0.5s ease;
         }
 
@@ -350,7 +333,7 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            background: var(--light-color);
+            background: white;
             padding: 5px;
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
@@ -378,7 +361,7 @@
             border-radius: 50px;
             font-size: 16px;
             color: var(--primary-color);
-            background: var(--light-color);
+            background: white;
             transition: all 0.3s ease;
             text-align: center;
         }
@@ -395,8 +378,8 @@
         }
 
         .view {
-            background: var(--gradient-color);
-            color: var(--light-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
             font-weight: 600;
             border: none;
             cursor: pointer;
@@ -422,7 +405,7 @@
         .monthly-marks {
             font-size: 24px;
             font-weight: bold;
-            color: var(--text-color);
+            color: var(--primary-color);
             margin: 5px 0 15px;
             transition: opacity 0.5s ease;
         }
@@ -430,7 +413,7 @@
         .student-info {
             display: none;
             padding: 20px;
-            background: var(--light-color);
+            background: white;
             border-radius: 20px;
             margin-top: 20px;
             animation: fadeIn 0.5s ease;
@@ -444,7 +427,7 @@
             color: var(--primary-color);
             margin-bottom: 15px;
             padding: 8px;
-            border-bottom: 1px solid var(--text-color);
+            border-bottom: 1px solid #ccc;
             opacity: 0;
             animation: fadeIn 0.5s ease forwards;
         }
@@ -457,8 +440,8 @@
         }
 
         .info-row > div {
-            background: var(--top-color);
-            color: var(--text-color); /* Changed color to text-color */
+            background: #cacacaab;
+            color: black; /* Changed color to black */
             padding: 6px;
             border-radius: 25px;
             text-align: center;
@@ -494,12 +477,12 @@
             padding: 8px 16px;
             border-radius: 50px;
             border: none;
-            color: var(--light-color);
+            color: white;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 14px;
             width: 100px; /* Added fixed width */
-            background: var(--primary-color);
+            background: #003470;
         }
 
         .head-control {
@@ -549,26 +532,6 @@
                 gap: 10px;
                 margin-top: -20px; /* Changed from 40px to -20px to move up */
             }
-        /* Dark mode toggle */
-        .dark-mode-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--dark-color);
-            color: var(--light-color);
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .dark-mode-toggle:hover {
-            transform: scale(1.1);
-        }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -577,11 +540,11 @@
     <nav class="navbar">
         <div class="nav-content">
             <div class="nav-links">
-                <a href="index.html">Home</a> <span style="color: var(--text-color);">/</span>
-                <a href="timetable.html">Timetables</a> <span style="color: var(--text-color);">/</span>
-                <a href="Groups.html">Groups</a> <span style="color: var(--text-color);">/</span>
-                <a href="awards.html">Awards</a> <span style="color: var(--text-color);">/</span>
-                <a href="activities.html">Activities</a> <span style="color: var(--text-color);">/</span>
+                <a href="index.html">Home</a> <span style="color: #d3d3d3;">/</span>
+                <a href="timetable.html">Timetables</a> <span style="color: #d3d3d3;">/</span>
+                <a href="Groups.html">Groups</a> <span style="color: #d3d3d3;">/</span>
+                <a href="awards.html">Awards</a> <span style="color: #d3d3d3;">/</span>
+                <a href="activities.html">Activities</a> <span style="color: #d3d3d3;">/</span>
                 <a href="about.html">About</a>
             </div>
             <div class="logo-container">
@@ -646,12 +609,6 @@
             </div>
         </div>
     </div>
-    <!-- Dark mode toggle button -->
-    <button id="theme-toggle" class="dark-mode-toggle">
-        <i class="fas fa-moon"></i>
-    </button>
-
-    <script src="mode.js"></script>
 
     <script>
         const menuBtn = document.querySelector('.menu-btn');
@@ -741,7 +698,7 @@
                                 div.textContent = `${subject}: ${mark}`;
                             } else {
                                 div.textContent = `${subject}: ${mark}`;
-                                div.style.backgroundColor = 'var(--top-color)';
+                                div.style.backgroundColor = '#cacacaab';
                             }
                             div.style.animation = `fadeIn 0.5s ease forwards ${0.5 + (index * 0.1)}s`;
                             infoRow.appendChild(div);
@@ -789,7 +746,7 @@
         downloadBtn.addEventListener('click', () => {
             // Create a temporary container for capturing
             const tempContainer = document.createElement('div');
-            tempContainer.style.background = 'var(--light-color)';
+            tempContainer.style.background = 'white';
             tempContainer.style.padding = '20px';
             tempContainer.style.width = '450px';
             tempContainer.style.position = 'fixed';
