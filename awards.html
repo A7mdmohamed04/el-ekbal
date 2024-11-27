@@ -3,51 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Awards</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="scroll.css">
-    <link rel="stylesheet" href="mode.css">
+
+    <title>About - Ekbal School</title>
     <style>
-        :root {
-            --primary-color: #0c0c0c;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-color: #fff;
-            --dark-color: #0c0c0c;
-            --background-color: #f4f4f4;
-            --top-color: #ffffff;
-            --text-color: #333;
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-        }
-        
-        body.dark-mode {
-            --primary-color: #1a1a1a;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-color: #fff;
-            --dark-color: #0c0c0c;
-            --background-color: #121212;
-            --top-color: #1e1e1e;
-            --text-color: #f0f0f0;
-        }
-        body {
-            background: #f0f0f0;
-            background-size: cover;    
-            color: var(--text-color);
+        /* Reset CSS */
+        * {
             margin: 0;
-            padding: 20px;
-            padding-top: 120px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Oswald;
+        }
+
+        /* Custom Fonts */
+      
+        :root {
+            --primary-color: #003470;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #fff;
+            --dark-color: #003470;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        body {
+            font-family: 'Oswald', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .navbar {
             padding: 1.6rem 5%;
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             z-index: 1000;
             transition: 0.3s;
@@ -68,18 +56,19 @@
             font-size: 2rem;
             font-weight: 700;
             text-decoration: none;
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+            outline: none; /* Remove outline on click */
+            font-family: 'Oswald', sans-serif; /* Changed font family */
+            letter-spacing: 2px; /* Added letter spacing */
+            font-size: 0; /* Hide text in desktop view */
             font-family: 'Oswald', sans-serif;
-            letter-spacing: 2px;
-            font-size: 0;
         }
 
         .logo-container {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            order: 2;
+            order: 2; /* Move logo to middle */
             font-family: 'Oswald', sans-serif;
         }
 
@@ -87,7 +76,7 @@
             color: #808080;
             font-size: 0.8rem;
             margin-top: -5px;
-            margin-left: 0px;
+            margin-left: 0px; /* Added margin to move text right */
             display: none;
             font-family: 'Oswald', sans-serif;
         }
@@ -95,8 +84,8 @@
         .nav-links {
             display: flex;
             gap: 2rem;
-            margin-right: 3rem;
-            order: 1;
+            margin-right: 3rem; /* Added margin to move links left */
+            order: 1; /* Move links to left */
             font-family: 'Oswald', sans-serif;
         }
 
@@ -115,8 +104,8 @@
             background: none;
             border: none;
             padding: 0.5rem;
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
+            outline: none; /* Remove outline on click */
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
         }
 
         .menu-btn .bar {
@@ -174,8 +163,8 @@
             color: var(--light-color);
             font-size: 1.5rem;
             text-decoration: none;
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
+            outline: none; /* Remove outline on click */
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
         }
 
         .teacher-icon {
@@ -185,86 +174,15 @@
         }
 
         .right-icons {
-            order: 3;
+            order: 3; /* Move icons to right */
             display: flex;
             align-items: center;
-            gap: 2.5rem;
+            gap: 2.5rem; /* Increased gap between icons */
         }
 
-        h1 {
-            color: var(--secondary-color);
-            margin: 0 auto 30px;
-            text-align: center;
-            font-size: 3.5rem;
-            font-weight: 600;
-        }
-
-        h2 {
-            color: var(--secondary-color);
-            margin: 0 auto 20px;
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 500;
-        }
-
-        .award {
-            background-color: var(--top-color);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            text-align: center;
-            font-size: 1.2rem;
-            letter-spacing: 0.5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .award:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .award img {
-            max-width: 80%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            display: block;
-            margin: 25px auto;
-            transition: transform 0.3s ease;
-        }
-
-        /* Dark mode toggle */
-        .dark-mode-toggle {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--dark-color);
-            color: var(--light-color);
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .dark-mode-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-        }
         @media (max-width: 768px) {
             .navbar {
-                padding: 0.7rem 5%;
+                padding: 0.7rem 5%; /* Reduced padding for mobile */
             }
             
             .nav-links {
@@ -273,30 +191,30 @@
             
             .menu-btn {
                 display: block;
-                order: 3;
-                transform: translateY(3.5px);
+                order: 3; /* Menu button on left */
+                transform: translateY(3.5px); /* Move menu button down by 3.5px */
             }
 
             .home-icon {
                 display: block;
-                order: 2;
+                order: 2; /* Home button in middle */
             }
 
             .teacher-icon {
-                order: 1;
+                order: 1; /* Teacher button on right */
                 margin-left: 0;
-                transform: translateY(3px);
+                transform: translateY(3px); /* Move teacher button down by 3px */
             }
 
             .logo {
                 display: block;
-                font-size: 1.8rem;
-                letter-spacing: 6px;
+                font-size: 1.8rem; /* Slightly reduced font size for mobile */
+                letter-spacing: 6px; /* Increased letter spacing for mobile */
             }
 
             .department-text {
                 display: block;
-                letter-spacing: 4px;
+                letter-spacing: 4px; /* Added letter spacing for department text in mobile */
             }
 
             .logo-container {
@@ -309,15 +227,48 @@
 
             .right-icons {
                 order: unset;
-                gap: 1.2rem;
-                margin-right: 20px;
-            }
-
-            .award {
-                padding: 20px;
+                gap: 1.2rem; /* Reduced gap between icons */
+                margin-right: 10px; /* Added right margin */
             }
         }
+
+        /* New CSS for Awards Section */
+        .awards-section {
+            padding: 2rem;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            text-align: center;
+        }
+
+        .awards-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .awards-section .award {
+            margin-bottom: 2rem;
+        }
+
+        .awards-section .award h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .awards-section .award img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .awards-section .award p {
+            font-size: 1.2rem; /* Increased font size */
+            font-weight: 600; /* Made font thicker */
+            line-height: 1.5;
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <nav class="navbar">
@@ -350,56 +301,34 @@
             <a href="monthly_marks.html">Monthly marks</a>
             <a href="timetable.html">Timetables</a>
             <a href="Groups.html">Groups</a>
-            <a href="awards.html">Awards</a>
             <a href="activities.html">Activities</a>
+            <a href="about.html">About</a>
         </div>
     </nav>
- 
-    <div class="award">
-        <h2>New Award</h2>
-        <img src="https://i.ibb.co/QKg3qsC/Whats-App-Image-2024-11-23-at-7-44-41-AM.jpg" alt="New Award Image">
-        <p>Description of the new award goes here. This award recognizes outstanding achievement in academics and extracurricular activities.</p>
-    </div>
 
-    <div class="award">
-        <h2>Control Awards</h2>
-        <img src="https://i.ibb.co/Y2tGTTH/Whats-App-Image-2024-11-27-at-6-18-13-AM-1.jpg" alt="Control Award 1">
-        <img src="https://i.ibb.co/YP8pzfD/Whats-App-Image-2024-11-27-at-6-18-14-AM-3.jpg" alt="Control Award 2">
-        <img src="https://i.ibb.co/h25Ln92/Whats-App-Image-2024-11-27-at-6-18-14-AM-2.jpg" alt="Control Award 3">
-        <img src="https://i.ibb.co/FmMwpTr/Whats-App-Image-2024-11-27-at-6-18-13-AM-2.jpg" alt="Control Award 4">
-        <img src="https://i.ibb.co/CbQ5y0w/Whats-App-Image-2024-11-27-at-6-18-14-AM-4.jpg" alt="Control Award 5">
-        <img src="https://i.ibb.co/s5JCWQ9/Whats-App-Image-2024-11-27-at-6-18-13-AM.jpg" alt="Control Award 6">
-        <img src="https://i.ibb.co/gjmscng/Whats-App-Image-2024-11-27-at-6-18-11-AM.jpg" alt="Control Award 7">
-        <p>These awards recognize outstanding achievements in control and discipline.</p>
-    </div>
+    <!-- New Awards Section -->
+    <div class="awards-section">
+       
+        <div class="award">
+            <h2>New Award</h2>
+            <img src="https://i.ibb.co/QKg3qsC/Whats-App-Image-2024-11-23-at-7-44-41-AM.jpg" alt="New Award Image">
+            <p>Description of the new award goes here. This award recognizes outstanding achievement in academics and extracurricular activities.</p>
+        </div>
 
-    <!-- Dark mode toggle button -->
-    <button id="theme-toggle" class="dark-mode-toggle">
-        <i class="fas fa-moon"></i>
-        <script src="mode.js"></script>
-    </button>
+        <div class="award">
+            <h2>Control Awards</h2>
+            <img src="https://i.ibb.co/Y2tGTTH/Whats-App-Image-2024-11-27-at-6-18-13-AM-1.jpg" alt="Control Award 1">
+            <img src="https://i.ibb.co/YP8pzfD/Whats-App-Image-2024-11-27-at-6-18-14-AM-3.jpg" alt="Control Award 2">
+            <img src="https://i.ibb.co/h25Ln92/Whats-App-Image-2024-11-27-at-6-18-14-AM-2.jpg" alt="Control Award 3">
+            <img src="https://i.ibb.co/FmMwpTr/Whats-App-Image-2024-11-27-at-6-18-13-AM-2.jpg" alt="Control Award 4">
+            <img src="https://i.ibb.co/CbQ5y0w/Whats-App-Image-2024-11-27-at-6-18-14-AM-4.jpg" alt="Control Award 5">
+            <img src="https://i.ibb.co/s5JCWQ9/Whats-App-Image-2024-11-27-at-6-18-13-AM.jpg" alt="Control Award 6">
+            <img src="https://i.ibb.co/gjmscng/Whats-App-Image-2024-11-27-at-6-18-11-AM.jpg" alt="Control Award 7">
+            <p>These awards recognize outstanding achievements in control and discipline.</p>
+        </div>
+    </div>
 
     <script>
-        const body = document.body;
-        const darkModeToggle = document.getElementById('theme-toggle');
-
-        // Check for saved dark mode preference
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            body.classList.add('dark-mode');
-            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
-
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
-                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                localStorage.setItem('darkMode', null);
-            }
-        });
-
         const menuBtn = document.querySelector('.menu-btn');
         const mobileMenu = document.querySelector('.mobile-menu');
         
