@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="scroll.css">
+    <link rel="stylesheet" href="mode2.css">
     <base target="_top">
     <title>Monthly Marks - ELS</title>
     <style>
@@ -41,7 +43,7 @@
             width: 100%;
             z-index: 1000;
             transition: 0.3s;
-            background: #003470;
+            background: var(--primary-color);
             font-family: 'Oswald', sans-serif;
         }
 
@@ -124,7 +126,7 @@
             top: 100%;
             left: 0;
             width: 100%;
-            background: #003470;
+            background: var(--primary-color);
             padding: 0;
             max-height: 0;
             overflow: hidden;
@@ -482,7 +484,7 @@
             transition: all 0.3s ease;
             font-size: 14px;
             width: 100px; /* Added fixed width */
-            background: #003470;
+            background: var(--primary-color);
         }
 
         .head-control {
@@ -609,7 +611,7 @@
             </div>
         </div>
     </div>
-
+    <script src="mode.js"></script>
     <script>
         const menuBtn = document.querySelector('.menu-btn');
         const mobileMenu = document.querySelector('.mobile-menu');
