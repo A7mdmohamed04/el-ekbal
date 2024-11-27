@@ -28,6 +28,8 @@
             --accent-color: #e74c3c;
             --light-color: #fff;
             --dark-color: #003470;
+            --background-color: #f5f5f5;
+            --text-color: #000000; /* Added text color variable */
             font-family: 'Oswald', sans-serif;
         }
 
@@ -289,7 +291,7 @@
             width: 100%;
             max-width: 450px;
             height: 460px; /* Fixed height */
-            background: #f5f5f5;
+            background: var(--background-color);
             background-size: cover;
             border-radius: 20px;
             box-shadow: 0 20px 40px var(--shadow-color);
@@ -407,7 +409,7 @@
         .monthly-marks {
             font-size: 24px;
             font-weight: bold;
-            color: var(--primary-color);
+            color: var(--text-color); /* Changed color to --text-color */
             margin: 5px 0 15px;
             transition: opacity 0.5s ease;
         }
