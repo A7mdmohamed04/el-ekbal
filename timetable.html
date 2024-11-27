@@ -6,6 +6,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="scroll.css">
+    <link rel="stylesheet" href="mode.css">
     <title>Timetable</title>
     <style>
         /* Reset CSS */
@@ -19,16 +21,6 @@
 
         /* Custom Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-        :root {
-            --primary-color: #003470;
-            --secondary-color: #003470;
-            --accent-color: #003470;
-            --light-color: #fff;
-            --dark-color: #003470;
-            --button-color: #003470; /* Added blue color for buttons */
-            font-family: 'Oswald', sans-serif;
-        }
 
         body {
             font-family: 'Oswald', sans-serif;
@@ -48,7 +40,7 @@
             width: 100%;
             z-index: 1000;
             transition: 0.3s;
-            background: #003470;
+            background: var(--background-color);
             font-family: 'Oswald', sans-serif;
         }
 
@@ -80,7 +72,7 @@
         }
 
         .department-text {
-            color: #808080;
+            color: var(--text-color);
             font-size: 0.8rem;
             margin-top: -5px;
             margin-left: 0px;
@@ -95,7 +87,7 @@
         }
 
         .nav-links a {
-            color: var(--light-color);
+            color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
         }
@@ -234,7 +226,7 @@
             padding: 1.5rem;
             width: 100%;
             height: 250px; /* Reduced from 300px */
-            background-color: #e0e0e0;
+            background-color: var(--top-color);
             border-radius: 50px;
             font-size: 1.2rem;
             color: #555;
@@ -292,7 +284,7 @@
             padding: 10px 20px;
             border: none;
             border-radius: 20px;
-            background: #003470; /* Changed button color to blue */
+            background: var(--background-color); /* Changed button color to blue */
             color: white;
             cursor: pointer;
             transition: transform 0.3s ease, background-color 0.3s ease;
@@ -354,7 +346,7 @@
             right: 20px;
             background: none;
             border: none;
-            color: white;
+            color: var(--text-color);
             font-size: 2rem;
             cursor: pointer;
             z-index: 1001;
@@ -417,6 +409,28 @@
                 max-width: 90%;
                 height: auto;
             }
+        }
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--dark-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
     </style>
 </head>
@@ -521,6 +535,13 @@
         <button class="close-btn" onclick="closeFullscreen()">×</button>
         <img class="fullscreen-image" src="" alt="Fullscreen view">
     </div>
+
+    <!-- Dark mode toggle button -->
+    <button id="theme-toggle" class="dark-mode-toggle">
+        <i class="fas fa-moon"></i>
+        <script src="mode.js"></script>
+    </button> 
+
 
     <script>
         const menuBtn = document.querySelector('.menu-btn');
