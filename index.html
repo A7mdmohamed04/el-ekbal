@@ -11,15 +11,12 @@
     <link rel="stylesheet" href="scroll.css">
     <link rel="stylesheet" href="mode.css">
     <style>
-
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
-
         :root {
             --primary-color: #121213;
             --secondary-color: #121213;
@@ -31,7 +28,6 @@
             font-family: 'Oswald', sans-serif;
             font-size: 16px;
         }
-
         body {
             font-family: 'Oswald', sans-serif;
             line-height: 1.6;
@@ -40,7 +36,6 @@
             color: var(--text-color);
             transition: background-color 0.3s, color 0.3s;
         }
-
         body.dark-mode {
             --primary-color: #1a1a1a;
             --secondary-color: #86868681;
@@ -51,7 +46,6 @@
             --top-color: #1e1e1e;
             --text-color: #f0f0f0;
         }
-
         .hero-image {
             width: 100%;
             height: calc(100vh - 250px);
@@ -62,13 +56,11 @@
             z-index: 1;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
-
         @media (max-width: 768px) {
             .hero-image {
                 height: calc(100vh - 200px);
             }
         }
-
         .hero-text {
             text-align: center;
             position: absolute;
@@ -83,13 +75,11 @@
             align-items: center;
             justify-content: center;
         }
-
         @media (max-width: 768px) {
             .hero-text {
                 top: 45%; /* Moved down in mobile view */
             }
         }
-
         .hero-text h1 {
             font-family: 'Bebas Neue', serif;
             font-weight: 400;
@@ -99,7 +89,6 @@
             white-space: nowrap;
             text-shadow: 3px 3px 4px rgba(0,0,0,0.5);
         }
-
         @media (max-width: 768px) {
             .hero-text h1 {
                 letter-spacing: 1px;
@@ -107,7 +96,6 @@
                 font-size: 2rem;
             }
         }
-
         .hero-text p {
             font-size: 1.5rem;
             letter-spacing: 2px;
@@ -116,7 +104,6 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
             white-space: nowrap;
         }
-
         .logo-text {
             font-family: 'Roboto Slab', serif;
             font-size: 180px;
@@ -126,19 +113,16 @@
             transition: transform 0.3s ease;
             line-height: 0.8;
         }
-
         @media (max-width: 768px) {
             .logo-text {
                 font-size: 180px;
                 margin-bottom: 25px;
-                margin-top: -100px; /* Added margin to move down in mobile */
+                margin-top: -100px;
             }
         }
-
         .logo-text:hover {
             transform: scale(1.05);
         }
-
         .navbar {
             padding: 1.2rem 5%;
             width: 100%;
@@ -148,25 +132,21 @@
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-
         @media (max-width: 768px) {
             .navbar {
                 padding: 0.8rem 6%;
             }
         }
-
         .nav-content {
             display: flex;
             align-items: center;
             position: relative;
             justify-content: space-between;
         }
-
         .nav-links {
             display: flex;
             gap: 2rem;
         }
-
         .nav-links a {
             color: var(--light-color);
             text-decoration: none;
@@ -175,17 +155,14 @@
             font-family: 'Poppins', sans-serif;
             transition: color 0.3s ease;
         }
-
         .nav-links a:hover {
             color: var(--secondary-color);
             opacity: 1;
         }
-
         .nav-links span {
             color: #d3d3d3;
             pointer-events: none;
         }
-
         .teacher-icon {
             color: var(--light-color);
             font-size: 1.5rem;
@@ -194,12 +171,10 @@
             cursor: pointer;
             transition: color 0.3s ease;
         }
-
         .teacher-icon:hover {
             color: #4aa3df;
             opacity: 1;
         }
-
         @media (max-width: 768px) {
             .teacher-icon {
                 display: block;
@@ -210,7 +185,6 @@
                 flex-direction: row;
             }
         }
-
         .menu-btn {
             display: none;
             color: var(--light-color);
@@ -222,7 +196,6 @@
             outline: none;
             -webkit-tap-highlight-color: transparent;
         }
-
         .menu-btn .bar {
             display: block;
             width: 25px;
@@ -231,7 +204,6 @@
             background-color: var(--light-color);
             transition: 0.3s;
         }
-
         .mobile-menu {
             position: absolute;
             top: 100%;
@@ -246,12 +218,10 @@
             display: flex;
             flex-direction: column;
         }
-
         .mobile-menu.active {
             max-height: 300px;
             padding: 1rem 0;
         }
-
         .mobile-menu a:not(.phone-btn) {
             display: block;
             color: var(--light-color);
@@ -261,40 +231,32 @@
             letter-spacing: 1px;
             transition: color 0.3s ease, background-color 0.3s ease;
         }
-
         .mobile-menu a:not(.phone-btn):hover {
             color: #4aa3df;
             background-color: rgba(255, 255, 255, 0.1);
             opacity: 1;
         }
-
         .menu-btn.active .bar:nth-child(1) {
             transform: rotate(-45deg) translate(-5px, 6px);
         }
-
         .menu-btn.active .bar:nth-child(2) {
             opacity: 0;
         }
-
         .menu-btn.active .bar:nth-child(3) {
             transform: rotate(45deg) translate(-5px, -6px);
         }
-
         .home-icon {
             display: none;
         }
-
         .content-wrapper {
             display: flex;
             justify-content: space-between;
             margin: 45px 5%;
             gap: 40px;
         }
-
         .video-section {
             width: 35%;
         }
-
         .video-container {
             position: relative;
             padding-bottom: 56.25%;
@@ -303,7 +265,6 @@
             margin-bottom: 20px;
             border-radius: 5px;
         }
-
         .video-container iframe {
             position: absolute;
             top: 0;
@@ -312,8 +273,6 @@
             height: 100%;
             border-radius: 10px;
         }
-
-        /* Home Image Styles */
         .home-image {
             width: 65%;
             padding-top: 0%;
@@ -322,23 +281,21 @@
             background-color: #f0f0f0;
             border-radius: 20px;
             box-shadow: 0 20px 30px rgba(0,0,0,0.1);
-            margin-top: 0px; /* Moved up by 70px */
+            margin-top: 0px;
         }
 
         .home-image img {
             position: absolute;
             top: 0px;
-            left: 45px; /* Moved to the right by 25px */
+            left: 45px;
             width: 85%;
             height: 100%;
             object-fit: contain;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
-
-        /* Middle Image Styles */
         .middle-image {
             width: 75%;
-            padding-top: 0%; /* Shortened the height */
+            padding-top: 0%;
             position: relative;
             overflow: hidden;
             background-color: #f0f0f0;
@@ -355,8 +312,6 @@
             object-fit: contain;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
-
-        /* Headmaster Image Styles */
         .headmaster-image {
             width: 75%;
             padding-top: 0%;
@@ -376,11 +331,9 @@
             object-fit: cover;
             box-shadow: 0 8px 16px rgba(0,0,0,0.18);
         }
-
         .desktop-only-videos {
             display: block;
         }
-
         @media (max-width: 768px) {
             .content-wrapper {
                 flex-direction: column;
@@ -391,33 +344,27 @@
                 width: 100%;
                 margin-bottom: 20px;
             }
-
             .home-image,
             .middle-image {
                 width: 100%;
                 padding-top: 0%;
                 margin-bottom: 30px;
             }
-
             .headmaster-image {
                 width: 100%;
                 padding-top: 0%;
                 margin-bottom: 20px;
             }
-
             .desktop-only-videos {
                 display: none;
             }
         }
-
-        /* Faculty Section */
         .faculty {
             padding: 5rem 5%;
             background: var(--background-color);
             clear: both;
             text-align: center;
         }
-
         .faculty h2 {
             font-size: 2.7rem;
             color: var(--text-color);
@@ -429,7 +376,6 @@
             margin-bottom: 60px;
             white-space: nowrap;
         }
-
         .faculty h2::after {
             content: '';
             display: block;
@@ -441,13 +387,11 @@
             left: 25%;
             border-radius: 2px;
         }
-
         .faculty-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
         }
-
         .faculty-card {
             text-align: center;
             position: relative;
@@ -458,12 +402,10 @@
             padding: 2rem;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        
         .faculty-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
-
         .faculty-img {
             width: 180px;
             height: 180px;
@@ -473,22 +415,18 @@
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-        
         .faculty-card:hover .faculty-img {
             transform: scale(1.1);
         }
-
         .faculty-card h3 {
             font-size: 1.5rem;
             color: var(--text-color);
             margin-bottom: 0.5rem;
         }
-
         .faculty-card p {
             color: var(--secondary-color);
             font-weight: 500;
         }
-
         .faculty-info {
             position: fixed;
             top: 50%;
@@ -505,27 +443,23 @@
             width: 90%;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         }
-
         .faculty-info.active {
             transform: translate(-50%, -50%) scale(1);
             opacity: 1;
             animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-
         .faculty-info h3 {
             font-size: 2rem;
             margin-bottom: 1rem;
             color: var(--secondary-color);
             animation: slideDown 0.5s ease forwards;
         }
-
         .faculty-info p {
             margin-bottom: 0.5rem;
             line-height: 1.8;
             animation: fadeIn 0.5s ease 0.2s forwards;
             opacity: 0;
         }
-
         .faculty-info .close-btn {
             position: absolute;
             top: 15px;
@@ -544,12 +478,10 @@
             align-items: center;
             justify-content: center;
         }
-
         .faculty-info .close-btn:hover {
             transform: rotate(90deg);
             opacity: 1;
         }
-
         .overlay {
             position: fixed;
             top: 0;
@@ -562,13 +494,10 @@
             transition: all 0.3s ease;
             z-index: 1000;
         }
-
         .overlay.active {
             opacity: 1;
             visibility: visible;
         }
-
-        /* Developers Section */
         .developers {
             padding: 5rem 5%;
             background: var(--background-color);
@@ -576,7 +505,6 @@
             margin-bottom: 25px;
             margin-top: -60px;
         }
-
         .developers h2 {
             font-size: 3rem;
             color: var(--text-color);
@@ -586,7 +514,6 @@
             position: relative;
             display: inline-block;
         }
-
         .developers h2::after {
             content: '';
             display: block;
@@ -598,27 +525,21 @@
             left: 25%;
             border-radius: 2px;
         }
-
         .developers .faculty-grid {
             display: flex;
             justify-content: center;
             gap: 4rem;
         }
-
         .developers .faculty-card {
             background: var(--shadow-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
         .developers .faculty-card:hover {
             transform: translateY(-15px) rotate(2deg);
         }
-
         .developers .faculty-img {
             border: none;
         }
-
-        /* Footer */
         .footer {
             background: var(--primary-color);
             color: var(--light-color);
@@ -626,7 +547,6 @@
             text-align: center;
             position: relative;
         }
-
         .social-links {
             margin: 1rem 0;
             display: flex;
@@ -634,19 +554,15 @@
             align-items: center;
             gap: 10px;
         }
-
         .social-links a {
             color: var(--light-color);
             margin: 0 10px;
             font-size: 1.5rem;
             transition: 0.3s;
         }
-
         .social-links a:hover {
             color: var(--secondary-color);
         }
-
-        /* Dark mode toggle */
         .dark-mode-toggle {
             background: var(--dark-color);
             color: white;
@@ -662,47 +578,37 @@
             align-items: center;
             justify-content: center;
         }
-
         .dark-mode-toggle i {
             transition: transform 0.5s ease;
         }
-
         .dark-mode-toggle:hover {
             transform: scale(1.1);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
-
         body.dark-mode .dark-mode-toggle i {
             transform: rotate(360deg);
         }
-
         body.dark-mode .dark-mode-toggle .fa-moon {
             display: none;
         }
-
         body.dark-mode .dark-mode-toggle::before {
             content: '\f185';
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
         }
-
         @media (max-width: 768px) {
             .faculty-grid {
                 grid-template-columns: repeat(1, 1fr);
             }
-            
             .nav-links {
                 display: none;
             }
-            
             .menu-btn {
                 display: block;
             }
-
             .mobile-menu.active {
                 opacity: 1;
             }
-
             .developers .faculty-grid {
                 flex-direction: column;
                 align-items: center;
@@ -714,22 +620,18 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-
         @keyframes popIn {
             0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
             100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
-
         @keyframes slideDown {
             0% { transform: translateY(-20px); opacity: 0; }
             100% { transform: translateY(0); opacity: 1; }
         }
-
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
         }
-
     </style>
 </head>
 <body>
@@ -739,7 +641,6 @@
         <h1>Ekbal Language School</h1>
         <p>Boys Department</p>
     </div>
-
     <nav class="navbar">
         <div class="nav-content">
             <div class="nav-links">
@@ -766,7 +667,6 @@
             <a href="about.html">About</a>
         </div>
     </nav>
-
     <div class="content-wrapper">
         <img src="https://i.ibb.co/nBghZ1F/home.png" alt="Home Image" class="home-image">
         <div class="video-section">
@@ -781,7 +681,6 @@
             </div>
         </div>
     </div>
-
     <div class="content-wrapper">
         <img src="https://i.ibb.co/f8jLdYT/Whats-App-Image-2024-11-26-at-3-44-38-AM.jpg" alt="Middle Image" class="middle-image">
         <div class="video-section">
@@ -796,7 +695,6 @@
             </div>
         </div>
     </div>
-
     <div class="content-wrapper">
         <img src="https://i.ibb.co/r57Tcn0/headmaster.jpg" alt="Headmaster Image" class="headmaster-image">
         <div class="video-section">
@@ -820,8 +718,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Faculty Section -->
     <section id="faculty" class="faculty">
         <h2>All thanks To:</h2>
         <div class="faculty-grid">
@@ -847,7 +743,6 @@
             </div>
         </div>
     </section>
-    <!-- Developers Section -->
     <section id="developers" class="developers">
         <h2>Developers</h2>
         <div class="faculty-grid">
@@ -865,16 +760,12 @@
     </section>
         </div>
     </section>
-
-    <!-- Overlay for faculty info -->
     <div class="overlay"></div>
     <div class="faculty-info">
         <button class="close-btn"><i class="fas fa-times"></i></button>
         <h3></h3>
         <p></p>
     </div>
-
-    <!-- Footer -->
     <footer class="footer">
         <h3>EL Ekbal School</h3>
         <p>Excellence in Education Since 1991</p>
@@ -889,11 +780,9 @@
         </div>
         <p>&copy; 2024 EL Ekbal School. All rights reserved.</p>
     </footer>
-
     <script src="mode.js"></script>
     <script src="close_source.js"></script>
     <script>
-        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -902,8 +791,6 @@
                 });
             });
         });
-
-        // Faculty info popup functionality
         const facultyCards = document.querySelectorAll('.faculty-card');
         const facultyInfo = document.querySelector('.faculty-info');
         const overlay = document.querySelector('.overlay');
