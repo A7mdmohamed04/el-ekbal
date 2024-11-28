@@ -25,6 +25,7 @@
             --light-color: #fff;
             --dark-color: #003470;
             --background-color: #f0f0f0; /* Added background color variable */
+            --text-color: #0c0c0c; /* Added text color variable */
             font-family: 'Oswald', sans-serif;
         }
 
@@ -33,6 +34,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             background-color: var(--background-color); /* Set background color */
+            color: var(--text-color); /* Set text color */
         }
 
         .navbar {
@@ -75,7 +77,7 @@
         }
 
         .department-text {
-            color: #808080;
+            color: var(--text-color); /* Set text color */
             font-size: 0.8rem;
             margin-top: -5px;
             margin-left: 0px; /* Added margin to move text right */
@@ -238,13 +240,14 @@
         .awards-section {
             padding: 2rem;
             background-color: var(--background-color); /* Set background color */
-            color: var(--dark-color);
+            color: var(--text-color); /* Set text color */
             text-align: center;
         }
 
         .awards-section h1 {
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
+            color: var(--text-color); /* Set text color */
         }
 
         .awards-section .award {
@@ -254,6 +257,7 @@
         .awards-section .award h2 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
+            color: var(--text-color); /* Set text color */
         }
 
         .awards-section .award img {
@@ -268,6 +272,7 @@
             font-size: 1.2rem; /* Increased font size */
             font-weight: 600; /* Made font thicker */
             line-height: 1.5;
+            color: var(--text-color); /* Set text color */
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -276,11 +281,11 @@
     <nav class="navbar">
         <div class="nav-content">
             <div class="nav-links">
-                <a href="index.html">Home</a> <span style="color: #d3d3d3;">/</span>
-                <a href="monthly_marks.html">Monthly marks</a> <span style="color: #d3d3d3;">/</span>
-                <a href="timetable.html">Timetables</a> <span style="color: #d3d3d3;">/</span>
-                <a href="Groups.html">Groups</a> <span style="color: #d3d3d3;">/</span>
-                <a href="activities.html">Activities</a> <span style="color: #d3d3d3;">/</span>
+                <a href="index.html">Home</a> <span style="color: var(--text-color);">/</span>
+                <a href="monthly_marks.html">Monthly marks</a> <span style="color: var(--text-color);">/</span>
+                <a href="timetable.html">Timetables</a> <span style="color: var(--text-color);">/</span>
+                <a href="Groups.html">Groups</a> <span style="color: var(--text-color);">/</span>
+                <a href="activities.html">Activities</a> <span style="color: var(--text-color);">/</span>
                 <a href="about.html">About</a>
             </div>
             <div class="logo-container">

@@ -32,6 +32,7 @@
             --top-color: #003470; /* Added top color variable */
             --text-color: #003470; /* Added text color variable */
             --background-color: #f0f0f0; /* Added background color variable */
+            --shadow-color: rgba(0, 123, 255, 0.3); /* Added shadow color variable */
             font-family: 'Oswald', sans-serif;
         }
 
@@ -246,7 +247,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 0 35px rgba(0, 123, 255, 0.3);
+            box-shadow: 0 0 35px var(--shadow-color); /* Changed shadow color to --shadow-color */
             position: relative;
             overflow: hidden;
         }
@@ -260,7 +261,6 @@
             opacity: 0;
             transform: scale(0.8) translateY(-27px); /* Changed from -22px to -27px */
             transition: opacity 0.5s ease, transform 0.5s ease;
-            border: 2px solid var(--text-color); /* Changed border thickness from 5px to 2px */
         }
 
         .timetable-image.show {
@@ -345,7 +345,6 @@
             transform: scale(0.9);
             opacity: 0;
             transition: transform 0.5s ease, opacity 0.5s ease;
-            border: 2px solid var(--text-color); /* Changed border thickness from 5px to 2px */
         }
 
         .fullscreen-overlay.active .fullscreen-image {
