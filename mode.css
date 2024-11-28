@@ -1,13 +1,14 @@
 
 body {
     --primary-color: #003470;
-    --secondary-color: #003470;
-    --accent-color: #003470;
+    --secondary-color: #5f5f5f;
+    --accent-color: #e74c3c;
     --light-color: #fff;
     --dark-color: #0c0c0c;
     --background-color: #fff;
-    --top-color: #f6f6f6;
+    --top-color: #f6f6f69d;
     --text-color: #0c0c0c;
+    --shadow-color: #d8d8d8;
     --golden-gradient: repeating-radial-gradient(circle at 50% 25%, #ffb338, #77571d, #3e2904);
     font-family: 'Oswald', sans-serif;
     line-height: 1.6;
@@ -19,11 +20,12 @@ body {
 
 body.dark-mode {
     --primary-color: #1a1a1a;
-    --secondary-color: #003470;
-    --accent-color: #003470;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
     --light-color: #fff;
     --dark-color: #0c0c0c;
     --background-color: #121212;
     --top-color: #1e1e1e;
     --text-color: #f0f0f0;
+    --shadow-color: #1e1e1e;
 }
