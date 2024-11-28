@@ -314,19 +314,20 @@
         }
 
         /* Home Image Styles */
-        .home-image-wrapper {
+        .home-image {
             width: 65%;
-            padding-top: 50%;
+            padding-top: 0%;
             position: relative;
             overflow: hidden;
             background-color: #f0f0f0;
             border-radius: 20px;
             box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+            margin-top: 0px; /* Moved up by 70px */
         }
 
-        .home-image-wrapper img {
+        .home-image img {
             position: absolute;
-            top: 0;
+            top: 0px;
             left: 0;
             width: 85%;
             height: 100%;
@@ -335,7 +336,7 @@
         }
 
         /* Middle Image Styles */
-        .middle-image-wrapper {
+        .middle-image {
             width: 75%;
             padding-top: 0%; /* Shortened the height */
             position: relative;
@@ -345,7 +346,7 @@
             box-shadow: 0 20px 30px rgba(0,0,0,0.1);
         }
 
-        .middle-image-wrapper img {
+        .middle-image img {
             position: absolute;
             top: 0;
             left: 0;
@@ -356,9 +357,9 @@
         }
 
         /* Headmaster Image Styles */
-        .headmaster-image-wrapper {
+        .headmaster-image {
             width: 75%;
-            padding-top: 110%;
+            padding-top: 0%;
             position: relative;
             overflow: hidden;
             background-color: #f0f0f0;
@@ -366,7 +367,7 @@
             box-shadow: 0 15px 25px rgba(0,0,0,0.15);
         }
 
-        .headmaster-image-wrapper img {
+        .headmaster-image img {
             position: absolute;
             top: 0;
             left: 0;
@@ -391,14 +392,14 @@
                 margin-bottom: 20px;
             }
 
-            .home-image-wrapper,
-            .middle-image-wrapper {
+            .home-image,
+            .middle-image {
                 width: 100%;
                 padding-top: 100%;
                 margin-bottom: 30px;
             }
 
-            .headmaster-image-wrapper {
+            .headmaster-image {
                 width: 100%;
                 padding-top: 170%;
                 margin-bottom: 20px;
@@ -767,9 +768,7 @@
     </nav>
 
     <div class="content-wrapper">
-        <div class="home-image-wrapper">
-            <img src="https://i.ibb.co/nBghZ1F/home.png" alt="Home Image">
-        </div>
+        <img src="https://i.ibb.co/nBghZ1F/home.png" alt="Home Image" class="home-image">
         <div class="video-section">
             <div class="video-container">
                 <iframe width="520" height="400" src="https://www.youtube.com/embed/QqAThln-Eeo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -784,9 +783,7 @@
     </div>
 
     <div class="content-wrapper">
-        <div class="middle-image-wrapper">
-            <img src="https://i.ibb.co/f8jLdYT/Whats-App-Image-2024-11-26-at-3-44-38-AM.jpg" alt="Middle Image">
-        </div>
+        <img src="https://i.ibb.co/f8jLdYT/Whats-App-Image-2024-11-26-at-3-44-38-AM.jpg" alt="Middle Image" class="middle-image">
         <div class="video-section">
             <div class="video-container">
                 <iframe width="520" height="400" src="https://www.youtube.com/embed/QqAThln-Eeo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -801,9 +798,7 @@
     </div>
 
     <div class="content-wrapper">
-        <div class="headmaster-image-wrapper">
-            <img src="https://i.ibb.co/r57Tcn0/headmaster.jpg" alt="Headmaster Image">
-        </div>
+        <img src="https://i.ibb.co/r57Tcn0/headmaster.jpg" alt="Headmaster Image" class="headmaster-image">
         <div class="video-section">
             <div class="video-container">
                 <iframe width="520" height="400" src="https://www.youtube.com/embed/gmE0BCONtus" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
