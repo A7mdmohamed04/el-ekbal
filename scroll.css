@@ -1,16 +1,16 @@
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 12px; /* Increased width for better visibility on laptops */
 }
 
 ::-webkit-scrollbar-track {
     background: var(--dark-color);
-    border-radius: 5px;
+    border-radius: 6px; /* Slightly increased border-radius */
 }
 
 ::-webkit-scrollbar-thumb {
     background: #808080;
-    border-radius: 5px;
+    border-radius: 6px; /* Slightly increased border-radius */
     transition: background 0.3s ease;
 }
 
@@ -43,12 +43,16 @@ html {
     z-index: 1000;
 }
 
-.scroll-top {
-    bottom: 70px;
+.scroll-top::before {
+    content: '↑'; /* Added arrow for scroll-top */
+    color: #ffffff; /* Set arrow color to white */
+    font-size: 24px; /* Increased font size for better visibility */
 }
 
-.scroll-bottom {
-    bottom: 20px;
+.scroll-bottom::before {
+    content: '↓'; /* Added arrow for scroll-bottom */
+    color: #ffffff; /* Set arrow color to white */
+    font-size: 24px; /* Increased font size for better visibility */
 }
 
 .scroll-btn:hover {
