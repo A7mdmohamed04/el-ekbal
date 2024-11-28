@@ -14,3 +14,10 @@ document.addEventListener('mousedown', function(e) {
     }
 });
 
+document.querySelectorAll('iframe').forEach(function(iframe) {
+    if (iframe.src.includes('youtube.com')) {
+        iframe.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    }
+});
