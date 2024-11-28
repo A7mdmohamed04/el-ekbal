@@ -6,6 +6,7 @@
     <title>Teacher Login - ELS School</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="mode2.css">
     <style>
         * {
             margin: 0;
@@ -21,6 +22,8 @@
             --accent-color: #e74c3c;
             --light-color: #fff;
             --dark-color: #121213;
+            --background-color: #fff;
+            --text-color: #000; /* Added text color variable */
             font-family: 'Oswald', sans-serif;
         }
 
@@ -67,7 +70,7 @@
         }
 
         .login-container {
-            background: rgba(255, 255, 255, 1);
+            background: var(--background-color);
             backdrop-filter: blur(3px);
             padding: 1.2rem;
             border-radius: 20px;
@@ -106,7 +109,7 @@
         }
 
         .login-header h1 {
-            color: var(--primary-color);
+            color: var(--shadow-color);
             font-size: 1.6rem;
             margin-bottom: 0.4rem;
         }
@@ -120,9 +123,9 @@
             width: 100%;
             padding: 0.8rem;
             background: rgba(0, 52, 112, 0.1);
-            border: 2px solid var(--primary-color);
+            border: 2px solid #003470;
             border-radius: 25px;
-            color: var(--primary-color);
+            color: var(--text-color); /* Changed text color to --text-color */
             font-size: 1rem;
             transition: all 0.3s ease;
         }
@@ -130,7 +133,7 @@
         .input-group input:focus {
             outline: none;
             background: rgba(0, 52, 112, 0.2);
-            border-color: #2980b9;
+            border-color: #003470;
         }
 
         .input-group i {
@@ -138,14 +141,14 @@
             right: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--primary-color);
+            color: #003470; /* Changed color to #003470 */
             transition: all 0.3s ease;
         }
 
         .login-btn {
             width: 100%;
             padding: 0.8rem;
-            background: var(--secondary-color);
+            background: #003470;
             border: none;
             border-radius: 25px;
             color: var(--light-color);
@@ -157,7 +160,7 @@
         }
 
         .login-btn:hover {
-            background: #2980b9;
+            background: #005fcc;
         }
 
         .login-btn::after {
@@ -421,7 +424,7 @@
             <button type="submit" class="login-btn">Login</button>
         </form>
     </div>
-
+    <script src="mode.js"></script>
     <script>
         // Create floating particles
         function createParticles() {
