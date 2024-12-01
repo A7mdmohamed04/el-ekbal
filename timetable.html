@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="scroll.css">
-    <link rel="stylesheet" href="mode.css">
+    <link rel="stylesheet" href="mode2.css">
     <title>Timetable</title>
     <style>
         /* Reset CSS */
@@ -22,11 +22,25 @@
         /* Custom Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+        :root {
+            --primary-color: #003470;
+            --secondary-color: #003470;
+            --accent-color: #003470;
+            --light-color: #fff;
+            --dark-color: #003470;
+            --button-color: #003470; /* Added blue color for buttons */
+            --top-color: #003470; /* Added top color variable */
+            --text-color: #003470; /* Added text color variable */
+            --background-color: #f0f0f0; /* Added background color variable */
+            --shadow-color: rgba(0, 123, 255, 0.3); /* Added shadow color variable */
+            font-family: 'Oswald', sans-serif;
+        }
+
         body {
             font-family: 'Oswald', sans-serif;
             line-height: 1.6;
             overflow: hidden; /* Prevent scrolling */
-            background: url('https://i.ibb.co/wQ5BR0n/Bg.jpg') no-repeat center center fixed;
+            background: url('https://i.ibb.co/7RXCQrk/fhgfg.png') no-repeat center center fixed;
             background-size: cover;
             padding-top: 60px; /* Decreased padding from 75px to 60px */
         }
@@ -40,7 +54,7 @@
             width: 100%;
             z-index: 1000;
             transition: 0.3s;
-            background: var(--background-color);
+            background: var(--primary-color); /* Changed background color to --top-color */
             font-family: 'Oswald', sans-serif;
         }
 
@@ -72,7 +86,7 @@
         }
 
         .department-text {
-            color: var(--text-color);
+            color: #808080;
             font-size: 0.8rem;
             margin-top: -5px;
             margin-left: 0px;
@@ -87,7 +101,7 @@
         }
 
         .nav-links a {
-            color: var(--text-color);
+            color: var(--light-color);
             text-decoration: none;
             font-weight: 500;
         }
@@ -182,14 +196,14 @@
             padding: 1.5rem;
             max-width: 450px; /* Reduced from 500px */
             height: 450px; /* Reduced from 500px */
-            background: white;
+            background: var(--top-color); /* Changed background color to --top-color */
             border-radius: 50px;
             box-shadow: 0 10px 25px #0f0f0f;
             text-align: center;
         }
 
         .timetable-title {
-            color: var(--primary-color);
+            color: var(--text-color);
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 1rem;
@@ -201,8 +215,8 @@
             font-size: 1.1rem;
             border: 2px solid var(--primary-color);
             border-radius: 50px;
-            background: var(--light-color);
-            color: var(--primary-color);
+            background: var(--background-color); /* Changed background color to --background-color */
+            color: var(--text-color);
             outline: none;
             transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
             cursor: pointer;
@@ -217,7 +231,7 @@
 
         .class-selector option {
             background: var(--light-color);
-            color: var(--primary-color);
+            color: var(--text-color);
             transition: transform 0.3s ease;
         }
 
@@ -226,14 +240,14 @@
             padding: 1.5rem;
             width: 100%;
             height: 250px; /* Reduced from 300px */
-            background-color: var(--top-color);
+            background-color: var(--background-color); /* Changed background color to --background-color */
             border-radius: 50px;
             font-size: 1.2rem;
             color: #555;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 0 35px rgba(0, 123, 255, 0.3);
+            box-shadow: 0 0 35px var(--shadow-color); /* Changed shadow color to --shadow-color */
             position: relative;
             overflow: hidden;
         }
@@ -247,7 +261,6 @@
             opacity: 0;
             transform: scale(0.8) translateY(-27px); /* Changed from -22px to -27px */
             transition: opacity 0.5s ease, transform 0.5s ease;
-            border: 2px solid #003470 /* Changed border thickness from 5px to 2px */
         }
 
         .timetable-image.show {
@@ -284,8 +297,8 @@
             padding: 10px 20px;
             border: none;
             border-radius: 20px;
-            background: var(--background-color); /* Changed button color to blue */
-            color: white;
+            background: var(--button-color); /* Changed button color to blue */
+            color: var(--light-color);
             cursor: pointer;
             transition: transform 0.3s ease, background-color 0.3s ease;
             font-size: 0.9rem;
@@ -332,7 +345,6 @@
             transform: scale(0.9);
             opacity: 0;
             transition: transform 0.5s ease, opacity 0.5s ease;
-            border: 2px solid #003470; /* Changed border thickness from 5px to 2px */
         }
 
         .fullscreen-overlay.active .fullscreen-image {
@@ -346,7 +358,7 @@
             right: 20px;
             background: none;
             border: none;
-            color: var(--text-color);
+            color: var(--light-color);
             font-size: 2rem;
             cursor: pointer;
             z-index: 1001;
@@ -410,35 +422,13 @@
                 height: auto;
             }
         }
-        /* Dark mode toggle */
-        .dark-mode-toggle {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--dark-color);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .dark-mode-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-content">
             <div class="nav-links">
-                <a href="index.html">Home</a> <span style="color: #d3d3d3;">/</span>
+                <a href="index.html">Home</a>  <span style="color: #d3d3d3;">/</span>
                 <a href="monthly_marks.html">Monthly marks</a> <span style="color: #d3d3d3;">/</span>
                 <a href="Groups.html">Groups</a> <span style="color: #d3d3d3;">/</span>
                 <a href="awards.html">Awards</a> <span style="color: #d3d3d3;">/</span>
@@ -491,7 +481,7 @@
             <option value="D">Class D</option>
         </select>
 
-        <div class="placeholder-image">
+        <div class="placeholder-image" style="background-color: var(--background-color);">
             <div id="default-text">No Grade is selected</div>
             <img src="https://i.ibb.co/z4cjF8w/TABLE-JUNIOR-1.jpg" class="timetable-image" id="j4a-timetable" alt="Junior Four Class A Timetable">
             <img src="https://i.ibb.co/g3Y5Rfc/TABLE-JUNIOR-2.jpg" class="timetable-image" id="j4b-timetable" alt="Junior Four Class B Timetable">
@@ -522,9 +512,6 @@
             <img src="https://i.ibb.co/GRxsTXH/2D.jpg" class="timetable-image" id="m2d-timetable" alt="Middle Two Class D Timetable">
         </div>
         <div class="image-controls">
-            <button class="control-btn" onclick="downloadImage()" title="Download">
-                <i class="fas fa-download"></i> Download
-            </button>
             <button class="control-btn" onclick="toggleFullscreen()" title="Fullscreen">
                 <i class="fas fa-expand"></i> Fullscreen
             </button>
@@ -535,14 +522,8 @@
         <button class="close-btn" onclick="closeFullscreen()">×</button>
         <img class="fullscreen-image" src="" alt="Fullscreen view">
     </div>
-
-    <!-- Dark mode toggle button -->
-    <button id="theme-toggle" class="dark-mode-toggle">
-        <i class="fas fa-moon"></i>
-        <script src="mode.js"></script>
-    </button> 
-
-
+    <script src="mode.js"></script>
+    <script src="close_source.js"></script>
     <script>
         const menuBtn = document.querySelector('.menu-btn');
         const mobileMenu = document.querySelector('.mobile-menu');
@@ -600,18 +581,6 @@
                 setTimeout(() => {
                     defaultText.classList.remove('hide');
                 }, 50);
-            }
-        }
-
-        function downloadImage() {
-            const visibleImage = document.querySelector('.timetable-image.show');
-            if (visibleImage) {
-                const link = document.createElement('a');
-                link.href = visibleImage.src;
-                link.download = visibleImage.alt + '.jpg';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
             }
         }
 
