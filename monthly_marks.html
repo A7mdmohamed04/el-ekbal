@@ -643,7 +643,6 @@
                     <div class="head-control"></div>
                     <div class="button-group">
                         <button class="back-btn">Back</button>
-                        <button class="download-btn">Download</button>
                     </div>
                 </div>
                 <div class="developers"></div>
@@ -669,7 +668,6 @@
         const form = document.getElementById('marksForm');
         const studentInfo = document.querySelector('.student-info');
         const backBtn = document.querySelector('.back-btn');
-        const downloadBtn = document.querySelector('.download-btn');
         const circlePhoto = document.querySelector('.circle-photo');
         const monthlyMarks = document.querySelector('.monthly-marks');
         const buttonGroup = document.querySelector('.button-group');
@@ -698,12 +696,12 @@
                 await fetchStudentData('j6.json', code, 'كود الطالب', 'اسم الطالب', true, true);
             } else if (grade === 'M1') {
                 await fetchStudentData('m1.json', code, 'كود الطالب', 'اسم', false);
-                headControl.textContent = 'Head of the control: Mr. Hassan Magdy Morsy';
+                headControl.textContent = 'Head of the control: Mr. Hassan Magdy';
                 headControl.style.opacity = '0';
                 headControl.style.animation = 'fadeIn 0.5s ease forwards 0.8s';
             } else if (grade === 'M2') {
                 await fetchStudentData('m2.json', code, 'رقم جاوس', 'اسم', false);
-                headControl.textContent = 'Head of the control: Mr. Hassan Magdy Morsy';
+                headControl.textContent = 'Head of the control: Mr. Hassan Magdy';
                 headControl.style.opacity = '0';
                 headControl.style.animation = 'fadeIn 0.5s ease forwards 0.8s';
             } else if (grade === 'S2') {
@@ -787,50 +785,7 @@
         }
 
         backBtn.addEventListener('click', () => {
-            studentInfo.style.animation = 'fadeOut 0.5s ease forwards';
-            setTimeout(() => {
-                studentInfo.style.display = 'none';
-                circlePhoto.style.display = 'block';
-                monthlyMarks.style.display = 'block';
-                circlePhoto.style.animation = 'fadeIn 0.5s ease forwards';
-                monthlyMarks.style.animation = 'fadeIn 0.5s ease forwards';
-                form.style.display = 'flex';
-                form.style.animation = 'fadeIn 0.5s ease forwards';
-                headControl.textContent = '';
-                document.querySelector('.content-wrapper').classList.remove('senior');
-            }, 500);
-        });
-
-        downloadBtn.addEventListener('click', () => {
-            // Create a temporary container for capturing
-            const tempContainer = document.createElement('div');
-            tempContainer.style.background = 'white';
-            tempContainer.style.padding = '20px';
-            tempContainer.style.width = '450px';
-            tempContainer.style.position = 'fixed';
-            tempContainer.style.left = '-9999px';
-            
-            // Clone the student info content
-            const studentInfoClone = document.querySelector('.student-info').cloneNode(true);
-            
-            // Remove the button group from the clone
-            const buttonGroupClone = studentInfoClone.querySelector('.button-group');
-            if (buttonGroupClone) {
-                buttonGroupClone.remove();
-            }
-            
-            tempContainer.appendChild(studentInfoClone);
-            document.body.appendChild(tempContainer);
-            
-            html2canvas(tempContainer).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'student-marks.png';
-                link.href = canvas.toDataURL();
-                link.click();
-                
-                // Clean up
-                document.body.removeChild(tempContainer);
-            });
+            location.reload();
         });
 
         function showPopup(popupId) {
