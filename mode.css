@@ -18,7 +18,7 @@ body {
 }
 
 body.dark-mode {
-    --primary-color: #00c0c;
+    --primary-color: #0c0c0c;
     --secondary-color: #3498db;
     --accent-color: #e74c3c;
     --light-color: #fff;
