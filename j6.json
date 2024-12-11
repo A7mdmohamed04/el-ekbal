@@ -757,7 +757,7 @@
         "math": "Blue",
         "N.S": "Yellow",
         "Science": "Blue",
-        "English(O.L)": "غ",
+        "English(O.L)": "Blue",
         "D.S": "Blue",
         "ICT": "Blue",
         "Religion": "Blue",
@@ -1628,8 +1628,8 @@
         "N.S": "Green",
         "Science": "Green",
         "English(O.L)": "Blue",
-        "D.S": "غ",
-        "ICT": "غ",
+        "D.S": "Blue",
+        "ICT": "Green",
         "Religion": "Blue",
         "English( H.L)": "Green",
         "French": "Green"
@@ -2081,7 +2081,7 @@
         "D.S": "Blue",
         "ICT": "Blue",
         "Religion": "Green",
-        "English( H.L)": "Yellow",
+        "English( H.L)": "Blue",
         "French": "Blue"
     },
     {
