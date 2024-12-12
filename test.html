@@ -130,52 +130,17 @@
         const loading = document.getElementById('loading');
         const errorMessage = document.getElementById('errorMessage');
         
-        // Function to fetch shared images from server
-        async function fetchSharedImages() {
-            try {
-                const response = await fetch('https://api.imgur.com/3/account/me/images', {
-                    headers: {
-                        'Authorization': `Client-ID ${clientId}`
-                    }
-                });
-                if (!response.ok) {
-                    throw new Error('Failed to fetch images');
-                }
-                const data = await response.json();
-                return data.data || [];
-            } catch (error) {
-                console.error('Error fetching shared images:', error);
-                errorMessage.textContent = 'Failed to load images. Please refresh the page.';
-                errorMessage.style.display = 'block';
-                return [];
-            }
-        }
+        // Store uploaded images in localStorage
+        let uploadedImages = JSON.parse(localStorage.getItem('uploadedImages')) || [];
 
-        // Display images on page load
-        window.addEventListener('load', async () => {
-            loading.style.display = 'block';
-            const sharedImages = await fetchSharedImages();
-            loading.style.display = 'none';
-            displayImages(sharedImages);
+        // Display stored images on page load
+        window.addEventListener('load', () => {
+            displayImages();
         });
 
         document.getElementById('imageInput').addEventListener('change', async (e) => {
             const file = e.target.files[0];
             if (!file) return;
-
-            // Validate file size (max 10MB)
-            if (file.size > 10 * 1024 * 1024) {
-                errorMessage.textContent = 'File size too large. Please choose an image under 10MB.';
-                errorMessage.style.display = 'block';
-                return;
-            }
-
-            // Validate file type
-            if (!file.type.startsWith('image/')) {
-                errorMessage.textContent = 'Please select a valid image file.';
-                errorMessage.style.display = 'block';
-                return;
-            }
 
             loading.style.display = 'block';
             errorMessage.style.display = 'none';
@@ -192,45 +157,38 @@
                     body: formData
                 });
 
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
                 const data = await response.json();
 
                 if (data.success) {
-                    const sharedImages = await fetchSharedImages();
-                    displayImages(sharedImages);
+                    const imageData = {
+                        url: data.data.link,
+                        timestamp: new Date().toISOString()
+                    };
+
+                    uploadedImages.unshift(imageData);
+                    localStorage.setItem('uploadedImages', JSON.stringify(uploadedImages));
+                    displayImages();
                 } else {
-                    throw new Error(data.data.error || 'Upload failed');
+                    throw new Error('Upload failed');
                 }
             } catch (error) {
-                console.error('Upload error:', error);
-                errorMessage.textContent = 'Failed to upload image. Please check your connection and try again.';
+                errorMessage.textContent = 'Error uploading image. Please try again.';
                 errorMessage.style.display = 'block';
             } finally {
                 loading.style.display = 'none';
             }
         });
 
-        function displayImages(images) {
+        function displayImages() {
             imageGrid.innerHTML = '';
-            if (!images.length) {
-                const noImages = document.createElement('p');
-                noImages.textContent = 'No images found. Upload some photos to get started!';
-                noImages.style.textAlign = 'center';
-                imageGrid.appendChild(noImages);
-                return;
-            }
-            
-            images.forEach(image => {
+            uploadedImages.forEach(image => {
                 const card = document.createElement('div');
                 card.className = 'image-card';
                 
-                const timestamp = new Date(image.datetime * 1000).toLocaleString();
+                const timestamp = new Date(image.timestamp).toLocaleString();
                 
                 card.innerHTML = `
-                    <img src="${image.link}" alt="Uploaded image" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22>Image failed to load</text></svg>'">
+                    <img src="${image.url}" alt="Uploaded image">
                     <div class="image-info">
                         <div class="timestamp">${timestamp}</div>
                     </div>
