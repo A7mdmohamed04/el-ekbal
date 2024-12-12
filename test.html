@@ -71,10 +71,18 @@
             display: none;
         }
     </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJQVTEZDKG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YJQVTEZDKG');
+    </script>
 </head>
 <body>
     <h1>Upload Your Image</h1>
-    <input type="file" id="imageInput" accept="image/*">
+    <input type="file" id="imageInput" accept="image/*" multiple>
     <button id="uploadButton" onclick="uploadImage()">Upload</button>
     <div class="loading" id="loadingIndicator">Uploading...</div>
     <div class="error-message" id="errorMessage"></div>
@@ -201,14 +209,55 @@
 
         function displayImage(imageUrl) {
             const uploadedImages = document.getElementById('uploadedImages');
+            const imgContainer = document.createElement('div');
+            imgContainer.style.position = 'relative';
+            
             const imgElement = document.createElement('img');
             imgElement.src = imageUrl;
             imgElement.alt = 'Uploaded image';
             imgElement.onerror = () => {
-                imgElement.src = 'placeholder.png'; // Add a placeholder image for failed loads
+                imgElement.src = 'placeholder.png';
                 imgElement.alt = 'Failed to load image';
             };
-            uploadedImages.appendChild(imgElement);
+            
+            const deleteButton = document.createElement('button');
+            deleteButton.innerHTML = '×';
+            deleteButton.style.position = 'absolute';
+            deleteButton.style.top = '5px';
+            deleteButton.style.right = '5px';
+            deleteButton.style.backgroundColor = 'red';
+            deleteButton.style.color = 'white';
+            deleteButton.style.border = 'none';
+            deleteButton.style.borderRadius = '50%';
+            deleteButton.style.width = '25px';
+            deleteButton.style.height = '25px';
+            deleteButton.style.cursor = 'pointer';
+            deleteButton.onclick = async () => {
+                try {
+                    const response = await fetch('https://ekbal.site/api/deleteImage', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({ imageUrl: imageUrl }),
+                        credentials: 'include'
+                    });
+                    
+                    if (response.ok) {
+                        imgContainer.remove();
+                    } else {
+                        showError('Failed to delete image');
+                    }
+                } catch (error) {
+                    console.error('Error deleting image:', error);
+                    showError('Failed to delete image');
+                }
+            };
+            
+            imgContainer.appendChild(imgElement);
+            imgContainer.appendChild(deleteButton);
+            uploadedImages.appendChild(imgContainer);
         }
 
         function showError(message) {
