@@ -72,7 +72,7 @@
 
                 if (data.success && data.data.link) {
                     const imageUrl = data.data.link; // Get the image URL from the response
-                    saveImageToServer(imageUrl); // Save the image URL to the server
+                    await saveImageToServer(imageUrl); // Save the image URL to the server
                     displayImage(imageUrl); // Call the function to display the image
                 } else {
                     console.error('Image upload failed:', data);
