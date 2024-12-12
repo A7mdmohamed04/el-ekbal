@@ -100,7 +100,7 @@
     <div class="container">
         <div class="upload-section">
             <input type="file" id="fileInput" accept="image/*">
-            <button id="uploadBtn">Upload Photo</button>
+            <button onclick="document.getElementById('fileInput').click()">Upload Photo</button>
         </div>
         <div class="photo-grid" id="photoGrid">
             <!-- Photos will be loaded here -->
@@ -111,11 +111,6 @@
         const clientId = '4dc61624ad17286';
         const albumHash = 'ekbal-nqbtbB6'; // Imgur album hash
         
-        // Handle upload button click
-        document.getElementById('uploadBtn').addEventListener('click', () => {
-            document.getElementById('fileInput').click();
-        });
-
         // Handle file upload
         document.getElementById('fileInput').addEventListener('change', async (e) => {
             const file = e.target.files[0];
