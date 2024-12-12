@@ -72,7 +72,7 @@
 
                 if (data.success && data.data.link) {
                     const imageUrl = data.data.link; // Get the image URL from the response
-                    saveImage(imageUrl); // Save the image URL
+                    await saveImageToServer(imageUrl); // Save the image URL to the server
                     displayImage(imageUrl); // Call the function to display the image
                 } else {
                     console.error('Image upload failed:', data);
@@ -84,15 +84,28 @@
             }
         }
 
-        function saveImage(imageUrl) {
-            let images = JSON.parse(localStorage.getItem('uploadedImages')) || [];
-            images.push(imageUrl);
-            localStorage.setItem('uploadedImages', JSON.stringify(images));
+        async function saveImageToServer(imageUrl) {
+            try {
+                await fetch('/save-image', { // Replace with your server endpoint
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ imageUrl })
+                });
+            } catch (error) {
+                console.error('Error saving image to server:', error);
+            }
         }
 
-        function loadImages() {
-            const images = JSON.parse(localStorage.getItem('uploadedImages')) || [];
-            images.forEach(imageUrl => displayImage(imageUrl));
+        async function loadImages() {
+            try {
+                const response = await fetch('/get-images'); // Replace with your server endpoint
+                const images = await response.json();
+                images.forEach(imageUrl => displayImage(imageUrl));
+            } catch (error) {
+                console.error('Error loading images from server:', error);
+            }
         }
 
         function displayImage(imageUrl) {
