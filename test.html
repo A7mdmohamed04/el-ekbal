@@ -100,7 +100,7 @@
     <div class="container">
         <div class="upload-section">
             <input type="file" id="fileInput" accept="image/*">
-            <button onclick="document.getElementById('fileInput').click()">Upload Photo</button>
+            <button onclick="handleUploadClick()">Upload Photo</button>
         </div>
         <div class="photo-grid" id="photoGrid">
             <!-- Photos will be loaded here -->
@@ -132,6 +132,8 @@
                 const data = await response.json();
                 if (data.success) {
                     addPhotoToGrid(data.data.link);
+                } else {
+                    console.error('Upload failed:', data.data.error);
                 }
             } catch (error) {
                 console.error('Error uploading image:', error);
@@ -163,11 +165,17 @@
                 const data = await response.json();
                 if (data.success) {
                     data.data.forEach(image => addPhotoToGrid(image.link));
+                } else {
+                    console.error('Failed to load album:', data.data.error);
                 }
             } catch (error) {
                 console.error('Error loading album images:', error);
             }
         });
+
+        function handleUploadClick() {
+            document.getElementById('fileInput').click();
+        }
     </script>
 </body>
 </html>
