@@ -45,6 +45,8 @@
     <div id="uploadedImages"></div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', loadImages);
+
         async function uploadImage() {
             const input = document.getElementById('imageInput');
             if (input.files.length === 0) {
@@ -70,6 +72,7 @@
 
                 if (data.success && data.data.link) {
                     const imageUrl = data.data.link; // Get the image URL from the response
+                    saveImage(imageUrl); // Save the image URL
                     displayImage(imageUrl); // Call the function to display the image
                 } else {
                     console.error('Image upload failed:', data);
@@ -79,6 +82,17 @@
                 console.error('Error uploading image:', error);
                 alert('An error occurred while uploading the image.');
             }
+        }
+
+        function saveImage(imageUrl) {
+            let images = JSON.parse(localStorage.getItem('uploadedImages')) || [];
+            images.push(imageUrl);
+            localStorage.setItem('uploadedImages', JSON.stringify(images));
+        }
+
+        function loadImages() {
+            const images = JSON.parse(localStorage.getItem('uploadedImages')) || [];
+            images.forEach(imageUrl => displayImage(imageUrl));
         }
 
         function displayImage(imageUrl) {
