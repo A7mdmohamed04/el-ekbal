@@ -45,6 +45,7 @@
     <div id="uploadedImages"></div>
 
     <script>
+        // Load images when page loads
         document.addEventListener('DOMContentLoaded', loadImages);
 
         async function uploadImage() {
@@ -62,18 +63,21 @@
                 const response = await fetch('https://api.imgur.com/3/image', {
                     method: 'POST',
                     headers: {
-                        Authorization: 'Client-ID ee9a0c9efeb339f' // Replace with your Imgur Client ID
+                        Authorization: 'Client-ID ee9a0c9efeb339f'
                     },
                     body: formData
                 });
 
                 const data = await response.json();
-                console.log(data); // Debug the API response
 
                 if (data.success && data.data.link) {
-                    const imageUrl = data.data.link; // Get the image URL from the response
-                    await saveImageToServer(imageUrl); // Save the image URL to the server
-                    displayImage(imageUrl); // Call the function to display the image
+                    const imageUrl = data.data.link;
+                    // Save image URL to server first
+                    await saveImageToServer(imageUrl);
+                    // Then display the image
+                    displayImage(imageUrl);
+                    // Clear the file input
+                    input.value = '';
                 } else {
                     console.error('Image upload failed:', data);
                     alert('Failed to upload image. Please try again.');
@@ -85,33 +89,56 @@
         }
 
         async function saveImageToServer(imageUrl) {
+            // Only allow saving images from test.html page
+            if (window.location.pathname !== '/test.html') {
+                throw new Error('Image uploads only allowed on test page');
+            }
+
             try {
-                await fetch('https://ekbal.site/api/saveImage', {
+                const response = await fetch('https://ekbal.site/api/saveImage', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ imageUrl })
                 });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to save image URL to server');
+                }
             } catch (error) {
                 console.error('Error saving image to server:', error);
+                throw error; // Re-throw to handle in uploadImage
             }
         }
 
         async function loadImages() {
+            // Only load images on test.html page
+            if (window.location.pathname !== '/test.html') {
+                return;
+            }
+
             try {
                 const response = await fetch('https://ekbal.site/api/getImages');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch images');
+                }
                 const images = await response.json();
+                // Clear existing images first
+                document.getElementById('uploadedImages').innerHTML = '';
+                // Display all images from the server
                 images.forEach(imageUrl => displayImage(imageUrl));
             } catch (error) {
                 console.error('Error loading images:', error);
+                alert('Failed to load existing images');
             }
         }
 
         function displayImage(imageUrl) {
-            const uploadedImages = document.getElementById('uploadedImages'); // The container for images
+            const uploadedImages = document.getElementById('uploadedImages');
             const imgElement = document.createElement('img');
-            imgElement.src = imageUrl; // Set the image URL
+            imgElement.src = imageUrl;
+            imgElement.alt = 'Uploaded image';
             uploadedImages.appendChild(imgElement);
         }
     </script>
