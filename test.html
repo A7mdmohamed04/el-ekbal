@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Sharing</title>
+    <title>PhotoShare</title>
     <style>
         * {
             margin: 0;
@@ -13,139 +13,112 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f2f5;
+            background: #f0f2f5;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
         }
 
         .container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 80px auto 20px;
             padding: 20px;
         }
 
         .upload-section {
-            background: white;
+            background: #ffffff;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             margin-bottom: 20px;
-            animation: slideDown 0.5s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
 
-        .upload-btn {
-            background: #1877f2;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease;
+        .upload-section:hover {
+            transform: translateY(-5px);
         }
 
-        .upload-btn:hover {
-            background: #166fe5;
-        }
-
-        .image-grid {
+        .photo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
         }
 
-        .image-card {
-            background: white;
+        .photo-card {
+            background: #ffffff;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            animation: fadeIn 0.5s ease;
-        }
-
-        .image-card img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
             transition: transform 0.3s ease;
         }
 
-        .image-card img:hover {
-            transform: scale(1.05);
+        .photo-card:hover {
+            transform: translateY(-5px);
         }
 
-        .image-info {
+        .photo-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .photo-info {
             padding: 15px;
         }
 
-        .timestamp {
-            color: #65676b;
-            font-size: 0.9em;
+        button {
+            background: #1877f2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
 
-        @keyframes slideDown {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        button:hover {
+            background: #166fe5;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .loading {
-            text-align: center;
-            padding: 20px;
-            display: none;
-        }
-
-        .error-message {
-            color: #ff3333;
-            text-align: center;
-            padding: 10px;
+        #fileInput {
             display: none;
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <h1>PhotoShare</h1>
+    </div>
+
     <div class="container">
         <div class="upload-section">
-            <input type="file" id="imageInput" accept="image/*" style="display: none">
-            <button class="upload-btn" onclick="document.getElementById('imageInput').click()">Upload Photo</button>
+            <input type="file" id="fileInput" accept="image/*">
+            <button onclick="document.getElementById('fileInput').click()">Upload Photo</button>
         </div>
-        <div class="error-message" id="errorMessage"></div>
-        <div class="loading" id="loading">Uploading...</div>
-        <div class="image-grid" id="imageGrid"></div>
+        <div class="photo-grid" id="photoGrid">
+            <!-- Photos will be loaded here -->
+        </div>
     </div>
 
     <script>
         const clientId = '4dc61624ad17286';
-        const imageGrid = document.getElementById('imageGrid');
-        const loading = document.getElementById('loading');
-        const errorMessage = document.getElementById('errorMessage');
-
-        // Fetch images from Imgur on page load
-        window.addEventListener('load', () => {
-            fetchImgurImages();
-        });
-
-        document.getElementById('imageInput').addEventListener('change', async (e) => {
+        
+        // Handle file upload
+        document.getElementById('fileInput').addEventListener('change', async (e) => {
             const file = e.target.files[0];
             if (!file) return;
 
-            loading.style.display = 'block';
-            errorMessage.style.display = 'none';
+            const formData = new FormData();
+            formData.append('image', file);
 
             try {
-                const formData = new FormData();
-                formData.append('image', file);
-
                 const response = await fetch('https://api.imgur.com/3/image', {
                     method: 'POST',
                     headers: {
@@ -155,57 +128,40 @@
                 });
 
                 const data = await response.json();
-
                 if (data.success) {
-                    // After successful upload, refresh the image grid
-                    fetchImgurImages();
-                } else {
-                    throw new Error('Upload failed');
+                    addPhotoToGrid(data.data.link);
+                    // Save to localStorage to persist between page reloads
+                    savePhotoToStorage(data.data.link);
                 }
             } catch (error) {
-                errorMessage.textContent = 'Error uploading image. Please try again.';
-                errorMessage.style.display = 'block';
-            } finally {
-                loading.style.display = 'none';
+                console.error('Error uploading image:', error);
             }
         });
 
-        async function fetchImgurImages() {
-            try {
-                const response = await fetch('https://api.imgur.com/3/album/ALBUM_HASH/images', {
-                    headers: {
-                        'Authorization': `Client-ID ${clientId}`
-                    }
-                });
-                
-                const data = await response.json();
-                if (data.success) {
-                    displayImages(data.data);
-                }
-            } catch (error) {
-                errorMessage.textContent = 'Error loading images. Please refresh the page.';
-                errorMessage.style.display = 'block';
-            }
+        function addPhotoToGrid(imageUrl) {
+            const photoGrid = document.getElementById('photoGrid');
+            const photoCard = document.createElement('div');
+            photoCard.className = 'photo-card';
+            photoCard.innerHTML = `
+                <img src="${imageUrl}" alt="Uploaded photo">
+                <div class="photo-info">
+                    <p>${new Date().toLocaleDateString()}</p>
+                </div>
+            `;
+            photoGrid.insertBefore(photoCard, photoGrid.firstChild);
         }
 
-        function displayImages(images) {
-            imageGrid.innerHTML = '';
-            images.forEach(image => {
-                const card = document.createElement('div');
-                card.className = 'image-card';
-                
-                const timestamp = new Date(image.datetime * 1000).toLocaleString();
-                
-                card.innerHTML = `
-                    <img src="${image.link}" alt="Shared image">
-                    <div class="image-info">
-                        <div class="timestamp">${timestamp}</div>
-                    </div>
-                `;
-                
-                imageGrid.appendChild(card);
-            });
+        function savePhotoToStorage(imageUrl) {
+            const photos = JSON.parse(localStorage.getItem('photos') || '[]');
+            photos.unshift(imageUrl);
+            localStorage.setItem('photos', JSON.stringify(photos));
         }
+
+        // Load saved photos on page load
+        window.addEventListener('load', () => {
+            const photos = JSON.parse(localStorage.getItem('photos') || '[]');
+            photos.forEach(imageUrl => addPhotoToGrid(imageUrl));
+        });
     </script>
 </body>
 </html>
