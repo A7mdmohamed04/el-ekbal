@@ -130,10 +130,21 @@
         const loading = document.getElementById('loading');
         const errorMessage = document.getElementById('errorMessage');
         
-        // Store uploaded images in localStorage
-        let uploadedImages = JSON.parse(localStorage.getItem('uploadedImages')) || [];
+        // Initialize Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDHVsw2tRXzG4PQulBcLwh-pQxLalQVxWw",
+            authDomain: "photo-sharing-app-c5e1b.firebaseapp.com",
+            projectId: "photo-sharing-app-c5e1b",
+            storageBucket: "photo-sharing-app-c5e1b.appspot.com",
+            messagingSenderId: "1098979557242",
+            appId: "1:1098979557242:web:9a7867a2de518e35b3e1d9"
+        };
 
-        // Display stored images on page load
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Display images from Firestore on page load
         window.addEventListener('load', () => {
             displayImages();
         });
@@ -165,8 +176,8 @@
                         timestamp: new Date().toISOString()
                     };
 
-                    uploadedImages.unshift(imageData);
-                    localStorage.setItem('uploadedImages', JSON.stringify(uploadedImages));
+                    // Add image to Firestore
+                    await db.collection('images').add(imageData);
                     displayImages();
                 } else {
                     throw new Error('Upload failed');
@@ -179,9 +190,16 @@
             }
         });
 
-        function displayImages() {
+        async function displayImages() {
             imageGrid.innerHTML = '';
-            uploadedImages.forEach(image => {
+            
+            // Get images from Firestore
+            const snapshot = await db.collection('images')
+                .orderBy('timestamp', 'desc')
+                .get();
+
+            snapshot.forEach(doc => {
+                const image = doc.data();
                 const card = document.createElement('div');
                 card.className = 'image-card';
                 
@@ -198,5 +216,7 @@
             });
         }
     </script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 </body>
 </html>
