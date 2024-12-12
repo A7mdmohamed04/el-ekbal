@@ -72,7 +72,7 @@
 
                 if (data.success && data.data.link) {
                     const imageUrl = data.data.link; // Get the image URL from the response
-                    await saveImageToServer(imageUrl); // Save the image URL to the server
+                    saveImageToServer(imageUrl); // Save the image URL to the server
                     displayImage(imageUrl); // Call the function to display the image
                 } else {
                     console.error('Image upload failed:', data);
@@ -86,7 +86,7 @@
 
         async function saveImageToServer(imageUrl) {
             try {
-                await fetch('https://ekbal.site/test.html/save-image', { // Replace with your server endpoint
+                await fetch('https://ekbal.site/api/saveImage', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -100,11 +100,11 @@
 
         async function loadImages() {
             try {
-                const response = await fetch('/get-images'); // Replace with your server endpoint
+                const response = await fetch('https://ekbal.site/api/getImages');
                 const images = await response.json();
                 images.forEach(imageUrl => displayImage(imageUrl));
             } catch (error) {
-                console.error('Error loading images from server:', error);
+                console.error('Error loading images:', error);
             }
         }
 
