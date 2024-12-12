@@ -3,156 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firebase Image Upload</title>
+    <title>Photo Sharing</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #f9f9f9;
-            min-height: 100vh;
+            box-sizing: border-box;
         }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+
         .container {
-            max-width: 600px;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
-            background: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            text-align: center;
         }
+
+        .upload-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            animation: slideDown 0.5s ease;
+        }
+
         .upload-btn {
-            display: inline-block;
+            background: #1877f2;
+            color: white;
             padding: 10px 20px;
-            color: #fff;
-            background-color: #007BFF;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
+            transition: background 0.3s ease;
         }
+
         .upload-btn:hover {
-            background-color: #0056b3;
+            background: #166fe5;
         }
-        .error {
-            color: red;
-            display: none;
-            margin-top: 10px;
-        }
-        .loading {
-            color: #555;
-            margin-top: 10px;
-        }
+
         .image-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 10px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
-        .image-grid img {
-            width: 100%;
-            height: auto;
+
+        .image-card {
+            background: white;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease;
         }
-        @media (max-width: 600px) {
-            .image-grid {
-                grid-template-columns: 1fr;
+
+        .image-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-card img:hover {
+            transform: scale(1.05);
+        }
+
+        .image-info {
+            padding: 15px;
+        }
+
+        .timestamp {
+            color: #65676b;
+            font-size: 0.9em;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
             }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+
+        .error-message {
+            color: #ff3333;
+            text-align: center;
+            padding: 10px;
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Upload Your Image</h1>
-        <label for="imageInput" class="upload-btn">Choose an Image</label>
-        <input type="file" id="imageInput" accept="image/*" style="display: none">
-        <div class="loading" id="loading"></div>
-        <div class="error" id="errorMessage"></div>
+        <div class="upload-section">
+            <input type="file" id="imageInput" accept="image/*" style="display: none">
+            <button class="upload-btn" onclick="document.getElementById('imageInput').click()">Upload Photo</button>
+        </div>
+        <div class="error-message" id="errorMessage"></div>
+        <div class="loading" id="loading">Uploading...</div>
         <div class="image-grid" id="imageGrid"></div>
     </div>
 
-    <script type="module">
-        // Firebase modular imports
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.x.x/firebase-storage.js";
-
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBbYETn744fmVQMlnvAWyQyiXfqKCzS_M4",
-            authDomain: "elsboys.firebaseapp.com", 
-            databaseURL: "https://elsboys-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "elsboys",
-            storageBucket: "elsboys.appspot.com",
-            messagingSenderId: "824769136256",
-            appId: "1:824769136256:web:3a8919d9070040b48e4865",
-            measurementId: "G-7RSY2YCE26"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const storage = getStorage(app);
-
-        // DOM Elements
-        const imageInput = document.getElementById('imageInput');
+    <script>
+        const clientId = '4dc61624ad17286';
         const imageGrid = document.getElementById('imageGrid');
         const loading = document.getElementById('loading');
         const errorMessage = document.getElementById('errorMessage');
 
-        // Load saved images from LocalStorage
-        const uploadedImages = JSON.parse(localStorage.getItem('uploadedImages')) || [];
-        uploadedImages.forEach(imgData => {
-            const img = document.createElement('img');
-            img.src = imgData;
-            imageGrid.appendChild(img);
+        // Fetch images from Imgur on page load
+        window.addEventListener('load', () => {
+            fetchImgurImages();
         });
 
-        // Handle file input
-        imageInput.addEventListener('change', async (event) => {
-            const file = event.target.files[0];
-
+        document.getElementById('imageInput').addEventListener('change', async (e) => {
+            const file = e.target.files[0];
             if (!file) return;
 
-            loading.textContent = 'Uploading...';
+            loading.style.display = 'block';
             errorMessage.style.display = 'none';
 
             try {
-                const imageRef = ref(storage, `images/${file.name}`);
-                const snapshot = await uploadBytes(imageRef, file);
-                const downloadURL = await getDownloadURL(snapshot.ref);
+                const formData = new FormData();
+                formData.append('image', file);
 
-                // Save to LocalStorage
-                uploadedImages.unshift(downloadURL);
-                if (uploadedImages.length > 20) {
-                    uploadedImages.splice(20);
+                const response = await fetch('https://api.imgur.com/3/image', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Client-ID ${clientId}`
+                    },
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // After successful upload, refresh the image grid
+                    fetchImgurImages();
+                } else {
+                    throw new Error('Upload failed');
                 }
-                localStorage.setItem('uploadedImages', JSON.stringify(uploadedImages));
-
-                // Display the uploaded image
-                const img = document.createElement('img');
-                img.src = downloadURL;
-                imageGrid.insertBefore(img, imageGrid.firstChild);
-
-                loading.textContent = '';
             } catch (error) {
-                let message = 'Error uploading image. Please try again.';
-                if (error.code === 'storage/unauthorized') {
-                    message = 'You don’t have permission to upload to this bucket.';
-                } else if (error.code === 'storage/quota-exceeded') {
-                    message = 'Quota exceeded. Please try again later.';
-                }
-                errorMessage.textContent = message;
+                errorMessage.textContent = 'Error uploading image. Please try again.';
                 errorMessage.style.display = 'block';
-                console.error('Upload error:', error);
             } finally {
-                imageInput.value = '';
-                loading.textContent = '';
+                loading.style.display = 'none';
             }
         });
+
+        async function fetchImgurImages() {
+            try {
+                const response = await fetch('https://api.imgur.com/3/album/ALBUM_HASH/images', {
+                    headers: {
+                        'Authorization': `Client-ID ${clientId}`
+                    }
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    displayImages(data.data);
+                }
+            } catch (error) {
+                errorMessage.textContent = 'Error loading images. Please refresh the page.';
+                errorMessage.style.display = 'block';
+            }
+        }
+
+        function displayImages(images) {
+            imageGrid.innerHTML = '';
+            images.forEach(image => {
+                const card = document.createElement('div');
+                card.className = 'image-card';
+                
+                const timestamp = new Date(image.datetime * 1000).toLocaleString();
+                
+                card.innerHTML = `
+                    <img src="${image.link}" alt="Shared image">
+                    <div class="image-info">
+                        <div class="timestamp">${timestamp}</div>
+                    </div>
+                `;
+                
+                imageGrid.appendChild(card);
+            });
+        }
     </script>
 </body>
 </html>
