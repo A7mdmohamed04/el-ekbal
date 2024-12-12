@@ -109,6 +109,7 @@
 
     <script>
         const clientId = '4dc61624ad17286';
+        const albumHash = 'ekbal-nqbtbB6'; // Imgur album hash
         
         // Handle file upload
         document.getElementById('fileInput').addEventListener('change', async (e) => {
@@ -117,6 +118,7 @@
 
             const formData = new FormData();
             formData.append('image', file);
+            formData.append('album', albumHash);
 
             try {
                 const response = await fetch('https://api.imgur.com/3/image', {
@@ -130,8 +132,6 @@
                 const data = await response.json();
                 if (data.success) {
                     addPhotoToGrid(data.data.link);
-                    // Save to localStorage to persist between page reloads
-                    savePhotoToStorage(data.data.link);
                 }
             } catch (error) {
                 console.error('Error uploading image:', error);
@@ -151,16 +151,22 @@
             photoGrid.insertBefore(photoCard, photoGrid.firstChild);
         }
 
-        function savePhotoToStorage(imageUrl) {
-            const photos = JSON.parse(localStorage.getItem('photos') || '[]');
-            photos.unshift(imageUrl);
-            localStorage.setItem('photos', JSON.stringify(photos));
-        }
-
-        // Load saved photos on page load
-        window.addEventListener('load', () => {
-            const photos = JSON.parse(localStorage.getItem('photos') || '[]');
-            photos.forEach(imageUrl => addPhotoToGrid(imageUrl));
+        // Load photos from Imgur album on page load
+        window.addEventListener('load', async () => {
+            try {
+                const response = await fetch(`https://api.imgur.com/3/album/${albumHash}/images`, {
+                    headers: {
+                        'Authorization': `Client-ID ${clientId}`
+                    }
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    data.data.forEach(image => addPhotoToGrid(image.link));
+                }
+            } catch (error) {
+                console.error('Error loading album images:', error);
+            }
         });
     </script>
 </body>
