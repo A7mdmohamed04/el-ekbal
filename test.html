@@ -24,7 +24,12 @@
 
         fetch(`https://api.imgur.com/3/account/${username}/images`, {
             headers: {
-                'Authorization': `Client-ID ${clientId}`
+                'Authorization': `Client-ID ${clientId}`,
+                'Accept': '*/*',
+                'Accept-Language': 'en-GB,en;q=0.9,ar-EG;q=0.8,ar;q=0.7,en-US;q=0.6',
+                'Origin': 'https://ekbal.site',
+                'Referer': 'https://ekbal.site/',
+                'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1'
             }
         })
         .then(response => {
