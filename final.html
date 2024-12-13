@@ -64,6 +64,11 @@
             font-size: 12px;
             color: #65676b;
         }
+        .post-description {
+            padding: 0 16px 12px;
+            color: #65676b;
+            font-size: 14px;
+        }
         .image-item {
             width: 100%;
             max-height: 700px;
@@ -208,6 +213,14 @@
 
                         wrapper.appendChild(postHeader);
                         wrapper.appendChild(img);
+
+                        if (image.description) {
+                            const description = document.createElement('div');
+                            description.className = 'post-description';
+                            description.textContent = image.description;
+                            wrapper.appendChild(description);
+                        }
+
                         container.appendChild(wrapper);
                     });
                 } else {
@@ -258,6 +271,14 @@
 
                                     wrapper.appendChild(postHeader);
                                     wrapper.appendChild(img);
+
+                                    if (image.description) {
+                                        const description = document.createElement('div');
+                                        description.className = 'post-description';
+                                        description.textContent = image.description;
+                                        wrapper.appendChild(description);
+                                    }
+
                                     container.appendChild(wrapper);
                                 });
                             }
