@@ -71,46 +71,16 @@
 
     <script>
         const clientId = '0e9aefda15a6244';
-        const clientSecret = '3e1e2419e5c8581769407ebfc41c7ac4b75062d4'; // Add your client secret
         const username = 'A7medmohamed04';
         
-        async function getAccessToken() {
-            try {
-                const response = await fetch('https://api.imgur.com/oauth2/token', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: new URLSearchParams({
-                        'client_id': clientId,
-                        'client_secret': clientSecret,
-                        'grant_type': 'client_credentials'
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to get access token');
-                }
-
-                const data = await response.json();
-                return data.access_token;
-            } catch (error) {
-                console.error('Error getting access token:', error);
-                throw error;
-            }
-        }
-
         async function fetchImgurImages() {
             const container = document.getElementById('image-container');
             container.innerHTML = '<div class="loading">Loading images...</div>';
 
             try {
-                const accessToken = await getAccessToken();
-                
-                // Try fetching user's images with Bearer token
                 const response = await fetch(`https://api.imgur.com/3/account/${username}/images`, {
                     headers: {
-                        'Authorization': `Bearer ${accessToken}`
+                        'Authorization': `Bearer ${clientId}` // Changed to Bearer token
                     }
                 });
 
@@ -119,7 +89,7 @@
                 }
 
                 const data = await response.json();
-                container.innerHTML = ''; // Clear loading message
+                container.innerHTML = '';
 
                 if (data.data && data.data.length > 0) {
                     data.data.forEach(image => {
@@ -132,17 +102,16 @@
                         img.alt = image.title || 'Imgur image';
                         
                         img.onerror = () => {
-                            wrapper.remove(); // Remove failed images
+                            wrapper.remove();
                         };
 
                         wrapper.appendChild(img);
                         container.appendChild(wrapper);
                     });
                 } else {
-                    // If no images found, try fetching from user's albums
                     const albumsResponse = await fetch(`https://api.imgur.com/3/account/${username}/albums`, {
                         headers: {
-                            'Authorization': `Bearer ${accessToken}`
+                            'Authorization': `Bearer ${clientId}` // Changed to Bearer token
                         }
                     });
                     
@@ -156,7 +125,7 @@
                         for (const album of albumsData.data) {
                             const albumResponse = await fetch(`https://api.imgur.com/3/album/${album.id}/images`, {
                                 headers: {
-                                    'Authorization': `Bearer ${accessToken}`
+                                    'Authorization': `Bearer ${clientId}` // Changed to Bearer token
                                 }
                             });
                             
@@ -193,12 +162,11 @@
                     <div class="error">
                         ${error.message === 'No images found' 
                             ? 'No images found for this account. Please verify the username.'
-                            : 'Error loading images. Please check your credentials and try again.'}
+                            : 'Authentication error. Please check your credentials and try again.'}
                     </div>`;
             }
         }
 
-        // Start fetching images when page loads
         fetchImgurImages();
     </script>
 </body>
