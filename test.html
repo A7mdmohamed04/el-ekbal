@@ -51,18 +51,22 @@
     <div class="image-container" id="album-container"></div>
 
     <script>
-        const clientId = 'f5538634e13553a';
-        const username = 'Ahmedmohamed04'; // Imgur username
+        // Note: You need to register your application with Imgur to get a valid client ID
+        // Visit https://api.imgur.com/oauth2/addclient to register
+        const clientId = '9e01286b90a1aa3'; // Replace with your actual client ID
+        const username = 'Ahmedmohamed04';
 
         fetch(`https://api.imgur.com/3/account/${username}/images`, {
             headers: {
                 'Authorization': `Client-ID ${clientId}`,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Accept': 'application/json'
             }
         })
         .then(response => {
             if (!response.ok) {
+                if (response.status === 403) {
+                    throw new Error('Authentication failed: Invalid client ID or unauthorized access');
+                }
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
@@ -82,7 +86,7 @@
             console.error('Error fetching images:', error);
             const errorDiv = document.createElement('div');
             errorDiv.className = 'error-message';
-            errorDiv.textContent = 'Error loading images from Imgur: Please check your username and client ID';
+            errorDiv.textContent = error.message || 'Error loading images from Imgur: Please check your client ID and ensure it has proper authorization';
             document.getElementById('album-container').appendChild(errorDiv);
         });
     </script>
