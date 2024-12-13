@@ -54,9 +54,9 @@
         // Note: You need to register your application with Imgur to get a valid client ID
         // Visit https://api.imgur.com/oauth2/addclient to register
         const clientId = '9e01286b90a1aa3'; // Replace with your actual client ID
-        const username = 'Ahmedmohamed04';
+        const username = 'ahmedmohamed04';  // Updated to match the exact case from the URL
 
-        fetch(`https://api.imgur.com/3/account/${username}/images`, {
+        fetch(`https://api.imgur.com/3/account/${username}/images/`, {
             headers: {
                 'Authorization': `Client-ID ${clientId}`,
                 'Accept': 'application/json'
