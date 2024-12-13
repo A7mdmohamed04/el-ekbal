@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Imgur Album</title>
+    <title>My Imgur Account Images</title>
     <style>
         .image-container {
             display: flex;
@@ -20,27 +20,33 @@
 
     <script>
         const clientId = 'f5538634e13553a';
-        const albumHash = 'ekbal-nqbtbB6';
+        const username = 'Ahmedmohamed04'; // Imgur username
 
-        fetch(`https://api.imgur.com/3/album/${albumHash}/images`, {
+        fetch(`https://api.imgur.com/3/account/${username}/images`, {
             headers: {
                 'Authorization': `Client-ID ${clientId}`
             }
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
             const container = document.getElementById('album-container');
             data.data.forEach(image => {
                 const img = document.createElement('img');
                 img.src = image.link;
                 img.className = 'image-item';
-                img.alt = image.description || 'Album image';
+                img.alt = image.description || 'Account image';
                 container.appendChild(img);
             });
         })
         .catch(error => {
             console.error('Error fetching images:', error);
-            document.getElementById('album-container').innerHTML = 'Error loading images from Imgur';
+            document.getElementById('album-container').innerHTML = 
+                'Error loading images from Imgur: Please check your username and client ID';
         });
     </script>
 </body>
