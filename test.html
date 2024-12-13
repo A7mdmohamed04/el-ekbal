@@ -1,108 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Photo</title>
+    <title>My Imgur Album</title>
     <style>
-        /* Style for your page */
-        body {
-            font-family: Arial, sans-serif;
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
             padding: 20px;
         }
-        .upload-container {
-            margin-bottom: 20px;
-        }
-        #fileInput {
-            display: none;
-        }
-        button {
-            background-color: #1877f2;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #166fe5;
-        }
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .photo-card {
-            background: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .photo-card img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-        .photo-info {
-            padding: 15px;
+        .image-item {
+            max-width: 300px;
+            height: auto;
         }
     </style>
 </head>
 <body>
-    <div class="upload-container">
-        <input type="file" id="fileInput" accept="image/*">
-        <button onclick="document.getElementById('fileInput').click()">Upload Photo</button>
-    </div>
-
-    <div class="photo-grid" id="photoGrid">
-        <!-- Images will be displayed here -->
-    </div>
+    <div class="image-container" id="album-container"></div>
 
     <script>
-        const clientId = 'f5538634e13553a';  // Replace with your Imgur Client ID
-        
-        // Event listener for file selection
-        document.getElementById('fileInput').addEventListener('change', async (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
+        const clientId = 'f5538634e13553a';
+        const albumHash = 'ekbal-nqbtbB6';
 
-            const formData = new FormData();
-            formData.append('image', file);
-
-            try {
-                // Sending the image to Imgur (without album)
-                const response = await fetch('https://api.imgur.com/3/image', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Client-ID ${clientId}`
-                    },
-                    body: formData
-                });
-
-                const data = await response.json();
-                if (data.success) {
-                    // Image uploaded successfully, add to the grid
-                    addPhotoToGrid(data.data.link);
-                } else {
-                    alert('Upload failed!');
-                }
-            } catch (error) {
-                console.error('Error uploading image:', error);
+        fetch(`https://api.imgur.com/3/album/${albumHash}/images`, {
+            headers: {
+                'Authorization': `Client-ID ${clientId}`
             }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('album-container');
+            data.data.forEach(image => {
+                const img = document.createElement('img');
+                img.src = image.link;
+                img.className = 'image-item';
+                img.alt = image.description || 'Album image';
+                container.appendChild(img);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching images:', error);
+            document.getElementById('album-container').innerHTML = 'Error loading images from Imgur';
         });
-
-        function addPhotoToGrid(imageUrl) {
-            const photoGrid = document.getElementById('photoGrid');
-            const photoCard = document.createElement('div');
-            photoCard.className = 'photo-card';
-            photoCard.innerHTML = `
-                <img src="${imageUrl}" alt="Uploaded photo">
-                <div class="photo-info">
-                    <p>Uploaded on: ${new Date().toLocaleString()}</p>
-                </div>
-            `;
-            photoGrid.insertBefore(photoCard, photoGrid.firstChild);
-        }
     </script>
 </body>
 </html>
