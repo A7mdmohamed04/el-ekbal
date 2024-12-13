@@ -3,15 +3,47 @@
 <head>
     <title>My Imgur Account Images</title>
     <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
         .image-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 20px;
             padding: 20px;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .image-item {
             max-width: 300px;
             height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .image-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .error-message {
+            color: #ff4444;
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+            animation: fadeIn 0.5s ease;
         }
     </style>
 </head>
@@ -25,11 +57,8 @@
         fetch(`https://api.imgur.com/3/account/${username}/images`, {
             headers: {
                 'Authorization': `Client-ID ${clientId}`,
-                'Accept': '*/*',
-                'Accept-Language': 'en-GB,en;q=0.9,ar-EG;q=0.8,ar;q=0.7,en-US;q=0.6',
-                'Origin': 'https://ekbal.site',
-                'Referer': 'https://ekbal.site/',
-                'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         })
         .then(response => {
@@ -40,18 +69,21 @@
         })
         .then(data => {
             const container = document.getElementById('album-container');
-            data.data.forEach(image => {
+            data.data.forEach((image, index) => {
                 const img = document.createElement('img');
                 img.src = image.link;
                 img.className = 'image-item';
                 img.alt = image.description || 'Account image';
+                img.style.animation = `fadeIn 0.5s ease forwards ${index * 0.1}s`;
                 container.appendChild(img);
             });
         })
         .catch(error => {
             console.error('Error fetching images:', error);
-            document.getElementById('album-container').innerHTML = 
-                'Error loading images from Imgur: Please check your username and client ID';
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = 'Error loading images from Imgur: Please check your username and client ID';
+            document.getElementById('album-container').appendChild(errorDiv);
         });
     </script>
 </body>
