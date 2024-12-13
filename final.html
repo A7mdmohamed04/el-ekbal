@@ -48,7 +48,8 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: #e4e6eb;
+            background-image: url('https://i.imgur.com/nBemnv2.png');
+            background-size: cover;
             margin-right: 12px;
         }
         .post-info {
@@ -191,7 +192,7 @@
                         postHeader.innerHTML = `
                             <div class="post-avatar"></div>
                             <div class="post-info">
-                                <div class="post-username">${username}</div>
+                                <div class="post-username">Ekbal Boys</div>
                                 <div class="post-time">${new Date(image.datetime * 1000).toLocaleDateString()}</div>
                             </div>
                         `;
@@ -201,21 +202,12 @@
                         img.className = 'image-item';
                         img.alt = image.title || 'Imgur image';
                         
-                        const actions = document.createElement('div');
-                        actions.className = 'post-actions';
-                        actions.innerHTML = `
-                            <div class="action-button">Like</div>
-                            <div class="action-button">Comment</div>
-                            <div class="action-button">Share</div>
-                        `;
-                        
                         img.onerror = () => {
                             wrapper.remove();
                         };
 
                         wrapper.appendChild(postHeader);
                         wrapper.appendChild(img);
-                        wrapper.appendChild(actions);
                         container.appendChild(wrapper);
                     });
                 } else {
@@ -250,7 +242,7 @@
                                     postHeader.innerHTML = `
                                         <div class="post-avatar"></div>
                                         <div class="post-info">
-                                            <div class="post-username">${username}</div>
+                                            <div class="post-username">Ekbal Boys</div>
                                             <div class="post-time">${new Date(image.datetime * 1000).toLocaleDateString()}</div>
                                         </div>
                                     `;
@@ -260,21 +252,12 @@
                                     img.className = 'image-item';
                                     img.alt = image.title || 'Album image';
                                     
-                                    const actions = document.createElement('div');
-                                    actions.className = 'post-actions';
-                                    actions.innerHTML = `
-                                        <div class="action-button">Like</div>
-                                        <div class="action-button">Comment</div>
-                                        <div class="action-button">Share</div>
-                                    `;
-                                    
                                     img.onerror = () => {
                                         wrapper.remove();
                                     };
 
                                     wrapper.appendChild(postHeader);
                                     wrapper.appendChild(img);
-                                    wrapper.appendChild(actions);
                                     container.appendChild(wrapper);
                                 });
                             }
