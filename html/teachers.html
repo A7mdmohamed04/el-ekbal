@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Teacher Login - ELS School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/mode2.css">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/teachers.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJQVTEZDKG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YJQVTEZDKG');
+</script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="nav-links">
+                <a href="monthly_marks.html">Monthly marks</a> <span style="color: #d3d3d3;">/</span>
+                <a href="timetable.html">Timetables</a> <span style="color: #d3d3d3;">/</span>
+                <a href="groups.html">Groups</a> <span style="color: #d3d3d3;">/</span>
+                <a href="awards.html">Awards</a> <span style="color: #d3d3d3;">/</span>
+                <a href="activities.html">Activities</a> <span style="color: #d3d3d3;">/</span>
+                <a href="about.html">About</a>
+            </div>
+            <div class="logo-container">
+                <a href="index.html" class="logo">EL EKBAL</a>
+                <span class="department-text">BOYS DEPARTMENT</span>
+            </div>
+            <div class="right-icons">
+                <button class="menu-btn">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <a href="index.html" class="home-icon">
+                    <i class="fas fa-home"></i>
+                </a>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <a href="monthly_marks.html">Monthly marks</a>
+            <a href="timetable.html">Timetables</a>
+            <a href="groups.html">Groups</a>
+            <a href="awards.html">Awards</a>
+            <a href="activities.html">Activities</a>
+            <a href="about.html">About</a>
+        </div>
+    </nav>
+
+    <div class="particles" id="particles"></div>
+    
+    <div class="login-container">
+        <div class="login-header">
+            <img src="https://i.imgur.com/sEDDKVj.png" alt="School Logo">
+            <h1>Teacher Login</h1>
+        </div>
+        
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="text" id="teacherCode" placeholder="Enter Teacher Code" required>
+                <i class="fas fa-user"></i>
+            </div>
+            
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+    </div>
+    <script src="../js/mode.js"></script>
+    <script src="../js/close_source.js"></script>
+    <script src="../js/nav.js"></script>
+    <script src="../js/teachers.js"></script>
+</body>
+</html>
