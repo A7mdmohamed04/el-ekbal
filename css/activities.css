@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Oswald;
+}
+
+:root {
+    --primary-color: #003470;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --light-color: #fff;
+    --dark-color: #003470;
+    font-family: 'Oswald', sans-serif;
+}
+
+body {
+    font-family: 'Oswald', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-color: #f0f2f5;
+    color: #1c1e21;
+    padding-top: 80px;
+}
+
+.image-container {
+    max-width: 680px;
+    margin: 20px auto;
+    padding: 0 16px;
+}
+
+.image-wrapper {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.post-header {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+}
+
+.post-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-image: url('https://i.imgur.com/1aYDbH1.png');
+    background-size: cover;
+    margin-right: 12px;
+}
+
+.post-info {
+    flex: 1;
+}
+
+.post-username {
+    font-weight: 600;
+    color: #050505;
+    margin-bottom: 4px;
+}
+
+.post-time {
+    font-size: 12px;
+    color: #65676b;
+}
+
+.post-description {
+    padding: 0 16px 12px;
+    color: #65676b;
+    font-size: 14px;
+}
+
+.image-item {
+    width: 100%;
+    max-height: 700px;
+    object-fit: contain;
+    background: #f0f2f5;
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    color: #65676b;
+}
+
+.error {
+    background: #ffebe9;
+    color: #dc2626;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 600px;
+}
