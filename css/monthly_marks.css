@@ -23,18 +23,22 @@ body {
     font-family: 'Oswald', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
-    padding-top: 80px;
+    padding-top: 60px;
+    overscroll-behavior: none;
+    touch-action: none;
 }
 
 html, body {
-    overflow: hidden;
+    margin: 0;
+    padding: 0;
     height: 100%;
     width: 100%;
+    overflow: hidden !important;
+    position: fixed;
     background: url('https://i.imgur.com/4rRQMQf.png') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     backdrop-filter: blur(3px);
-    position: fixed;
 }
 
 :root {
@@ -45,17 +49,18 @@ html, body {
 }
 
 .main-wrapper {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    width: 100%;
-    padding: 20px;
+    padding: 10px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(0px);
-    position: fixed;
-    top: 0;
-    left: 0;
+    overflow: hidden;
 }
 
 @media (min-width: 769px) {
@@ -80,14 +85,13 @@ html, body {
     position: relative;
     width: 100%;
     max-width: 450px;
-    height: 460px;
+    height: calc(100vh - 80px);
     background: var(--background-color);
     background-size: cover;
     border-radius: 20px;
     box-shadow: 0 20px 40px var(--shadow-color);
     overflow: hidden;
     animation: slideUp 0.8s ease;
-    margin-top: 0;
 }
 
 @keyframes slideUp {
@@ -290,40 +294,25 @@ select:hover, .code:hover {
 }
 
 @media (max-width: 480px) {
-    body {
-        padding-top: 60px;
-        overflow: hidden;
-    }
-
-    .main-wrapper {
-        height: 100%;
-        padding: 10px;
-        position: fixed;
-        top: 60px;
-    }
-
     .content-wrapper {
         max-width: 100%;
-        height: calc(100vh - 80px);
-        overflow: hidden;
-        margin: 0;
+        height: 450px;
     }
 
     .circle-photo {
-        width: 100px;
-        height: 100px;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        width: 150px;
+        height: 150px;
+        margin-top: 15px;
     }
 
     select, .code, .view {
-        padding: 8px 15px;
+        padding: 10px 15px;
         font-size: 14px;
     }
 
     .monthly-marks {
-        font-size: 24px;
-        margin: 5px 0 20px;
+        font-size: 32px;
+        margin: 5px 0 35px;
     }
     
     .info-row {
@@ -338,35 +327,8 @@ select:hover, .code:hover {
     }
 
     .form-group {
-        gap: 8px;
-        margin-top: 0;
-        padding: 0 10px;
-    }
-
-    .button-group {
-        margin-top: 15px;
-    }
-
-    .back-btn, .download-btn {
-        padding: 8px 12px;
-        font-size: 12px;
-        width: 90px;
-    }
-}
-
-@media (max-width: 360px) {
-    .content-wrapper {
-        min-height: 400px;
-    }
-
-    .circle-photo {
-        width: 100px;
-        height: 100px;
-    }
-
-    .monthly-marks {
-        font-size: 20px;
-        margin: 5px 0 15px;
+        gap: 10px;
+        margin-top: -20px;
     }
 }
 
