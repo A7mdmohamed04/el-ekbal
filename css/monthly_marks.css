@@ -23,7 +23,7 @@ body {
     font-family: 'Oswald', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
-    padding-top: 0;
+    padding-top: 80px;
 }
 
 html, body {
@@ -52,7 +52,7 @@ html, body {
     padding: 20px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(0px);
-    margin-top: 80px;
+    margin-top: 0;
 }
 
 @media (min-width: 769px) {
@@ -84,6 +84,7 @@ html, body {
     box-shadow: 0 20px 40px var(--shadow-color);
     overflow: hidden;
     animation: slideUp 0.8s ease;
+    margin-top: 0;
 }
 
 @keyframes slideUp {
