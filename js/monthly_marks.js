@@ -22,23 +22,23 @@ form.addEventListener('submit', async (e) => {
     } else if (grade === 'J6') {
         await fetchJunior6Data(code);
     } else if (grade === 'M1') {
-        await fetchStudentData('m1.json', code, 'كود الطالب', 'اسم الطالب', false, false, true);
+        await fetchStudentData('data/m1.json', code, 'كود الطالب', 'اسم الطالب', false, false, true);
         headControl.textContent = 'Head of the control: Mr. Hassan Magdy';
         headControl.style.opacity = '0';
         headControl.style.animation = 'fadeIn 0.5s ease forwards 0.8s';
     } else if (grade === 'M2') {
-        await fetchStudentData('m2.json', code, 'كود الطالب', 'اسم الطالب', false, false, true);
+        await fetchStudentData('data/m2.json', code, 'كود الطالب', 'اسم الطالب', false, false, true);
         headControl.textContent = 'Head of the control: Mr. Hassan Magdy';
         headControl.style.opacity = '0';
         headControl.style.animation = 'fadeIn 0.5s ease forwards 0.8s';
     } else if (grade === 'S2') {
-        await fetchStudentData('s2.json', code, 'Code', 'Name', true, false, true);
+        await fetchStudentData('data/s2.json', code, 'Code', 'Name', true, false, true);
         headControl.textContent = 'Head of the control: Ms. Nhaad El Masry';
         headControl.style.opacity = '0';
         headControl.style.animation = 'fadeIn 0.5s ease forwards 0.8s';
         document.querySelector('.content-wrapper').classList.add('senior');
     } else if (grade === 'S1') {
-        await fetchStudentData('s1.json', code, 'code', 'name', true, false, true);
+        await fetchStudentData('data/s1.json', code, 'code', 'name', true, false, true);
         headControl.textContent = 'Head of the control: Ms. Nhaad El Masry';
         headControl.style.opacity = '0';
         headControl.style.animation = 'fadeIn 0.5s ease forwards 0.8s';
@@ -48,7 +48,7 @@ form.addEventListener('submit', async (e) => {
 
 async function fetchJunior4Data(code) {
     try {
-        const response = await fetch('j4.json');
+        const response = await fetch('data/j4.json');
         const data = await response.json();
         const student = data.find(s => s['كود الطالب'] === code);
 
@@ -94,7 +94,7 @@ async function fetchJunior4Data(code) {
 
 async function fetchJunior5Data(code) {
     try {
-        const response = await fetch('j5.json');
+        const response = await fetch('data/j5.json');
         const data = await response.json();
         const student = data.find(s => s['كود الطالب'] === code);
 
@@ -140,7 +140,7 @@ async function fetchJunior5Data(code) {
 
 async function fetchJunior6Data(code) {
     try {
-        const response = await fetch('j6.json');
+        const response = await fetch('data/j6.json');
         const data = await response.json();
         const student = data.find(s => s['كود الطالب'] === code);
 
