@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/scroll.css">
+    <link rel="stylesheet" href="css/mode2.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/timetables.css">
+    
+
+    <title>Timetable</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="nav-links">
+                <a href="index.html">Home</a>  <span style="color: #d3d3d3;">/</span>
+                <a href="monthly_marks.html">Monthly marks</a> <span style="color: #d3d3d3;">/</span>
+                <a href="groups.html">Groups</a> <span style="color: #d3d3d3;">/</span>
+                <a href="awards.html">Awards</a> <span style="color: #d3d3d3;">/</span>
+                <a href="activities.html">Activities</a> <span style="color: #d3d3d3;">/</span>
+                <a href="about.html">About</a>
+            </div>
+            <div class="logo-container">
+                <a href="index.html" class="logo">EL EKBAL</a>
+                <span class="department-text">BOYS DEPARTMENT</span>
+            </div>
+            <div class="right-icons">
+                <a href="index.html" class="home-icon">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a href="teachers.html" class="teacher-icon fas fa-chalkboard-teacher"></a>
+                <button class="menu-btn">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <a href="monthly_marks.html">Monthly marks</a>
+            <a href="groups.html">Groups</a>
+            <a href="awards.html">Awards</a>
+            <a href="activities.html">Activities</a>
+            <a href="about.html">About</a>
+        </div>
+    </nav>
+
+    <div class="timetable-container">
+        <h2 class="timetable-title">Choose Your Grade:</h2>
+        <select class="class-selector" id="gradeSelect" onchange="checkSelections()">
+            <option value="" disabled selected>Choose a Grade</option>
+            <option value="j4">Junior 4</option>
+            <option value="j5">Junior 5</option>
+            <option value="j6">Junior 6</option>
+            <option value="m1">Middle 1</option>
+            <option value="m2">Middle 2</option>
+            <option value="s1">Senior 1</option>
+            <option value="s2">Senior 2</option>
+        </select>
+
+        <select class="class-selector" id="classSelect" onchange="checkSelections()">
+            <option value="" disabled selected>Choose a Class</option>
+            <option value="A">Class A</option>
+            <option value="B">Class B</option>
+            <option value="C">Class C</option>
+            <option value="D">Class D</option>
+        </select>
+
+        <div class="placeholder-image" style="background-color: var(--background-color);">
+            <div id="default-text">No Grade is selected</div>
+            <img src="https://i.ibb.co/z4cjF8w/TABLE-JUNIOR-1.jpg" class="timetable-image" id="j4a-timetable" alt="Junior Four Class A Timetable">
+            <img src="https://i.ibb.co/g3Y5Rfc/TABLE-JUNIOR-2.jpg" class="timetable-image" id="j4b-timetable" alt="Junior Four Class B Timetable">
+            <img src="https://i.ibb.co/dGnYm0w/TABLE-JUNIOR-3.jpg" class="timetable-image" id="j4c-timetable" alt="Junior Four Class C Timetable">
+            <img src="https://i.ibb.co/vPJRvq1/TABLE-JUNIOR-4.jpg" class="timetable-image" id="j4d-timetable" alt="Junior Four Class D Timetable">
+            <img src="https://i.ibb.co/sHYz7rR/TABLE-JUNIOR-5.jpg" class="timetable-image" id="j5a-timetable" alt="Junior Five Class A Timetable">
+            <img src="https://i.ibb.co/7G9wHmr/TABLE-JUNIOR-6.jpg" class="timetable-image" id="j5b-timetable" alt="Junior Five Class B Timetable">
+            <img src="https://i.ibb.co/NYzk5VF/TABLE-JUNIOR-7.jpg" class="timetable-image" id="j5c-timetable" alt="Junior Five Class C Timetable">
+            <img src="https://i.ibb.co/2YQjr0w/TABLE-JUNIOR-8.jpg" class="timetable-image" id="j5d-timetable" alt="Junior Five Class D Timetable">
+            <img src="https://i.ibb.co/ZYVHqQG/TABLE-JUNIOR-10.jpg" class="timetable-image" id="j6a-timetable" alt="Junior Six Class A Timetable">
+            <img src="https://i.ibb.co/MhrQw16/TABLE-JUNIOR-11.jpg" class="timetable-image" id="j6b-timetable" alt="Junior Six Class B Timetable">
+            <img src="https://i.ibb.co/7GCnnq3/TABLE-JUNIOR-12.jpg" class="timetable-image" id="j6c-timetable" alt="Junior Six Class C Timetable">
+            <img src="https://i.ibb.co/n8VLc5z/M1.png" class="timetable-image" id="m1a-timetable" alt="Middle One Class A Timetable">
+            <img src="https://i.ibb.co/zV1zTSW/1-A-page-0001.jpg" class="timetable-image" id="s1a-timetable" alt="Senior One Class A Timetable">
+            <img src="https://i.ibb.co/zNknjmB/1-B-page-0001.jpg" class="timetable-image" id="s1b-timetable" alt="Senior One Class B Timetable">
+            <img src="https://i.ibb.co/gDWmR4w/1-C-page-0001.jpg" class="timetable-image" id="s1c-timetable" alt="Senior One Class C Timetable">
+            <img src="https://i.ibb.co/M9PTV4f/1d-page-0001.jpg" class="timetable-image" id="s1d-timetable" alt="Senior One Class D Timetable">
+            <img src="https://i.ibb.co/chK2vJh/1B.jpg" class="timetable-image" id="m1b-timetable" alt="Middle One Class B Timetable">
+            <img src="https://i.ibb.co/qmLs9Ht/1C.jpg" class="timetable-image" id="m1c-timetable" alt="Middle One Class C Timetable">
+            <img src="https://i.ibb.co/zJj00BY/1D.jpg" class="timetable-image" id="m1d-timetable" alt="Middle One Class D Timetable">
+            <img src="https://i.ibb.co/WDY1CmT/2A-1.jpg" class="timetable-image" id="s2a-timetable" alt="Senior Two Class A Timetable">
+            <img src="https://i.ibb.co/4pvJD1J/2B-1.jpg" class="timetable-image" id="s2b-timetable" alt="Senior Two Class B Timetable">
+            <img src="https://i.ibb.co/gWpGPps/2C-1.jpg" class="timetable-image" id="s2c-timetable" alt="Senior Two Class C Timetable">
+            <img src="https://i.ibb.co/h90XR7Y/2D-1.jpg" class="timetable-image" id="s2d-timetable" alt="Senior Two Class D Timetable">
+            <img src="https://i.ibb.co/kXFtyTZ/2A.jpg" class="timetable-image" id="m2a-timetable" alt="Middle Two Class A Timetable">
+            <img src="https://i.ibb.co/DwnHM6J/2B.jpg" class="timetable-image" id="m2b-timetable" alt="Middle Two Class B Timetable">
+            <img src="https://i.ibb.co/zNXPSkW/2C.jpg" class="timetable-image" id="m2c-timetable" alt="Middle Two Class C Timetable">
+            <img src="https://i.ibb.co/GRxsTXH/2D.jpg" class="timetable-image" id="m2d-timetable" alt="Middle Two Class D Timetable">
+        </div>
+        <div class="image-controls">
+            <button class="control-btn" onclick="toggleFullscreen()" title="Fullscreen">
+                <i class="fas fa-expand"></i> Fullscreen
+            </button>
+        </div>
+    </div>
+
+    <div class="fullscreen-overlay" onclick="closeFullscreen()">
+        <button class="close-btn" onclick="closeFullscreen()">×</button>
+        <img class="fullscreen-image" src="" alt="Fullscreen view">
+    </div>
+    <script src="js/mode.js"></script>
+    <script src="js/close_source.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/timetables.js"></script>
+</body>
+</html>
