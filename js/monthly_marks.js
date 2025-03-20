@@ -367,7 +367,7 @@ async function fetchStudentData(jsonFile, code, codeKey = 'كود الطالب',
                     ['Math', 'Math', 15],
                     ['Int.Sci', 'Int.Sci', 15],
                     ['Histroy', 'History', 15],
-                    ['Philosophy', 'Philosophy', 15],
+                    ['Philosophy', 'Philosophy', 18],
                     ['Sec.Language', 'Second Language', 15],
                     ['Religion', 'Religion', 15],
                     ['Civics', 'Civics', 3],
@@ -519,7 +519,7 @@ downloadBtn.addEventListener('click', async () => {
                 </div>
                 <div class="certificate-content">
                     <div class="student-details">
-                        <div class="detail-row">
+                        <div class="detail-column">
                             <div class="detail-item">
                                 <p class="detail-label">Student Name</p>
                                 <p class="detail-value student-name-rtl">${document.querySelector('.student-name').textContent}</p>
@@ -542,10 +542,13 @@ downloadBtn.addEventListener('click', async () => {
                 <div class="certificate-footer">
                     <div class="signatures">
                         <div class="signature">
+                            <div class="sign-line"></div>
                             <p>School Principal</p>
                             <p>Mr. Magdy Salama</p>
                         </div>
                         <div class="signature">
+                            <img src="images/logo/Dr_Ahmed_Abdelfatah.png" class="stamp" alt="Dr. Ahmed Abdelfatah Stamp">
+                            <div class="sign-line"></div>
                             <p>Headmaster</p>
                             <p>Dr. Ahmed Abdelfatah</p>
                         </div>
@@ -555,6 +558,7 @@ downloadBtn.addEventListener('click', async () => {
                         Web developed by<br>Ahmed Kabary & Youssief Zidan
                     </div>
                 </div>
+                <img src="images/logo/logo.png" class="pdf-logo" alt="Logo">
             </div>
         `;
 
@@ -601,13 +605,15 @@ downloadBtn.addEventListener('click', async () => {
                 .student-details {
                     margin: 30px 0;
                 }
-                .detail-row {
+                .detail-column {
                     display: flex;
-                    justify-content: space-around;
+                    flex-direction: column;
+                    align-items: center;
                     margin-bottom: 15px;
                 }
                 .detail-item {
                     text-align: center;
+                    margin-bottom: 10px;
                 }
                 .detail-label {
                     color: var(--primary-color);
@@ -645,6 +651,21 @@ downloadBtn.addEventListener('click', async () => {
                     text-align: center;
                     width: 200px;
                     margin-top: 20px;
+                    position: relative;
+                }
+                .sign-line {
+                    width: 100%;
+                    height: 1px;
+                    background: #000;
+                    margin-bottom: 10px;
+                }
+                .stamp {
+                    position: absolute;
+                    top: -150px; /* Adjusted to keep the same location */
+                    right: 0; /* Adjust as needed */
+                    width: 220px; /* Increased size by 100px */
+                    transform: rotate(-15deg); /* Adjust angle as needed */
+                    opacity: 0.8; /* Adjust opacity as needed */
                 }
                 h4 {
                     text-align: center;
@@ -659,6 +680,14 @@ downloadBtn.addEventListener('click', async () => {
                     text-align: center;
                     font-size: 10px;
                     color: #999;
+                }
+                .pdf-logo {
+                    position: absolute;
+                    bottom: 10px;
+                    right: 10px;
+                    width: 150px;
+                    height: auto;
+                    opacity: 0.5;
                 }
             </style>
         `;
