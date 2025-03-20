@@ -457,36 +457,42 @@ function closePopup(popupId) {
 }
 
 function showLoadingScreen() {
-    const loadingScreen = document.createElement('div');
-    loadingScreen.className = 'loading-screen';
-    loadingScreen.innerHTML = `
-        <div class="loading-content">
-            <div class="school-logo">
-                <img src="https://i.imgur.com/Vy4uZYA.png" alt="School Logo" />
-            </div>
-            <div class="loading-spinner">
-                <svg class="circular" viewBox="25 25 50 50">
-                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10"/>
-                </svg>
-            </div>
-            <div class="loading-text">Loading Results...</div>
-            <div class="loading-progress">
-                <div class="progress-bar"></div>
-            </div>
-            <div class="developers-credit">
-                Web developed by<br>Ahmed Kabary & Youssief Zidan
-            </div>
-        </div>
-    `;
-    document.querySelector('.content-wrapper').appendChild(loadingScreen);
+    // First, fade out the existing content
+    const placeholder = document.querySelector('.placeholder');
+    placeholder.style.opacity = '0';
+    placeholder.style.transition = 'opacity 0.5s ease';
 
-    // Remove loading screen after data is loaded
+    // Wait for fade out to complete before showing loading screen
     setTimeout(() => {
-        loadingScreen.classList.add('fade-out');
+        const loadingScreen = document.createElement('div');
+        loadingScreen.className = 'loading-screen';
+        loadingScreen.innerHTML = `
+            <div class="loading-content">
+                <div class="loading-spinner">
+                    <svg class="circular" viewBox="25 25 50 50">
+                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
+                    </svg>
+                </div>
+                <div class="loading-text">Loading Results</div>
+                <div class="loading-progress">
+                    <div class="progress-bar"></div>
+                </div>
+                <div class="developers-credit">
+                    Web developed by<br>Ahmed Kabary & Youssief Zidan
+                </div>
+            </div>
+        `;
+        document.querySelector('.content-wrapper').appendChild(loadingScreen);
+
+        // Reset placeholder opacity after loading screen is removed
         setTimeout(() => {
-            loadingScreen.remove();
-        }, 500);
-    }, 4000);
+            loadingScreen.classList.add('fade-out');
+            setTimeout(() => {
+                loadingScreen.remove();
+                placeholder.style.opacity = '1';
+            }, 500);
+        }, 4000);
+    }, 500); // Wait for fade out animation to complete
 }
 
 downloadBtn.addEventListener('click', async () => {
