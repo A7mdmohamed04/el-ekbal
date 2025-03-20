@@ -534,7 +534,6 @@ downloadBtn.addEventListener('click', async () => {
                     </div>
                     <div class="results-section">
                         <h4>Subject Results</h4>
-                        <p class="month-label">March</p>
                         <div class="results-grid">
                             ${document.querySelector('.info-row').innerHTML}
                         </div>
@@ -543,12 +542,10 @@ downloadBtn.addEventListener('click', async () => {
                 <div class="certificate-footer">
                     <div class="signatures">
                         <div class="signature">
-                            <div class="sign-line"></div>
                             <p>School Principal</p>
                             <p>Mr. Magdy Salama</p>
                         </div>
                         <div class="signature">
-                            <div class="sign-line"></div>
                             <p>Headmaster</p>
                             <p>Dr. Ahmed Abdelfatah</p>
                         </div>
@@ -647,22 +644,12 @@ downloadBtn.addEventListener('click', async () => {
                 .signature {
                     text-align: center;
                     width: 200px;
-                }
-                .sign-line {
-                    width: 100%;
-                    height: 1px;
-                    background: #000;
-                    margin-bottom: 10px;
-                }
-                .month-label {
-                    text-align: center;
-                    font-style: italic;
-                    margin: 10px 0;
+                    margin-top: 20px;
                 }
                 h4 {
                     text-align: center;
                     color: #003470;
-                    margin-bottom: 5px;
+                    margin-bottom: 15px;
                 }
                 .developers-credit {
                     position: absolute;
