@@ -1,0 +1,827 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Oswald;
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+:root {
+    --primary-color: #003470;
+    --secondary-color: #003470;
+    --accent-color: #e74c3c;
+    --light-color: #fff;
+    --dark-color: #003470;
+    --background-color: #f5f5f5;
+    --text-color: #000000;
+    font-family: 'Oswald', sans-serif;
+}
+
+body {
+    font-family: 'Oswald', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding-top: 60px;
+    overscroll-behavior: none;
+    touch-action: none;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden !important;
+    position: fixed;
+    background: url('https://i.imgur.com/4rRQMQf.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    backdrop-filter: blur(3px);
+}
+
+:root {
+    --primary-color: #003470;
+    --secondary-color: #0084ff;
+    --accent-color: #fff;
+    --shadow-color: rgba(0, 123, 255, 0.3);
+}
+
+.main-wrapper {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(0px);
+    overflow: hidden;
+}
+
+@media (min-width: 769px) {
+    .content-wrapper {
+        margin-top: -40px;
+        height: 500px;
+    }
+    
+    .head-control {
+        margin: 5px 0 !important;
+    }
+
+    .button-group {
+        margin-top: 0px;
+    }
+
+    .content-wrapper.senior .button-group {
+        margin-top: 5px;
+    }
+}
+
+.content-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    height: 450px;
+    background: var(--background-color);
+    background-size: cover;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px var(--shadow-color);
+    overflow: hidden;
+    animation: slideUp 0.8s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.circle-photo {
+    width: 140px;
+    height: 140px;
+    position: relative;
+    margin: 20px auto 10px;
+    border-radius: 50%;
+    padding: 8px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 0 10px 20px var(--shadow-color);
+    transition: opacity 0.5s ease;
+}
+
+.circle-photo img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: white;
+    padding: 5px;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+.placeholder {
+    padding: 0 20px 30px;
+    text-align: center;
+    height: 100%;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+select, .code, .view {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;
+    font-size: 16px;
+    color: var(--primary-color);
+    background: white;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23007bff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    padding-right: 40px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.view {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+select:hover, .code:hover {
+    border-color: var(--secondary-color);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.view:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px var(--shadow-color);
+}
+
+.monthly-marks {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--shadow-color);
+    margin: 5px 0 15px;
+    transition: opacity 0.5s ease;
+}
+
+.student-info {
+    display: none;
+    padding: 15px;
+    background: white;
+    border-radius: 20px;
+    margin-top: 10px;
+    animation: fadeIn 0.5s ease;
+    height: calc(100% - 20px);
+    position: relative;
+    padding-bottom: 45px;
+}
+
+.student-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.student-name {
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--primary-color);
+    padding: 5px;
+    margin-bottom: 5px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.sub-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.lang-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FFD700, #B8860B);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards 0.2s;
+    box-shadow: 0 2px 4px rgba(184, 134, 11, 0.3);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.section-label {
+    background: linear-gradient(135deg, #FFD700, #B8860B);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 14px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards 0.3s;
+    box-shadow: 0 2px 4px rgba(184, 134, 11, 0.3);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.subjects-container {
+    background: #f8f9fa;
+    border-radius: 25px;
+    padding: 12px;
+    margin-top: 5px;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 15px;
+}
+
+.info-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 8px;
+    height: auto;
+    overflow: visible;
+}
+
+.info-row > div {
+    background: white;
+    padding: 8px 12px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    min-height: 45px;
+    width: 100%;
+}
+
+.info-row > div span.subject-name {
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
+}
+
+.info-row > div span.subject-grade {
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    margin-left: 8px;
+}
+
+.info-row > div[style*="background-color"] {
+    min-height: 45px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 8px;
+    color: white;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.info-row > div:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 52, 112, 0.15);
+    border-color: var(--primary-color);
+}
+
+/* Remove old second language styling */
+.info-row > div.second-language {
+    display: none;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards 1s;
+}
+
+.back-btn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(0, 52, 112, 0.2);
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards 0.8s;
+}
+
+.back-btn i {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 52, 112, 0.3);
+}
+
+.back-btn:hover i {
+    transform: translateX(-3px);
+}
+
+/* Custom scrollbar for info-row */
+.info-row::-webkit-scrollbar {
+    width: 6px;
+}
+
+.info-row::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.info-row::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.info-row::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .content-wrapper {
+        max-width: 100%;
+        height: 450px;
+    }
+
+    .circle-photo {
+        width: 150px;
+        height: 150px;
+        margin-top: 15px;
+    }
+
+    select, .code, .view {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .monthly-marks {
+        font-size: 32px;
+        margin: 5px 0 35px;
+    }
+    
+    .subjects-container {
+        padding: 10px;
+    }
+
+    .info-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+        padding: 6px;
+    }
+
+    .info-row > div {
+        padding: 8px 10px;
+        min-height: 40px;
+    }
+
+    .info-row > div span.subject-name {
+        font-size: 10px;
+    }
+
+    .info-row > div span.subject-grade {
+        font-size: 11px;
+    }
+
+    .form-group {
+        gap: 10px;
+        margin-top: -20px;
+    }
+
+    .loading-text {
+        font-size: 20px;
+    }
+
+    .student-name {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .back-btn {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+}
+
+.error-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    animation: fadeIn 0.5s ease;
+}
+
+.error-popup.active {
+    display: block;
+}
+
+.error-popup p {
+    font-size: 16px;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.error-popup button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Loading Screen Styles */
+.loading-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    border-radius: 20px;
+}
+
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.loading-spinner {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin: 20px auto;
+}
+
+.circular {
+    animation: rotate 2s linear infinite;
+    height: 100%;
+    transform-origin: center center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.path {
+    stroke: #003470;
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+}
+
+.loading-text {
+    color: #003470;
+    font-size: 18px;
+    margin: 15px 0;
+    font-weight: 500;
+    text-align: center;
+    animation: fadeInOut 2s infinite;
+}
+
+.loading-progress {
+    width: 80%;
+    height: 4px;
+    background: rgba(0, 52, 112, 0.2);
+    border-radius: 2px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #003470;
+    border-radius: 2px;
+    animation: progress 4s linear forwards;
+}
+
+.loading-content .developers-credit {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 12px;
+    opacity: 0.8;
+    margin-top: 0;
+}
+
+/* Loading Animations */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35px;
+    }
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124px;
+    }
+}
+
+@keyframes progress {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+
+}
+
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+/* Animation for subject entries */
+@keyframes slideIn {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.info-row > div {
+    animation: slideIn 0.3s ease forwards;
+}
+
+/* Remove the old section styling */
+.info-row > div.section {
+    display: none;
+}
+
+/* Add hover effects */
+.lang-circle:hover, .section-label:hover {
+    background: linear-gradient(135deg, #B8860B, #FFD700);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(184, 134, 11, 0.4);
+}
+
+/* Update download button styles */
+.download-btn {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    min-width: 180px;
+    height: 45px;
+    padding: 0 30px;
+    border-radius: 22.5px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.download-btn:hover {
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.download-btn:active {
+    transform: translateX(-50%) translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.download-btn i {
+    font-size: 16px;
+}
+
+.download-btn span {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* Certificate styles for PDF */
+.certificate-container {
+    font-family: 'Oswald', sans-serif !important;
+}
+
+.certificate-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.certificate-logo {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+.certificate-title {
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.certificate-content {
+    margin: 30px 0;
+}
+
+.student-details {
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.certificate-footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.control-grade {
+    opacity: 0.7;
+}
+
+.control-grade .subject-grade {
+    color: #666;
+    font-style: italic;
+    font-size: 11px !important;
+}
+
+/* Remove head-control styles */
+.head-control {
+    display: none;
+}
+
+/* Add developers credit styles */
+.developers {
+    display: none;
+}
+
+/* Responsive adjustments for download button */
+@media (max-width: 768px) {
+    .download-btn {
+        bottom: -15px;
+    }
+    
+    .student-info {
+        padding-bottom: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .download-btn {
+        bottom: -18px;
+    }
+    
+    .student-info {
+        padding-bottom: 30px;
+    }
+}
+}
