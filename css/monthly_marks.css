@@ -144,6 +144,8 @@ html, body {
     text-align: center;
     height: 100%;
     overflow: hidden;
+    opacity: 1;
+    transition: opacity 0.5s ease;
 }
 
 .form-group {
@@ -193,13 +195,6 @@ select:hover, .code:hover {
 .view:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 20px var(--shadow-color);
-}
-
-.developers {
-    margin-top: 20px;
-    color: var(--primary-color);
-    font-size: 14px;
-    opacity: 0.8;
 }
 
 .monthly-marks {
@@ -465,11 +460,6 @@ select:hover, .code:hover {
         font-size: 20px;
     }
 
-    .developers-credit {
-        font-size: 14px;
-        bottom: 30px;
-    }
-
     .student-name {
         font-size: 14px;
         margin-bottom: 8px;
@@ -524,7 +514,7 @@ select:hover, .code:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -538,19 +528,6 @@ select:hover, .code:hover {
     align-items: center;
     width: 100%;
     padding: 20px;
-}
-
-.school-logo {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 20px;
-    animation: pulse 2s infinite;
-}
-
-.school-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
 }
 
 .loading-spinner {
@@ -574,7 +551,7 @@ select:hover, .code:hover {
 }
 
 .path {
-    stroke: #ffffff;
+    stroke: #003470;
     stroke-dasharray: 89, 200;
     stroke-dashoffset: 0;
     stroke-linecap: round;
@@ -582,7 +559,7 @@ select:hover, .code:hover {
 }
 
 .loading-text {
-    color: white;
+    color: #003470;
     font-size: 18px;
     margin: 15px 0;
     font-weight: 500;
@@ -593,7 +570,7 @@ select:hover, .code:hover {
 .loading-progress {
     width: 80%;
     height: 4px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 52, 112, 0.2);
     border-radius: 2px;
     margin: 15px 0;
     overflow: hidden;
@@ -602,19 +579,21 @@ select:hover, .code:hover {
 .progress-bar {
     width: 0%;
     height: 100%;
-    background: white;
+    background: #003470;
     border-radius: 2px;
     animation: progress 4s linear forwards;
 }
 
-.developers-credit {
-    color: white;
-    font-size: 14px;
+.loading-content .developers-credit {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
     text-align: center;
-    line-height: 1.5;
+    color: var(--primary-color);
+    font-size: 12px;
     opacity: 0.8;
-    margin-top: 20px;
-    animation: fadeIn 0.5s ease forwards;
+    margin-top: 0;
 }
 
 /* Loading Animations */
@@ -670,6 +649,7 @@ select:hover, .code:hover {
     50% {
         opacity: 0.5;
     }
+
 }
 
 .fade-out {
@@ -710,21 +690,21 @@ select:hover, .code:hover {
     box-shadow: 0 3px 6px rgba(184, 134, 11, 0.4);
 }
 
-/* Add download button styles */
+/* Update download button styles */
 .download-btn {
     position: absolute;
     bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    border-radius: 20px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border: none;
     color: white;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
     font-size: 14px;
     box-shadow: 0 3px 10px rgba(0, 52, 112, 0.2);
     transition: all 0.3s ease;
@@ -733,12 +713,17 @@ select:hover, .code:hover {
 }
 
 .download-btn:hover {
-    transform: translateX(-50%) translateY(-2px);
+    transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 52, 112, 0.3);
 }
 
 .download-btn i {
-    font-size: 16px;
+    font-size: 20px;
+}
+
+/* Hide the "Download Results" text */
+.download-btn span {
+    display: none;
 }
 
 /* Certificate styles for PDF */
@@ -801,4 +786,10 @@ select:hover, .code:hover {
 /* Remove head-control styles */
 .head-control {
     display: none;
+}
+
+/* Add developers credit styles */
+.developers {
+    display: none;
+}
 }
