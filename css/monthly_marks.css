@@ -214,6 +214,7 @@ select:hover, .code:hover {
     animation: fadeIn 0.5s ease;
     height: calc(100% - 20px);
     position: relative;
+    padding-bottom: 45px;
 }
 
 .student-header {
@@ -278,6 +279,7 @@ select:hover, .code:hover {
     padding: 12px;
     margin-top: 5px;
     box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 15px;
 }
 
 .info-row {
@@ -693,11 +695,14 @@ select:hover, .code:hover {
 /* Update download button styles */
 .download-btn {
     position: absolute;
-    bottom: 15px;
-    right: 15px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    min-width: 180px;
+    height: 45px;
+    padding: 0 30px;
+    border-radius: 22.5px;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border: none;
     color: white;
@@ -705,25 +710,31 @@ select:hover, .code:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     font-size: 14px;
-    box-shadow: 0 3px 10px rgba(0, 52, 112, 0.2);
+    font-weight: 500;
     transition: all 0.3s ease;
-    opacity: 0;
-    animation: fadeIn 0.5s ease forwards 1s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
 }
 
 .download-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 52, 112, 0.3);
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.download-btn:active {
+    transform: translateX(-50%) translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .download-btn i {
-    font-size: 20px;
+    font-size: 16px;
 }
 
-/* Hide the "Download Results" text */
 .download-btn span {
-    display: none;
+    display: inline-block;
+    white-space: nowrap;
 }
 
 /* Certificate styles for PDF */
@@ -791,5 +802,26 @@ select:hover, .code:hover {
 /* Add developers credit styles */
 .developers {
     display: none;
+}
+
+/* Responsive adjustments for download button */
+@media (max-width: 768px) {
+    .download-btn {
+        bottom: -15px;
+    }
+    
+    .student-info {
+        padding-bottom: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .download-btn {
+        bottom: -18px;
+    }
+    
+    .student-info {
+        padding-bottom: 30px;
+    }
 }
 }
