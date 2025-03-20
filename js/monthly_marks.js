@@ -13,9 +13,9 @@ const FIELD_MAPPINGS = {
   "Biology ": "Biology",
   "Chemistry ": "Chemistry", 
   "Physics ": "Physics",
-  "Int.Sci": "Science",
+  "Int.Sci": "Int.Sci",
   "SCIENCE": "Science",
-  "N.S": "Science",
+  "N.S": "N.S",
   
   // Languages
   "Sec.Language": "SecondLanguage",
@@ -28,7 +28,7 @@ const FIELD_MAPPINGS = {
   // English
   "English(O.L)": "English",
   "ENGLISH O.L": "English",
-  "English( H.L)": "EnglishHL",
+  "English( H.L)": "H.L",
   
   // Religion
   "RELIGIN": "Religion",
@@ -36,7 +36,7 @@ const FIELD_MAPPINGS = {
   // Computer/Tech
   "COMPUTER": "Computer",
   "ICT": "Computer",
-  "D.S": "DataScience",
+  "D.S": "D.S",
   
   // Art
   "ART": "Art",
@@ -65,7 +65,7 @@ const FIELD_MAPPINGS = {
   "MATH": "Math",
   "SCIENCE": "Science",
   "N.S": "Science",
-  "H.L": "HigherLevel",
+  "H.L": "H.L",
   "ART": "Art",
   "COMPUTER": "Computer",
   "RELIGIN": "Religion",
@@ -75,13 +75,13 @@ const FIELD_MAPPINGS = {
   "Arabic": "Arabic",
   "English": "English",
   "Math": "Math",
-  "Int.Sci": "Science",
+  "Int.Sci": "Int.Sci",
   "Histroy": "History",
   "Philosophy": "Philosophy",
   "Sec.Language": "Second Language",
   "Religion": "Religion",
   "Civics": "Civics",
-  "A.L": "Activity",
+  "A.L": "A.L",
 };
 
 function standardizeFieldName(field) {
@@ -365,20 +365,20 @@ async function fetchStudentData(jsonFile, code, codeKey = 'كود الطالب',
                     ['Arabic', 'Arabic', 15],
                     ['English', 'English', 15],
                     ['Math', 'Math', 15],
-                    ['Int.Sci', 'Science', 15],
+                    ['Int.Sci', 'Int.Sci', 15],
                     ['Histroy', 'History', 15],
                     ['Philosophy', 'Philosophy', 15],
                     ['Sec.Language', 'Second Language', 15],
                     ['Religion', 'Religion', 15],
                     ['Civics', 'Civics', 3],
-                    ['A.L', 'Activity', 15]
+                    ['A.L', 'A.L', 15]
                 ] : isMiddleSchool ? [
                     ['ARABIC', 'Arabic', 15],
                     ['ENGLISH O.L', 'English', 15],
                     ['MATH', 'Math', 15],
                     ['SCIENCE', 'Science', 15],
-                    ['N.S', 'Natural Science', 15],
-                    ['H.L', 'Higher Level', 15],
+                    ['N.S', 'N.S', 15],
+                    ['H.L', 'H.L', 15],
                     ['ART', 'Art', 15],
                     ['COMPUTER', 'Computer', 15],
                     ['RELIGIN', 'Religion', 15],
@@ -522,21 +522,15 @@ downloadBtn.addEventListener('click', async () => {
                         <div class="detail-row">
                             <div class="detail-item">
                                 <p class="detail-label">Student Name</p>
-                                <p class="detail-value">${document.querySelector('.student-name').textContent}</p>
+                                <p class="detail-value student-name-rtl">${document.querySelector('.student-name').textContent}</p>
                             </div>
-                            <div class="detail-item">
-                                <p class="detail-label">Grade Level</p>
-                                <p class="detail-value">${document.querySelector('select[name="cl"]').value}</p>
-                            </div>
-                        </div>
-                        ${document.querySelector('.section-label') ? 
-                          `<div class="detail-row">
-                              <div class="detail-item">
+                            ${document.querySelector('.section-label') ? 
+                              `<div class="detail-item">
                                   <p class="detail-label">Section</p>
                                   <p class="detail-value">${document.querySelector('.section-label').textContent}</p>
-                              </div>
-                           </div>` : ''
-                        }
+                              </div>` : ''
+                            }
+                        </div>
                     </div>
                     <div class="results-section">
                         <h4>Subject Results</h4>
@@ -627,6 +621,12 @@ downloadBtn.addEventListener('click', async () => {
                 .detail-value {
                     font-size: 16px;
                 }
+                .student-name-rtl {
+                    direction: rtl;
+                    text-align: center;
+                    font-size: 18px;
+                    font-weight: bold;
+                }
                 .results-section {
                     margin: 20px 0;
                 }
@@ -646,98 +646,67 @@ downloadBtn.addEventListener('click', async () => {
                 }
                 .signature {
                     text-align: center;
+                    width: 200px;
                 }
                 .sign-line {
-                    width: 150px;
+                    width: 100%;
                     height: 1px;
-                    background: #003470;
-                    margin: 10px auto;
-                }
-                .certificate-stamp {
-                    width: 100px;
-                    height: 100px;
-                    border: 2px solid #003470;
-                    border-radius: 50%;
-                    position: absolute;
-                    right: 50px;
-                    bottom: 30px;
-                    opacity: 0.2;
-                }
-                .developers-credit {
-                    margin-top: 20px;
-                    font-size: 12px;
-                    color: #666;
-                    text-align: center;
-                    line-height: 1.4;
+                    background: #000;
+                    margin-bottom: 10px;
                 }
                 .month-label {
                     text-align: center;
-                    color: var(--primary-color);
-                    margin: 10px 0 15px;
-                    font-size: 16px;
+                    font-style: italic;
+                    margin: 10px 0;
                 }
-                .logo-circle {
+                h4 {
+                    text-align: center;
+                    color: #003470;
+                    margin-bottom: 5px;
+                }
+                .developers-credit {
                     position: absolute;
-                    bottom: 40px;
-                    right: 40px;
-                    width: 100px;
-                    height: 100px;
-                    border-radius: 50%;
-                    background: white;
-                    border: 2px solid var(--primary-color);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    overflow: hidden;
-                }
-                
-                .certificate-logo {
-                    width: 80px;
-                    height: 80px;
-                    object-fit: contain;
-                    opacity: 0.3;
-                }
-                
-                .certificate-footer {
-                    position: relative;
-                    padding-bottom: 40px;
-                    margin-right: 0;
+                    bottom: 20px;
+                    left: 0;
+                    right: 0;
+                    text-align: center;
+                    font-size: 10px;
+                    color: #999;
                 }
             </style>
         `;
-
-        certificateContainer.insertAdjacentHTML('afterbegin', certificateStyles);
+        
         document.body.appendChild(certificateContainer);
-
-        // Wait for everything to render
-        await new Promise(resolve => setTimeout(resolve, 1000));
-
+        const styleElement = document.createElement('style');
+        styleElement.textContent = certificateStyles;
+        document.head.appendChild(styleElement);
+        
+        // Use html2canvas to capture the certificate
         const canvas = await html2canvas(certificateContainer, {
             scale: 2,
             useCORS: true,
-            logging: true,
-            allowTaint: true,
-            backgroundColor: 'white'
+            logging: false
         });
-
+        
+        // Create PDF
         const { jsPDF } = window.jspdf;
-        const doc = new jsPDF('p', 'mm', 'a4');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const imgData = canvas.toDataURL('image/png');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        const imgWidth = canvas.width;
+        const imgHeight = canvas.height;
+        const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+        const imgX = (pdfWidth - imgWidth * ratio) / 2;
+        const imgY = 0;
         
-        const imgData = canvas.toDataURL('image/jpeg', 1.0);
-        const pdfWidth = doc.internal.pageSize.getWidth();
-        const pdfHeight = doc.internal.pageSize.getHeight();
-        
-        doc.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-        
-        // Generate filename with student name and date
-        const studentName = document.querySelector('.student-name').textContent;
-        const date = new Date().toLocaleDateString('en-GB').replace(/\//g, '-');
-        const filename = `${studentName}_Results_${date}.pdf`;
-        
-        doc.save(filename);
+        pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+        pdf.save('Monthly_Results.pdf');
         
         // Clean up
-        certificateContainer.remove();
+        document.body.removeChild(certificateContainer);
+        document.head.removeChild(styleElement);
+        
     } catch (error) {
         console.error('Error generating PDF:', error);
         alert('Error generating PDF. Please try again.');
