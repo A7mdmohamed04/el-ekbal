@@ -45,6 +45,7 @@ const FIELD_MAPPINGS = {
   
   // Arabic
   "arbic": "Arabic",
+  "ARABIC": "Arabic",
   
   // History/Geography
   " History": "History",
@@ -61,7 +62,6 @@ const FIELD_MAPPINGS = {
   "Civics": "Civics",
   
   // Middle school specific subjects
-  "ARABIC": "Arabic",
   "ENGLISH O.L": "English",
   "MATH": "Math",
   "SCIENCE": "Science",
@@ -82,7 +82,7 @@ const FIELD_MAPPINGS = {
   "Sec.Language": "Second Language",
   "Religion": "Religion",
   "Civics": "Civics",
-  " A.L": "Art",
+  " A.L": "A.L",
 };
 
 function standardizeFieldName(field) {
@@ -418,9 +418,10 @@ async function fetchStudentData(jsonFile, code, codeKey = 'كود الطالب',
                         if (typeof grade === 'string' && grade.toLowerCase() === 'control') {
                             subjectDiv.innerHTML = `
                                 <span class="subject-name">${display}</span>
-                                <span class="subject-grade control">Under Review</span>
+                                <span class="subject-grade control">Control</span>
                             `;
                             subjectDiv.classList.add('control-grade');
+                            subjectDiv.style.backgroundColor = '#ff6666'; // Red background for control
                         } else {
                             subjectDiv.innerHTML = `
                                 <span class="subject-name">${display}</span>
