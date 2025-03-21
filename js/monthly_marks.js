@@ -13,7 +13,7 @@ const FIELD_MAPPINGS = {
   "Biology ": "Biology",
   "Chemistry ": "Chemistry", 
   "Physics ": "Physics",
-  "Int.Sci": "Int.Sci",
+  "Int.Sci ": "Int.Sci",
   "SCIENCE": "Science",
   "N.S": "N.S",
   
@@ -53,6 +53,7 @@ const FIELD_MAPPINGS = {
   
   // Psychology/Philosophy 
   " Psychology": "Psychology",
+  " Philosophy": "Philosophy",
   "Philosophy": "Philosophy",
   
   // Civics
@@ -75,13 +76,13 @@ const FIELD_MAPPINGS = {
   "Arabic": "Arabic",
   "English": "English",
   "Math": "Math",
-  "Int.Sci": "Int.Sci",
-  "Histroy": "History",
-  "Philosophy": "Philosophy",
+  "Int.Sci ": "Int.Sci",
+  "History": "History",
+  " Philosophy": "Philosophy",
   "Sec.Language": "Second Language",
   "Religion": "Religion",
   "Civics": "Civics",
-  "A.L": "A.L",
+  " A.L": "Art",
 };
 
 function standardizeFieldName(field) {
@@ -365,13 +366,13 @@ async function fetchStudentData(jsonFile, code, codeKey = 'كود الطالب',
                     ['Arabic', 'Arabic', 15],
                     ['English', 'English', 15],
                     ['Math', 'Math', 15],
-                    ['Int.Sci', 'Int.Sci', 15],
-                    ['Histroy', 'History', 15],
-                    ['Philosophy', 'Philosophy', 18],
+                    ['Int.Sci ', 'Int.Sci', 15],
+                    ['History', 'History', 15],
+                    [' Philosophy', 'Philosophy', 18],
                     ['Sec.Language', 'Second Language', 15],
                     ['Religion', 'Religion', 15],
                     ['Civics', 'Civics', 3],
-                    ['A.L', 'A.L', 15]
+                    [' A.L', 'A.L', 15]
                 ] : isMiddleSchool ? [
                     ['ARABIC', 'Arabic', 15],
                     ['ENGLISH O.L', 'English', 15],
